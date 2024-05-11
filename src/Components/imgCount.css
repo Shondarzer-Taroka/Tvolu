@@ -1,0 +1,19 @@
+#namebtn{
+    transition: all .5s;
+    border: 1px solid rebeccapurple;
+    background-color: rgba(240, 248, 255, 0.597);
+    display: none;
+    border-radius: 5px;
+
+}
+
+#img-contaner{
+    transition: all .5s;  
+}
+
+#img-contaner:hover #namebtn{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}

@@ -54,7 +54,7 @@ const VolunteerNeedsNow = () => {
                                 <div id="content" className="p-4 leading-7">
                                     <h1 className="font-semibold font-poppins text-[29px]" id="title"> {value.post_title} </h1>
                                     <h4 className="font-semibold font-poppins text-[15px]"> Category: {value.category} </h4>
-                                    <h6 className="text-[16px]">Deadline:  {new Date(new Date(value.deadline).getTime() + (6 * 60 * 60 * 1000)).toISOString().split('T')[0]} </h6>
+                                    <h6 className="text-[16px]">Deadline:  {new Date(new Date(value.deadline)?.getTime() + (6 * 60 * 60 * 1000))?.toISOString()?.split('T')[0]} </h6>
 
                                 </div>
 

@@ -8,6 +8,8 @@ import MyProfile from "../Pages/MyProfile/MyProfile";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import AddVolunteer from "../Pages/AddVolunteer/AddVolunteer";
 import VolunteerNeedPostDetails from "../Pages/VolunteerNeedPostDetails/VolunteerNeedPostDetails";
+import BeVolunteer from "../Pages/BeVolunteer/BeVolunteer";
+import ManageMyPost from "../Pages/ManageMyPost/ManageMyPost";
 
 let router=createBrowserRouter([
     {
@@ -40,8 +42,16 @@ let router=createBrowserRouter([
                 element:<AddVolunteer></AddVolunteer>
             },
             {
+                path:'/managepost',
+                element:<ManageMyPost></ManageMyPost>
+            },
+            {
                 path:'/postdeatails/:id',
                 element:<VolunteerNeedPostDetails></VolunteerNeedPostDetails>
+            },
+            {
+                path:'/bevolunteer/:id',
+                element:<BeVolunteer></BeVolunteer>
             }
 
         ]

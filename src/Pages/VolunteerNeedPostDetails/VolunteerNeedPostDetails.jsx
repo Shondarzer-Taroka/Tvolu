@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { CgOrganisation } from "react-icons/cg";
 import { FaLocationDot } from "react-icons/fa6";
 import { TfiEmail } from "react-icons/tfi";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { MdOutlineSubtitles } from "react-icons/md";
 import { FiCalendar } from "react-icons/fi";
 import { MdConfirmationNumber } from "react-icons/md";
@@ -49,7 +49,8 @@ const VolunteerNeedPostDetails = () => {
                     <p className="flex gap-1 items-center"> <span><MdCategory /> </span> <span className="font-poppins font-semibold">  Category:</span>{postDetails.category} </p>
                     <p className="flex gap-1 items-center"> <span><FiCalendar /></span> <span className="font-poppins font-semibold">Deadline: </span> {postDetails.deadline} </p>
                     <p className="flex gap-1 items-center"> <span><MdConfirmationNumber /></span> <span className="font-poppins font-semibold"> Volunteer Number:  </span> {postDetails.volunteer_number} </p>
-                    <button className="btn btn-secondary"> Be a Volunteer </button>
+                    <Link to={`/bevolunteer/${postDetails._id}`}> <button className="btn btn-secondary"> Be a Volunteer </button> </Link>
+                   
                 </div>
             </section>
 

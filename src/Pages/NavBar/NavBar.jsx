@@ -88,7 +88,7 @@ const NavBar = () => {
             <div tabIndex={0} role="button" className="m-1 w-max">My Profile</div>
             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
             <NavLink to={'/addvolunteer'}> <button className="p-2"> Add Volunteer Post </button> </NavLink>
-              <li><a>Item 2</a></li>
+            <NavLink to={'/managepost'}> <button className="p-2"> Manage My Post </button> </NavLink>
             </ul>
           </div>
 

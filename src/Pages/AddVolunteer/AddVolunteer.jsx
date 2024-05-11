@@ -72,6 +72,7 @@ const AddVolunteer = () => {
                             <span>Location:</span>
                             <input className=" p-2 w-[100%] outline-none " type="text" name="location" placeholder="Type your Location" id="" />
                         </div>
+
                         <div className="flex items-center border-[1px] border-black rounded-lg p-1" >
                             <span>No. of volunteers needed:</span>
                             <input className=" p-2 w-[100%] outline-none " type="text" name="volunteer_number" placeholder=" No. of volunteers needed" id="" />

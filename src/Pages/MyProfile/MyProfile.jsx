@@ -3,7 +3,7 @@ const MyProfile = () => {
     return (
         <div>
 
-            <p>uhg</p>
+            {/* <p>uhg</p> */}
 
 {/* <div className="flex justify-center items-center my-4 mb-24">            
                 <div className="dropdown">

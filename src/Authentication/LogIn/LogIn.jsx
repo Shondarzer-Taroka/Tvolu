@@ -13,6 +13,7 @@ const LogIn = () => {
     let navigate= useNavigate()
     let loc=useLocation()
     console.log(loc);
+
     function onsubmit(e) {
     e.preventDefault()
     let email=e.target.email.value
@@ -42,8 +43,6 @@ const LogIn = () => {
       }
       er.message=="Firebase: Error (auth/invalid-credential)." ? toast.error( "Invalid Email Or Password"): toast.error(storeError.join(''))
     })
-
-  setSpinner(false)
     }
 
     function handleLogInWithGoogle() {
@@ -76,12 +75,12 @@ const LogIn = () => {
 
                             <div className="flex flex-col">
                                 <span className="font-semibold">Email:</span>
-                                <input className="p-2 rounded-lg bg-[#8080808f] placeholder:text-[#ffffffc2]" type="email" name="email" placeholder="Input Your Email" />
+                                <input className="p-2 rounded-lg bg-[#8080808f] placeholder:text-[#ffffffc2]" type="email" name="email" placeholder="Input Your Email" required />
                             </div>
 
                             <div className="flex flex-col ">
                                 <span className="font-semibold">Password:</span>
-                                <input className="p-2 rounded-lg border-black bg-[#8080808f] placeholder:text-[#ffffffc2]" type="password" name="password" placeholder="Input Your Password" /> <br />
+                                <input className="p-2 rounded-lg border-black bg-[#8080808f] placeholder:text-[#ffffffc2]" type="password" name="password" placeholder="Input Your Password" required /> <br />
                                 <span className="mt-[-20px] mb-2 underline">forgotten password?</span>
                             </div>
 
@@ -98,7 +97,7 @@ const LogIn = () => {
                             <div className="flex justify-center">
                                 <div className="flex gap-2">
                                     <button className="px-3 py-2 rounded-lg bg-blue-400 flex items-center gap-2 font-semibold " onClick={handleLogInWithGoogle}> Google <FaGoogle></FaGoogle> </button>
-                                    <button className="px-3 py-2 rounded-lg bg-blue-400 flex items-center gap-2 font-semibold "> Twitter <BsTwitter></BsTwitter></button>
+                                    {/* <button className="px-3 py-2 rounded-lg bg-blue-400 flex items-center gap-2 font-semibold "> Twitter <BsTwitter></BsTwitter></button> */}
                                 </div>
                             </div>
                             

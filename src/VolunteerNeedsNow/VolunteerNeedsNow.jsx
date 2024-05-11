@@ -48,7 +48,7 @@ const VolunteerNeedsNow = () => {
 
                             <aside key={value._id} id="cardCont" className="border">
                                 <div className="p-4">
-                                    <img className="w-full" src={value.thumbnail} alt="" />
+                                    <img className="w-full h-[280px] object-cover" src={value.thumbnail} alt="" />
                                 </div>
 
                                 <div id="content" className="p-4 leading-7">

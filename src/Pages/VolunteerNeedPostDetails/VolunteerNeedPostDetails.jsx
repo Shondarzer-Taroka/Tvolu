@@ -31,9 +31,11 @@ const VolunteerNeedPostDetails = () => {
 
 
     return (
-        <div>
+     <div>
 
-            <section id="cont" className="">
+         {/* { postDetails.length===null && <h2>No</h2> } */}
+
+         { posLoading ? <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1> :   <section id="cont" className="">
                 <div>
                     <img className="w-[400px] " src={postDetails.thumbnail} alt="" />
                     <div>
@@ -47,12 +49,13 @@ const VolunteerNeedPostDetails = () => {
                     <p className="flex gap-1 items-center"> <span> <FaLocationDot></FaLocationDot> </span> <span className="font-poppins font-semibold">  Location:</span>{postDetails.location} </p>
                     <p className="flex gap-1 items-center"> <span><MdOutlineSubtitles /></span> <span className="font-poppins font-semibold"> title:</span>{postDetails.post_title}</p>
                     <p className="flex gap-1 items-center"> <span><MdCategory /> </span> <span className="font-poppins font-semibold">  Category:</span>{postDetails.category} </p>
-                    <p className="flex gap-1 items-center"> <span><FiCalendar /></span> <span className="font-poppins font-semibold">Deadline: </span> {postDetails.deadline} </p>
+                    <p className="flex gap-1 items-center"> <span><FiCalendar /></span> <span className="font-poppins font-semibold">Deadline: </span> {new Date(postDetails.deadline).toISOString().split('T')[0].split('-').reverse().join('/')} </p>
                     <p className="flex gap-1 items-center"> <span><MdConfirmationNumber /></span> <span className="font-poppins font-semibold"> Volunteer Number:  </span> {postDetails.volunteer_number} </p>
                     <Link to={`/bevolunteer/${postDetails._id}`}> <button className="btn btn-secondary"> Be a Volunteer </button> </Link>
                    
                 </div>
             </section>
+}
 
         </div>
     );

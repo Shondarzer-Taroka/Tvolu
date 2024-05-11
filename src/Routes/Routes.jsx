@@ -10,6 +10,7 @@ import AddVolunteer from "../Pages/AddVolunteer/AddVolunteer";
 import VolunteerNeedPostDetails from "../Pages/VolunteerNeedPostDetails/VolunteerNeedPostDetails";
 import BeVolunteer from "../Pages/BeVolunteer/BeVolunteer";
 import ManageMyPost from "../Pages/ManageMyPost/ManageMyPost";
+import Update from "../Pages/Update/Update";
 
 let router=createBrowserRouter([
     {
@@ -32,6 +33,11 @@ let router=createBrowserRouter([
             {
                 path:'/need',
                 element:<NeedVolunteer></NeedVolunteer>
+            },
+            {
+                path:'/update/:id',
+                element:<Update></Update>,
+                // loader:({params})=> fetch(`http://localhost:5588/updateitem/${params.id}`)
             },
             {
                 path:'/myprofile',

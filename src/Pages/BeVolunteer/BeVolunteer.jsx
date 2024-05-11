@@ -36,7 +36,7 @@ const BeVolunteer = () => {
         let thumbnail = form.thumbnail.value
         let post_title = form.post_title.value
         let location = form.location.value
-        let volunteer_number = form.volunteer_number.value
+        let volunteer_number =parseInt(form.volunteer_number.value) 
         let organizer_name = form.organizer_name.value
         let organizer_email = form.organizer_email.value
         let volunteer_name = form.volunteer_name.value
@@ -57,8 +57,10 @@ const BeVolunteer = () => {
         let date = new Date(year, month - 1, day);
         // Get the ISO 8601 formatted date with time and timezone
         let deadline = date.toISOString();
-        console.log({thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}); // Output: "2024-05-10T00:00:00.000Z"
-        let reqVolunteer={thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}
+        let vlId=beVolunteer.vlId
+        let jala=id
+        console.log({vlId,thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}); // Output: "2024-05-10T00:00:00.000Z"
+        let reqVolunteer={jala,vlId,thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}
         axios.post('http://localhost:5588/requsted',reqVolunteer)
         .then(res=>{
             console.log(res.data);
@@ -71,7 +73,8 @@ const BeVolunteer = () => {
      }
 
     return (
-        <div>
+
+        beVolunteerLoading ?  <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1> :    <div>
             <form className="" onSubmit={handleRequested}>
 
                 <section className="flex gap-3 flex-col">
@@ -139,7 +142,7 @@ const BeVolunteer = () => {
 
                             <div className="flex items-center border-[1px] gap-3 border-black rounded-lg p-1" >
                                 <span>Deadline:</span>
-                                <input className=" p-2 w-[100%] outline-none " type="text" name="deadline" value={beVolunteer?.deadline} id="" />
+                                <input className=" p-2 w-[100%] outline-none " type="text" name="deadline" value={ new Date(beVolunteer?.deadline).toISOString().split('T')[0].split('-').reverse().join('/')} id="" />
                             </div>
                             <div className="flex items-center gap-3 justify-between border-[1px] border-black rounded-lg p-1" >
                                 <span>Category:</span>

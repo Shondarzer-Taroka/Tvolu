@@ -51,7 +51,7 @@ let router=createBrowserRouter([
             },
             {
                 path:'/managepost',
-                element:<ManageMyPost></ManageMyPost>
+                element:<PrivateRoute> <ManageMyPost></ManageMyPost></PrivateRoute>
             },
             {
                 path:'/postdeatails/:id',

@@ -2,6 +2,7 @@
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { Navigate, useLocation } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
+import { useContext } from 'react';
 
 const PrivateRoute = ({children}) => {
 

@@ -130,8 +130,8 @@ const NavBar = () => {
             {/* <Link to={'/register'}> <button className="btn btn-info">Register</button> </Link> */}
 
           </div>}
-
           <div>
+
             <MyTHeme></MyTHeme>
           </div>
 

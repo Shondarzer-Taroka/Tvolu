@@ -4,6 +4,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { CiGrid41 } from "react-icons/ci";
 import { MdTableRows } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 const NeedVolunteer = () => {
     let [addedVolunteer, setaddedVolunteer] = useState([])
     let [loadingaddedVolunteer, setloadingaddedVolunteer] = useState(true)
@@ -34,9 +35,10 @@ const NeedVolunteer = () => {
     }
     return (
         <div>
-
+            <Helmet>
+                <title>Need Volunteer</title>
+            </Helmet>
             <h1 className="font-bold text-center font-poppins text-4xl "> Need Volunteer   </h1>
-            
             <div className="w-full h-[50px] bg-slate-400 rounded-xl flex items-center justify-end"> 
             <div className="flex gap-5 items-center justify-end"> 
             <CiGrid41 className="text-[40px]" onClick={makeGrid}/> 

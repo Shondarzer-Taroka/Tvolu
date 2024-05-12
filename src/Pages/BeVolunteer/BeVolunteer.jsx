@@ -2,16 +2,19 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
 
 
 const BeVolunteer = () => {
 
     let [beVolunteer, setbeVolunteer] = useState({})
     let [beVolunteerLoading, setbeVolunteerLoading] = useState(true)
+    let [knock,setKnock]=useState(false)
     let { user } = useContext(AuthContext)
     let { id } = useParams()
-
-
+    
+    let h=id
+   console.log(id);
     // let {volunteer_number,deadline,organizer_name,organizer_email,category,description,post_title}=postDetails
     useEffect(() => {
         setbeVolunteerLoading(true)
@@ -25,13 +28,16 @@ const BeVolunteer = () => {
                 console.log(err);
             })
 
-    }, [id])
-    console.log(id);
+    }, [id,knock])
+
+    // console.log(id);
 
 
 
     function handleRequested(event) {
         event.preventDefault()
+        console.log(h);
+        let g=h
         let form = event.target
         let thumbnail = form.thumbnail.value
         let post_title = form.post_title.value
@@ -58,12 +64,23 @@ const BeVolunteer = () => {
         // Get the ISO 8601 formatted date with time and timezone
         let deadline = date.toISOString();
         let vlId=beVolunteer.vlId
-        let jala=id
-        console.log({vlId,thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}); // Output: "2024-05-10T00:00:00.000Z"
-        let reqVolunteer={jala,vlId,thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}
+        // let {id}=id
+        // console.log({vlId,thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}); // Output: "2024-05-10T00:00:00.000Z"
+        let reqVolunteer={g,vlId,thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}
+        console.log(reqVolunteer);
+        if (organizer_email===user.email) {
+            return toast.error('You are Organizer. You cannot Request')
+        }
+        if (volunteer_number===0 || volunteer_number<0) {
+            return toast.error('You cannot Requst')
+        }
         axios.post('http://localhost:5588/requsted',reqVolunteer)
         .then(res=>{
             console.log(res.data);
+            if (res.data.acknowledged) {
+                toast.success('Successfully Requested')
+                setKnock(!knock)
+            }
         })
         .catch(err=>{
             console.log(err);
@@ -171,6 +188,7 @@ const BeVolunteer = () => {
                 </section>
                 <input type="submit" value={'Request'} className="btn btn-primary w-full mt-3" name="" id="" />
             </form>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

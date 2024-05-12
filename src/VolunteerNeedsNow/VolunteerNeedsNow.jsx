@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const VolunteerNeedsNow = () => {
     const [Volunteer, setVolunteer] = useState([])
-    const [loadingVolunteer,setloadingVolunteer]=useState(true)
+    const [loadingVolunteer, setloadingVolunteer] = useState(true)
     useEffect(() => {
         setloadingVolunteer(true)
         axios.get('http://localhost:5588/volunteerneed')
@@ -26,22 +26,22 @@ const VolunteerNeedsNow = () => {
             })
     }, [])
     return (
-    <div>
+        loadingVolunteer ? <div className="flex items-center justify-center my-8">
+            <RotatingLines
+                visible={true}
+                height="96"
+                width="96"
+                color="grey"
+                strokeWidth="5"
+                animationDuration="0.75"
+                ariaLabel="rotating-lines-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+            />
+        </div> : <div>
             <h1 className="text-center font-poppins font-bold my-5 "> Volunteer Needs Now </h1>
 
-         {    loadingVolunteer ? <>
-  <RotatingLines
-        visible={true}
-        height="96"
-        width="96"
-        color="grey"
-        strokeWidth="5"
-        animationDuration="0.75"
-        ariaLabel="rotating-lines-loading"
-        wrapperStyle={{}}
-        wrapperClass=""
-        />
-    </>:   <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {
                     Volunteer.map(value => {
                         return <>
@@ -64,7 +64,7 @@ const VolunteerNeedsNow = () => {
                     })
                 }
             </section>
- }
+
             <div className="text-center">
                 <Link to={'/need'}><button className="btn btn-accent text-white text-center">See All</button> </Link>
 

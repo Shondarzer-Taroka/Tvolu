@@ -3,6 +3,7 @@ import { FaUser } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import '../../Components/imgCount.css'
+import MyTHeme from "../MyTheme/MyTheme";
 
 const NavBar = () => {
   let { user, logout, spinner } = useContext(AuthContext)
@@ -96,6 +97,8 @@ const NavBar = () => {
 
         <div id="navbar-end" className="navbar-end">
 
+          
+
           {spinner ? <h2><span className="loading loading-spinner text-primary"></span> </h2> : user ? <div className="h-[50px] w-[50px] "> {user?.photoURL ? <div className="w-full h-full relative" id="img-contaner">  <img className="w-full h-full border rounded-full" src={user.photoURL} alt="" />
 
             <div id="namebtn" className="w-[150px] h-[max-content] p-4 border-2 absolute left-[-100px] z-50 hidden">
@@ -127,6 +130,10 @@ const NavBar = () => {
             {/* <Link to={'/register'}> <button className="btn btn-info">Register</button> </Link> */}
 
           </div>}
+
+          <div>
+            <MyTHeme></MyTHeme>
+          </div>
 
         </div>
       </div>

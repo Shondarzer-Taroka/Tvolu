@@ -25,7 +25,7 @@ const Banner = () => {
 
                 <SwiperSlide>
                     <section className="p-16 lg:h-[550px]  rounded flex-col-reverse justify-between items-center flex lg:flex-row gap-2" style={{ background: 'linear-gradient(336deg, rgba(8,82,196,1) 0%, rgba(116,23,5,0.9726015406162465) 41%, rgba(0,0,0,1) 100%)' }}>
-                        <div id="content" className=" text-white lg:w-[400px] flex flex-col items-center justify-between md:py-3">
+                        <div id="content" className=" text-white lg:w-[600px] flex flex-col items-center justify-between md:py-3">
                             <h3 className='font-bold text-3xl md:text-4xl font-poppins text-center mt-7 mb-8 md:mt-0'>
                                 <Typewriter
                                     cursor

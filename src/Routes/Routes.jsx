@@ -11,6 +11,7 @@ import VolunteerNeedPostDetails from "../Pages/VolunteerNeedPostDetails/Voluntee
 import BeVolunteer from "../Pages/BeVolunteer/BeVolunteer";
 import ManageMyPost from "../Pages/ManageMyPost/ManageMyPost";
 import Update from "../Pages/Update/Update";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 let router=createBrowserRouter([
     {
@@ -45,7 +46,8 @@ let router=createBrowserRouter([
             },
             {
                 path:'/addvolunteer',
-                element:<AddVolunteer></AddVolunteer>
+                element:<PrivateRoute><AddVolunteer></AddVolunteer></PrivateRoute>
+                
             },
             {
                 path:'/managepost',

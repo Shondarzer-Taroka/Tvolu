@@ -21,7 +21,9 @@ const Update = () => {
         let volunteer_number =parseInt(form.volunteer_number.value) 
         // let date= new Date(startDate)
         // let  deadline = `${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}/${date.getFullYear()}`
-        var dateString = "Wed May 29 2024 15:30:57 GMT+0600 (Bangladesh Standard Time)";
+        
+
+
         var date = new Date(startDate);
 
         // Extract year, month, and day from the date object
@@ -127,7 +129,7 @@ const Update = () => {
                 </section>
                 <input type="submit" value={'Update Post'} className="btn btn-primary w-full mt-3" name="" id="" />
             </form>
-<ToastContainer></ToastContainer>
+    <ToastContainer></ToastContainer>
         </div>
     );
 };

@@ -55,7 +55,7 @@ let router=createBrowserRouter([
             },
             {
                 path:'/postdeatails/:id',
-                element:<VolunteerNeedPostDetails></VolunteerNeedPostDetails>
+                element:<PrivateRoute><VolunteerNeedPostDetails></VolunteerNeedPostDetails></PrivateRoute>
             },
             {
                 path:'/bevolunteer/:id',

@@ -37,7 +37,7 @@ let router=createBrowserRouter([
             },
             {
                 path:'/update/:id',
-                element:<Update></Update>,
+                element:<PrivateRoute><Update></Update></PrivateRoute>,
                 // loader:({params})=> fetch(`http://localhost:5588/updateitem/${params.id}`)
             },
             {
@@ -59,7 +59,7 @@ let router=createBrowserRouter([
             },
             {
                 path:'/bevolunteer/:id',
-                element:<BeVolunteer></BeVolunteer>
+                element: <PrivateRoute><BeVolunteer></BeVolunteer></PrivateRoute>
             }
 
         ]

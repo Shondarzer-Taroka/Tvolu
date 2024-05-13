@@ -4,66 +4,75 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
 const Register = () => {
 
-    let {createUser,updateUser}=useContext(AuthContext)
-    let navigate= useNavigate()
-    let loc=useLocation()
+    let { createUser, updateUser } = useContext(AuthContext)
+    let navigate = useNavigate()
+    let loc = useLocation()
     console.log(loc);
     function onsubmit(e) {
         e.preventDefault()
-        let email=e.target.email.value
-        let password=e.target.password.value
-        let name=e.target.name.value 
-        let photo=e.target.image.value
-        console.log(email,password,name,photo);
+        let email = e.target.email.value
+        let password = e.target.password.value
+        let name = e.target.name.value
+        let photo = e.target.image.value
+        console.log(email, password, name, photo);
 
-        
-     if (password.length<6) {
-        // toast.error('You should take at least 6 characters')
-        toast.error('You should take at least 6 characters')
-        return ;
-       }
-       else if (!/[A-Z]/.test(password)) {
-        toast.error('You should take an uppercase')
-      
-       return;
-       }
-       else if (!/[a-z]/.test(password)) {
-        toast.error('You should take a lowercase')
-       
-        return;
-       }
 
-    // if (password.length<6) {
-    //     alert('jk')
-    //     toast.success('j')
-    // }
+        if (password.length < 6) {
+            // toast.error('You should take at least 6 characters')
+            toast.error('You should take at least 6 characters')
+            return;
+        }
+        else if (!/[A-Z]/.test(password)) {
+            toast.error('You should take an uppercase')
 
-        createUser(email,password)
-        .then((result=>{
-            let logUser=result.user 
-            console.log(logUser);
-            updateUser(name,photo)
-            .then(()=>{
+            return;
+        }
+        else if (!/[a-z]/.test(password)) {
+            toast.error('You should take a lowercase')
 
+            return;
+        }
+
+        // if (password.length<6) {
+        //     alert('jk')
+        //     toast.success('j')
+        // }
+
+        createUser(email, password)
+            .then((result => {
+                let logUser = result.user
+                let { user } = email
+                axios.post('http://localhost:5588/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                console.log(logUser);
+                updateUser(name, photo)
+                    .then(() => {
+
+                    })
+                    .catch(er => {
+                        console.log(er);
+                    })
+                e.target.reset()
+                toast.success('Successfully registered')
+                // location.reload()
+                setTimeout(() => {
+                    navigate(loc?.state ? loc.state : '/')
+                    location.reload()
+                }, 1000)
+            }))
+            .catch(er => {
+                er.message == 'Firebase: Error (auth/email-already-in-use).' ? toast.error('Email already in used') : ''
+                console.log(er.message);
+                // console.log(er);
             })
-            .catch(er=>{
-              console.log(er);
-            })
-            e.target.reset()
-            toast.success('Successfully registered')
-            // location.reload()
-            setTimeout(()=>{
-              navigate(loc?.state ? loc.state : '/')
-              location.reload()
-            },1000)
-        }))
-        .catch(er=>{
-            er.message=='Firebase: Error (auth/email-already-in-use).' ? toast.error('Email already in used'):''
-            console.log(er.message);
-            // console.log(er);
-        })
 
     }
     return (
@@ -75,7 +84,7 @@ const Register = () => {
                     <form onSubmit={onsubmit}>
                         <section className="md:w-[300px]">
                             <aside className="bg-[rgba(255,255,255,0.22)] p-5 md:p-7 rounded-xl text-white ">
-                                    <h1 className="text-center text-3xl font-bold font-poppins pb-3"> Register Here </h1>
+                                <h1 className="text-center text-3xl font-bold font-poppins pb-3"> Register Here </h1>
                                 <div className="flex flex-col">
                                     <span className="font-semibold">Name</span>
                                     <input className="p-2 rounded-lg bg-[#8080808f] placeholder:text-[#ffffffc2]" type="text" name="name" placeholder="Input Your Name" />
@@ -102,7 +111,7 @@ const Register = () => {
                                 <div>
                                     <button className="btn btn-info w-full">Register</button>
                                 </div>
-  
+
                                 <div className="mt-4">
                                     <small >Already registered ? Please <Link className="font-semibold" to={'/login'}> Log In</Link> </small>
 
@@ -115,7 +124,7 @@ const Register = () => {
                 </section>
 
             </div>
-<ToastContainer></ToastContainer>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

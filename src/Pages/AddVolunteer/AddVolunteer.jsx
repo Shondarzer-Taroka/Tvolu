@@ -4,6 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 const AddVolunteer = () => {
     const {user}=useContext(AuthContext)
     const [startDate, setStartDate] = useState(new Date());
@@ -40,7 +41,9 @@ const AddVolunteer = () => {
     }
     return (
         <div className="my-7">
-
+                 <Helmet>
+                    <title>Add Volunteer</title>
+                 </Helmet>
             <form className="" onSubmit={add}>
 
                 <section className="flex gap-3 flex-col">

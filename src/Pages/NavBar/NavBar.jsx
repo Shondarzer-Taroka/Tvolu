@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import '../../Components/imgCount.css'
 import MyTHeme from "../MyTheme/MyTheme";
+import axios from "axios";
 
 const NavBar = () => {
   let { user, logout, spinner } = useContext(AuthContext)
@@ -34,7 +35,9 @@ const NavBar = () => {
 
   function logUtFromFireBase() {
     logout()
-      .then(() => { })
+      .then(() => { 
+        axios.post('http://localhost:5588/logout',user,{withCredentials:true})
+      })
       .catch(er => {
         console.log(er);
       })

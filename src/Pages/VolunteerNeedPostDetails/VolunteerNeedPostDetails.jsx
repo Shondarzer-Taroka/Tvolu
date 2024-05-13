@@ -9,6 +9,7 @@ import { FiCalendar } from "react-icons/fi";
 import { MdConfirmationNumber } from "react-icons/md";
 
 import { MdCategory } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 const VolunteerNeedPostDetails = () => {
     let [postDetails, setPostDetails] = useState({}) 
     let [posLoading, setPostLoading] = useState(true)
@@ -17,7 +18,7 @@ const VolunteerNeedPostDetails = () => {
     // let {volunteer_number,deadline,organizer_name,organizer_email,category,description,post_title}=postDetails
     useEffect(() => {
         setPostLoading(true)
-        axios.get(`http://localhost:5588/postdetails/${id}`)
+        axios.get(`http://localhost:5588/postdetails/${id}`,{withCredentials:true})
             .then(res => {
                 console.log(res.data);
                 setPostDetails(res.data)
@@ -32,6 +33,10 @@ const VolunteerNeedPostDetails = () => {
 
     return (
      <div>
+
+        <Helmet>
+            <title>Post Details</title>
+        </Helmet>
 
          {/* { postDetails.length===null && <h2>No</h2> } */}
 

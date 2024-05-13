@@ -5,6 +5,7 @@ import logBG from '../../assets/9142206.jpg'
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 const LogIn = () => {
 
@@ -13,18 +14,26 @@ const LogIn = () => {
     let navigate= useNavigate()
     let loc=useLocation()
     console.log(loc);
-
     function onsubmit(e) {
     e.preventDefault()
     let email=e.target.email.value
     let password=e.target.password.value
     console.log(email,password);
-    
     signInUser(email,password)
     .then((result)=>{
-      let user=result.user 
-      // navigate(loc?.state ? loc.state : '/')
+      let loggedInUser=result.user 
       toast.success('Successfully Log In')
+      let user={email}
+       console.log(user);
+       axios.post('http://localhost:5588/jwt',user,{withCredentials:true})
+       .then(res=>{
+           console.log(res.data);
+       })
+       .catch(err=>{
+           console.log(err);
+       })
+      // navigate(loc?.state ? loc.state : '/')
+      
       setTimeout(()=>{
         navigate(loc?.state ? loc.state : '/')
        },1000)
@@ -49,6 +58,13 @@ const LogIn = () => {
       signInbyGoogle()
       .then((result)=>{
         let user=result.user 
+        axios.post('http://localhost:5588/jwt',user.email,{withCredentials:true})
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
         toast.success('Successfully log In')
         setTimeout(()=>{
           navigate(loc?.state ? loc.state : '/')

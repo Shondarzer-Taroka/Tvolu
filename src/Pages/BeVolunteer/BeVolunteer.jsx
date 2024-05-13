@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 
 const BeVolunteer = () => {
@@ -71,16 +72,23 @@ const BeVolunteer = () => {
         if (organizer_email===user.email) {
             return toast.error('You are Organizer. You cannot Request')
         }
+
         if (volunteer_number===0 || volunteer_number<0) {
             return toast.error('You cannot Requst')
         }
+        
         axios.post('http://localhost:5588/requsted',reqVolunteer)
         .then(res=>{
             console.log(res.data);
             if (res.data.acknowledged) {
                 toast.success('Successfully Requested')
-                setKnock(!knock)
+                
+               setTimeout(()=>{
+                 setKnock(!knock)
+               },1000)
+
             }
+            
         })
         .catch(err=>{
             console.log(err);
@@ -90,8 +98,10 @@ const BeVolunteer = () => {
      }
 
     return (
+        <> 
+        <Helmet> <title> Volunteer Request </title> </Helmet>
 
-        beVolunteerLoading ?  <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1> :    <div>
+      {  beVolunteerLoading ?  <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1> :    <div>
             <form className="" onSubmit={handleRequested}>
 
                 <section className="flex gap-3 flex-col">
@@ -190,7 +200,8 @@ const BeVolunteer = () => {
             </form>
             <ToastContainer></ToastContainer>
         </div>
-    );
+        }
+        </> );
 };
 
 export default BeVolunteer;

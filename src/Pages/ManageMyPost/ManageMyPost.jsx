@@ -18,7 +18,7 @@ const ManageMyPost = () => {
 
     useEffect(() => {
         setLoadPost(true)
-        axios.get(`http://localhost:5588/myneedvolunteer/${user?.email}`)
+        axios.get(`http://localhost:5588/myneedvolunteer/${user?.email}`,{withCredentials:true})
             .then(res => {
                 setManageData(res.data)
                 setLoadPost(false)
@@ -31,7 +31,7 @@ const ManageMyPost = () => {
 
     useEffect(() => {
         setloadPostrequest(true)
-        axios.get(`http://localhost:5588/myrequestedvolunteer/${user?.email}`)
+        axios.get(`http://localhost:5588/myrequestedvolunteer/${user?.email}`,{withCredentials:true})
             .then(res => {
                 setmyRequested(res.data)
                 setloadPostrequest(false)
@@ -127,11 +127,11 @@ const ManageMyPost = () => {
 
 
     return (
-    loadPost ?  <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1> :   <div>
-            {/* { } */}
+      <div>
+            {    loadPost ?  <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1> :   
             <section >
                 <h1 className="text-2xl font-poppins font-bold text-center my-6"> My Need Volunteer Post</h1>
-               {         manageData.length === 0 ? <h2 className="text-4xl font-poppins font-bold text-center my-6">You Have No Data</h2> :
+               {         manageData.length === 0 ? <h2 className="text-[55px] font-bold font-poppins text-[#8885856d] text-center my-7">You Have No Post</h2> :
                 <aside>
                     <div className="overflow-x-auto">
                         <table className="table table-xs sm:table-sm md:table-md lg:table-lg table-zebra">
@@ -169,12 +169,13 @@ const ManageMyPost = () => {
 }
             </section>
 
+}
 
-
+      { loadPostrequest ?   <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1>:
             <section>
                 <h1 className="text-center font-poppins font-bold text-4xl my-6"> My Volunteer Request Post</h1>
                {
-                myRequested.length==0 ? <h1 className="text-[55px] font-bold font-poppins text-[#8885856d] text-center my-7"> You Have No Requeste Data </h1>:
+                myRequested.length==0 ? <h1 className="text-[55px] font-bold font-poppins text-[#8885856d] text-center my-7"> You Have No Requested Data </h1>:
             
                 <aside>
                 <div className="overflow-x-auto">
@@ -212,6 +213,7 @@ const ManageMyPost = () => {
                 </aside>
                    }
             </section>
+}
         </div>
     );
 };

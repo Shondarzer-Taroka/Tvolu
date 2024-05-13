@@ -57,8 +57,8 @@ const VolunteerNeedsNow = () => {
                                     <h6 className="text-[16px]">Deadline:  {new Date(new Date(value.deadline)?.getTime() + (6 * 60 * 60 * 1000))?.toISOString()?.split('T')[0]} </h6>
 
                                 </div>
-
-                                <button className=" text-white btn btn-info mx-4 mb-4">View Details</button>
+                                <Link to={`/postdeatails/${value._id}`}><button className=" text-white btn btn-info mx-4 mb-4">View Details</button></Link>
+                                
                             </aside>
                         </>
                     })

@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useLoaderData, useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const Update = () => {
     let {id} = useParams()
@@ -57,6 +58,10 @@ const Update = () => {
     }
     return (
         <div>
+
+            <Helmet>
+                <title>Update</title>
+            </Helmet>
 
             <form className="" onSubmit={update}>
 

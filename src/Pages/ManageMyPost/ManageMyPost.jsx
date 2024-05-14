@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Authentication/useAxiosSecure/useAxiosSecure";
 
 const ManageMyPost = () => {
     let { user } = useContext(AuthContext)
@@ -12,22 +13,31 @@ const ManageMyPost = () => {
     let [loadPost,setLoadPost]=useState(true)
     let [loadPostrequest,setloadPostrequest]=useState(true)
     let [postLoadToggle,setPostLoadToggle]=useState(false)
-
+    let axiosSecure=useAxiosSecure()
     // console.log(user.email);
 
-
+    let url=`/myneedvolunteer/${user?.email}`
     useEffect(() => {
         setLoadPost(true)
-        axios.get(`http://localhost:5588/myneedvolunteer/${user?.email}`,{withCredentials:true})
-            .then(res => {
-                setManageData(res.data)
-                setLoadPost(false)
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }, [user, toggle])
+        
+        // axios.get(`http://localhost:5588/myneedvolunteer/${user?.email}`,{withCredentials:true})
+        //     .then(res => {
+        //         setManageData(res.data)
+        //         setLoadPost(false)
+        //         console.log(res.data);
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     })
+        axiosSecure.get(url)
+        .then(res=>{
+            setManageData(res.data)
+            setLoadPost(false)
+            console.log(res.data);
+        })
+
+
+    }, [user, toggle,url,axiosSecure])
 
     useEffect(() => {
         setloadPostrequest(true)
@@ -130,7 +140,7 @@ const ManageMyPost = () => {
       <div>
             {    loadPost ?  <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1> :   
             <section >
-                <h1 className="text-2xl font-poppins font-bold text-center my-6"> My Need Volunteer Post</h1>
+                <h1 className="text-4xl font-poppins font-bold text-center my-6 uppercase"> My Need Volunteer Post</h1>
                {         manageData.length === 0 ? <h2 className="text-[55px] font-bold font-poppins text-[#8885856d] text-center my-7">You Have No Post</h2> :
                 <aside>
                     <div className="overflow-x-auto">
@@ -173,7 +183,7 @@ const ManageMyPost = () => {
 
       { loadPostrequest ?   <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1>:
             <section>
-                <h1 className="text-center font-poppins font-bold text-4xl my-6"> My Volunteer Request Post</h1>
+                <h1 className="text-center font-poppins font-bold text-4xl my-6 uppercase"> My Volunteer Request Post</h1>
                {
                 myRequested.length==0 ? <h1 className="text-[55px] font-bold font-poppins text-[#8885856d] text-center my-7"> You Have No Requested Data </h1>:
             

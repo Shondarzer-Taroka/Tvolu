@@ -40,10 +40,13 @@ const AddVolunteer = () => {
 
     }
     return (
-        <div className="my-7">
+        <div className="mb-7">
                  <Helmet>
                     <title>Add Volunteer</title>
                  </Helmet>
+
+                <h2 className="font-poppins text-3xl text-center mb-6 font-bold uppercase">Add Volunteer</h2>
+
             <form className="" onSubmit={add}>
 
                 <section className="flex gap-3 flex-col">

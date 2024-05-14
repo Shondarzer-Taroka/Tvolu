@@ -39,7 +39,7 @@ const VolunteerNeedsNow = () => {
                 wrapperClass=""
             />
         </div> : <div>
-            <h1 className="text-center font-poppins font-bold my-5 "> Volunteer Needs Now </h1>
+            <h1 className="text-center font-poppins font-bold my-5 uppercase"> Volunteer Needs Now </h1>
 
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {
@@ -66,7 +66,7 @@ const VolunteerNeedsNow = () => {
             </section>
 
             <div className="text-center">
-                <Link to={'/need'}><button className="btn btn-accent text-white text-center">See All</button> </Link>
+                <Link to={'/need'}><button className="btn my-5 btn-accent text-white text-center">See All</button> </Link>
 
             </div>
 

@@ -3,6 +3,7 @@ import OurVolunteerCamp from "../../ExtraSection/OurVolunteerCamp/OurVolunteerCa
 import OurExparter from "../../OurExparter/OurExparter";
 import VolunteerNeedsNow from "../../VolunteerNeedsNow/VolunteerNeedsNow";
 import Banner from "../Banner/Banner";
+import SecondBanner from "../SecondBanner/SecondBanner";
 
 
 
@@ -14,7 +15,8 @@ const Home = () => {
                 <title> Home</title>
             </Helmet>
           
-            <Banner></Banner>
+            {/* <Banner></Banner> */}
+            <SecondBanner></SecondBanner>
             <VolunteerNeedsNow></VolunteerNeedsNow>
             <OurVolunteerCamp></OurVolunteerCamp>
             <OurExparter></OurExparter>

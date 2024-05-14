@@ -10,6 +10,7 @@ import { MdConfirmationNumber } from "react-icons/md";
 
 import { MdCategory } from "react-icons/md";
 import { Helmet } from "react-helmet-async";
+import { ToastContainer, toast } from "react-toastify";
 const VolunteerNeedPostDetails = () => {
     let [postDetails, setPostDetails] = useState({}) 
     let [posLoading, setPostLoading] = useState(true)
@@ -38,6 +39,9 @@ const VolunteerNeedPostDetails = () => {
             <title>Post Details</title>
         </Helmet>
 
+
+        <h2 className="font-poppins text-3xl text-center mb-6 font-bold uppercase">Post Details</h2>
+
          {/* { postDetails.length===null && <h2>No</h2> } */}
 
          { posLoading ? <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1> :   <section id="cont" className="">
@@ -56,12 +60,12 @@ const VolunteerNeedPostDetails = () => {
                     <p className="flex gap-1 items-center"> <span><MdCategory /> </span> <span className="font-poppins font-semibold">  Category:</span>{postDetails.category} </p>
                     <p className="flex gap-1 items-center"> <span><FiCalendar /></span> <span className="font-poppins font-semibold">Deadline: </span> {new Date(postDetails.deadline).toISOString().split('T')[0].split('-').reverse().join('/')} </p>
                     <p className="flex gap-1 items-center"> <span><MdConfirmationNumber /></span> <span className="font-poppins font-semibold"> Volunteer Number:  </span> {postDetails.volunteer_number} </p>
-                    <Link to={`/bevolunteer/${postDetails._id}`}> <button className="btn btn-secondary"> Be a Volunteer </button> </Link>
+                 {  postDetails.volunteer_number<0 || postDetails.volunteer_number==0 ? <button onClick={()=> toast.error('You cannot be volunteer')} className="btn btn-info">Be Volunteer </button>  :<Link to={`/bevolunteer/${postDetails._id}`}> <button className="btn btn-secondary"> Be a Volunteer </button> </Link>}
                    
                 </div>
             </section>
 }
-
+         <ToastContainer></ToastContainer>
         </div>
     );
 };

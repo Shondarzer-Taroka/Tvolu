@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
@@ -62,6 +62,8 @@ const Update = () => {
             <Helmet>
                 <title>Update</title>
             </Helmet>
+
+            <h2 className="font-poppins text-3xl text-center mb-6 font-bold uppercase">update post</h2>
 
             <form className="" onSubmit={update}>
 

@@ -63,14 +63,14 @@ const NeedVolunteer = () => {
             </div>
 
             <h1 className="font-bold text-center font-poppins text-4xl "> Need Volunteer   </h1>
-            {/* <div className="w-full h-[50px] bg-slate-400 rounded-xl flex items-center justify-end">
+            <div className="w-full h-[50px] bg-slate-400 rounded-xl flex items-center justify-end">
             
                 <div className="flex gap-5 items-center justify-end">
                     <CiGrid41 className="text-[40px]" onClick={makeGrid} />
                     <MdTableRows onClick={makeTable} className="text-[40px]" />
                 </div>
-            </div> */}
-            
+            </div>
+
 
             {
                 loadingaddedVolunteer ? <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1>:

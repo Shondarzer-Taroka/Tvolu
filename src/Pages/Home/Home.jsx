@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import OurVolunteerCamp from "../../ExtraSection/OurVolunteerCamp/OurVolunteerCamp";
 import OurExparter from "../../OurExparter/OurExparter";
 import VolunteerNeedsNow from "../../VolunteerNeedsNow/VolunteerNeedsNow";
-import Banner from "../Banner/Banner";
+// import Banner from "../Banner/Banner";
 import SecondBanner from "../SecondBanner/SecondBanner";
 
 
@@ -16,7 +16,9 @@ const Home = () => {
             </Helmet>
           
             {/* <Banner></Banner> */}
+
             <SecondBanner></SecondBanner>
+            
             <VolunteerNeedsNow></VolunteerNeedsNow>
             <OurVolunteerCamp></OurVolunteerCamp>
             <OurExparter></OurExparter>

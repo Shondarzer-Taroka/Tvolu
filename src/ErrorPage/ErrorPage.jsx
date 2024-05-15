@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
- import errorPage from '../../src/assets/notfo.png'
+ import errorPage from '../assets/3804935.jpg'
 import { Helmet } from 'react-helmet-async';
 const ErrorPage = () => {
     let navigate = useNavigate()

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CgOrganisation } from "react-icons/cg";
 import { FaLocationDot } from "react-icons/fa6";
 import { TfiEmail } from "react-icons/tfi";
@@ -11,7 +11,9 @@ import { MdConfirmationNumber } from "react-icons/md";
 import { MdCategory } from "react-icons/md";
 import { Helmet } from "react-helmet-async";
 import { ToastContainer, toast } from "react-toastify";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 const VolunteerNeedPostDetails = () => {
+    let {user}=useContext(AuthContext)
     let [postDetails, setPostDetails] = useState({}) 
     let [posLoading, setPostLoading] = useState(true)
     let { id } = useParams()
@@ -60,7 +62,7 @@ const VolunteerNeedPostDetails = () => {
                     <p className="flex gap-1 items-center"> <span><MdCategory /> </span> <span className="font-poppins font-semibold">  Category:</span>{postDetails.category} </p>
                     <p className="flex gap-1 items-center"> <span><FiCalendar /></span> <span className="font-poppins font-semibold">Deadline: </span> {new Date(postDetails.deadline).toISOString().split('T')[0].split('-').reverse().join('/')} </p>
                     <p className="flex gap-1 items-center"> <span><MdConfirmationNumber /></span> <span className="font-poppins font-semibold"> Volunteer Number:  </span> {postDetails.volunteer_number} </p>
-                 {  postDetails.volunteer_number<0 || postDetails.volunteer_number==0 ? <button onClick={()=> toast.error('You cannot be volunteer')} className="btn btn-info">Be Volunteer </button>  :<Link to={`/bevolunteer/${postDetails._id}`}> <button className="btn btn-secondary"> Be a Volunteer </button> </Link>}
+                 {  postDetails.volunteer_number<0 || postDetails.volunteer_number==0 || postDetails.organizer_email===user.email ? <button onClick={()=> toast.error('You cannot be volunteer')} className="btn btn-info">Be Volunteer </button>  :<Link to={`/bevolunteer/${postDetails._id}`}> <button className="btn btn-secondary"> Be a Volunteer </button> </Link>}
                    
                 </div>
             </section>

@@ -18,14 +18,26 @@ const AddVolunteer = () => {
         let category=form.category.value
         let location=form.location.value
         let volunteer_number=parseInt(form.volunteer_number.value) 
-        let date= new Date(startDate)
-        let  deadline = `${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}/${date.getFullYear()}`
+        //  let date= new Date(startDate)
+        // let  deadline = `${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}/${date.getFullYear()}`
+       
+        var date = new Date(startDate);
+
+        // Extract year, month, and day from the date object
+        var year = date.getFullYear();
+        var month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-based
+        var day = date.getDate().toString().padStart(2, '0');
+
+        // Construct the desired ISO 8601 formatted string
+        var deadline = `${year}-${month}-${day}T00:00:00Z`;
+        console.log(deadline);
+       
         let organizer_name=form.organizer_name.value
         let organizer_email=form.organizer_email.value
         let description=form.description.value
         let volunteer={vlId,thumbnail,post_title,category,location,volunteer_number,deadline,organizer_email,organizer_name,description}
-       console.log(thumbnail,post_title,category,location,volunteer_number,deadline,organizer_email,organizer_name,description);
-       // console.log(volunteer);
+    //    console.log(thumbnail,post_title,category,location,volunteer_number,deadline,organizer_email,organizer_name,description);
+       console.log(volunteer);
 
         axios.post('https://assignment-eleven-server-brown.vercel.app/addvolunteer',volunteer,{withCredentials:true})
         .then(res=>{

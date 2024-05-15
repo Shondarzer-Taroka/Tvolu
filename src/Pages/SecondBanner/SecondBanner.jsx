@@ -25,7 +25,7 @@ const SecondBanner = () => {
             
             <SwiperSlide>
 
-            <div className=" rounded-lg w-full h-screen bg-cover bg-no-repeat" style={{ backgroundImage: `url(https://i.ibb.co/HhWYXH3/pexels-rdne-6647037.jpg)` }}>
+            <div className=" rounded-lg w-full h-screen bg-cover bg-no-repeat" style={{ backgroundImage: `url(https://i.ibb.co/BjQdYgz/pexels-rdne-6647037-1.jpg)` }}>
 
                 <div className="w-[100%] h-full bg-[#080707c0]">
                     <div className="md:w-[90%] h-full  mx-auto p-3 md:p-4">
@@ -35,7 +35,7 @@ const SecondBanner = () => {
                       
                       <Fade direction="left">
                         <h3 className="font-poppins text-[34px] font-bold ">
-                        Step into the realm of Tvolu,
+                       Welcome to the Tvolu,
                         </h3>
                       </Fade>
                         
@@ -62,7 +62,7 @@ const SecondBanner = () => {
             {/* 2nd */}
             <SwiperSlide>
 
-            <div className=" rounded-lg w-full h-screen bg-cover bg-no-repeat" style={{ backgroundImage: `url(https://i.ibb.co/ggbCzdn/pexels-rdne-6646918.jpg)` }}>
+            <div className=" rounded-lg w-full h-screen bg-cover bg-no-repeat" style={{ backgroundImage: `url(https://i.ibb.co/ryFnyKQ/pexels-rdne-6646918-1.jpg)` }}>
 
                 <div className="w-[100%] h-full bg-[#080707c0]">
                     <div className="md:w-[90%] h-full  mx-auto p-3 md:p-4">
@@ -72,12 +72,12 @@ const SecondBanner = () => {
                       
                       <Fade direction="left">
                         <h3 className="font-poppins text-[34px] font-bold ">
-                        Step into the realm of Tvolu,
+                        Welcome to the Tvolu,
                         </h3>
                       </Fade>
                         
                         <Fade direction="top" delay={2000}>
-                        <p className="text-[21px] text-[#f5f1f1] md:w-[300px]">where every click echoes with the symphony of service.Tvolu is the epitome of volunteerism redefined.</p>
+                        <p className="text-[21px] text-[#f5f1f1] md:w-[300px]"> Discover meaningful opportunities to make a difference in your community. Together, we can create positive change, one volunteer at a time.</p>
                         </Fade>
                        
                         <Fade direction="left" delay={3000}>
@@ -98,7 +98,7 @@ const SecondBanner = () => {
 
             <SwiperSlide>
 
-<div className=" rounded-lg w-full h-screen bg-cover bg-no-repeat" style={{ backgroundImage: `url(https://i.ibb.co/fvWLFRG/volb3.jpg)` }}>
+<div className=" rounded-lg w-full h-screen bg-cover bg-no-repeat" style={{ backgroundImage: `url(https://i.ibb.co/2vyYDpM/volb3-1.jpg)` }}>
 
     <div className="w-[100%] h-full bg-[#080707c0]">
         <div className="md:w-[90%] h-full  mx-auto p-3 md:p-4">
@@ -108,12 +108,12 @@ const SecondBanner = () => {
           
           <Fade direction="left">
             <h3 className="font-poppins text-[34px] font-bold ">
-            Step into the realm of Tvolu,
+            Welcome to the Tvolu,
             </h3>
           </Fade>
             
             <Fade direction="top" delay={2000}>
-            <p className="text-[21px] text-[#f5f1f1] md:w-[300px]">where every click echoes with the symphony of service.Tvolu is the epitome of volunteerism redefined.</p>
+            <p className="text-[21px] text-[#f5f1f1] md:w-[300px]">Explore diverse volunteer opportunities tailored to your interests and skills. Join us in building stronger communities.</p>
             </Fade>
            
             <Fade direction="left" delay={3000}>

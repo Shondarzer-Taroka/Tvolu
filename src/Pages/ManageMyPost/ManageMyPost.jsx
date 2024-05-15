@@ -4,6 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Authentication/useAxiosSecure/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const ManageMyPost = () => {
     let { user } = useContext(AuthContext)
@@ -138,6 +139,9 @@ const ManageMyPost = () => {
 
     return (
       <div>
+        <Helmet>
+            <title>Manage post</title>
+        </Helmet>
             {    loadPost ?  <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1> :   
             <section >
                 <h1 className="text-4xl font-poppins font-bold text-center my-6 uppercase"> My Need Volunteer Post</h1>

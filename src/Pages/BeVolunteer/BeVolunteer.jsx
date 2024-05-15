@@ -70,11 +70,11 @@ const BeVolunteer = () => {
         let reqVolunteer={g,vlId,thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}
         // console.log(reqVolunteer);
         if (organizer_email===user.email) {
-            return toast.error('You are Organizer. You cannot Request')
+            return toast.error('You are Organizer. You cannot request')
         }
 
         if (volunteer_number===0 || volunteer_number<0) {
-            return toast.error('You cannot Requst')
+            return toast.error('You cannot request')
         }
         
         axios.post('https://assignment-eleven-server-brown.vercel.app/requsted',reqVolunteer,{withCredentials:true})

@@ -19,7 +19,7 @@ const VolunteerNeedPostDetails = () => {
     // let {volunteer_number,deadline,organizer_name,organizer_email,category,description,post_title}=postDetails
     useEffect(() => {
         setPostLoading(true)
-        axios.get(`https://assignment-eleven-server-brown.vercel.app/postdetails/${id}`)
+        axios.get(`https://assignment-eleven-server-brown.vercel.app/postdetails/${id}`,{withCredentials:true})
             .then(res => {
                 console.log(res.data);
                 setPostDetails(res.data)

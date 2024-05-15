@@ -19,7 +19,7 @@ const MyTheme = () => {
     return (
     
         <>
-        <div className=" ml-1">
+        <div className=" ml-1 flex items-center">
         <DarkModeToggle
           onChange={toggleDarkMode}
           checked={isDarkMode}

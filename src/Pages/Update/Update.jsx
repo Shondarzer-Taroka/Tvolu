@@ -44,7 +44,7 @@ const Update = () => {
         console.log(thumbnail,post_title,category,location,volunteer_number,deadline,organizer_email,organizer_name,description);
         console.log(volunteer);
         
-        axios.put(`http://localhost:5588/updatevolunteer/${id}`,volunteer)
+        axios.put(`https://assignment-eleven-server-brown.vercel.app/updatevolunteer/${id}`,volunteer,{withCredentials:true})
         .then(res=>{
             console.log(res.data);
             if (res.data.modifiedCount>0) {

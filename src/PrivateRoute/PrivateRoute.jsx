@@ -9,9 +9,9 @@ const PrivateRoute = ({children}) => {
 
     let {user,spinner}=useContext(AuthContext)
     let location=useLocation()
-    console.log(location);
-     console.log(spinner);
-    console.log(user);
+    // console.log(location);
+    //  console.log(spinner);
+    // console.log(user);
     if (spinner) {
       return   <div className="flex justify-center items-center ">
      <ColorRing

@@ -20,7 +20,7 @@ const ManageMyPost = () => {
     useEffect(() => {
         setLoadPost(true)
         
-        // axios.get(`http://localhost:5588/myneedvolunteer/${user?.email}`,{withCredentials:true})
+        // axios.get(`https://assignment-eleven-server-brown.vercel.app/myneedvolunteer/${user?.email}`,{withCredentials:true})
         //     .then(res => {
         //         setManageData(res.data)
         //         setLoadPost(false)
@@ -33,7 +33,7 @@ const ManageMyPost = () => {
         .then(res=>{
             setManageData(res.data)
             setLoadPost(false)
-            console.log(res.data);
+            // console.log(res.data);
         })
 
 
@@ -41,7 +41,7 @@ const ManageMyPost = () => {
 
     useEffect(() => {
         setloadPostrequest(true)
-        axios.get(`http://localhost:5588/myrequestedvolunteer/${user?.email}`,{withCredentials:true})
+        axios.get(`https://assignment-eleven-server-brown.vercel.app/myrequestedvolunteer/${user?.email}`,{withCredentials:true})
             .then(res => {
                 setmyRequested(res.data)
                 setloadPostrequest(false)
@@ -53,7 +53,7 @@ const ManageMyPost = () => {
     }, [user, postLoadToggle])
 
     // function handleUpdate(id) {
-    //     axios.put(`http://localhost:5588/updatevolunteer/${id}`)
+    //     axios.put(`https://assignment-eleven-server-brown.vercel.app/updatevolunteer/${id}`)
     //     // console.log('kkk',id);
     //     // console.log('dfgfgd');
     // }
@@ -71,9 +71,9 @@ const ManageMyPost = () => {
 
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`http://localhost:5588/deletevolunteer/${id}`)
+                    axios.delete(`https://assignment-eleven-server-brown.vercel.app/deletevolunteer/${id}`)
                         .then(res => {
-                            console.log(res.data);
+                            // console.log(res.data);
                             if (res.data.deletedCount > 0) {
                                 setToggle(!toggle)
                                 Swal.fire({
@@ -114,9 +114,9 @@ const ManageMyPost = () => {
 
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`http://localhost:5588/cancelrequested/${id}`)
+                    axios.delete(`https://assignment-eleven-server-brown.vercel.app/cancelrequested/${id}`)
                         .then(res => {
-                            console.log(res.data);
+                            // console.log(res.data);
                             if (res.data.deletedCount > 0) {
                                 // setTogglemyRequested(!toggle)
                                 setPostLoadToggle(!postLoadToggle)

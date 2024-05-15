@@ -11,7 +11,7 @@ const NeedVolunteer = () => {
     let [layout, setLayOut] = useState(true)
     useEffect(() => {
         setloadingaddedVolunteer(true)
-        axios.get('http://localhost:5588/needaddvolunteer')
+        axios.get('https://assignment-eleven-server-brown.vercel.app/needaddvolunteer')
             .then(res => {
                 setaddedVolunteer(res.data)
                 setloadingaddedVolunteer(false)
@@ -37,7 +37,7 @@ const NeedVolunteer = () => {
           console.log(document.getElementById('search').value);
           setloadingaddedVolunteer(true)
          let searchValue=document.getElementById('search').value
-         axios.get(`http://localhost:5588/posttitle/${searchValue}`)
+         axios.get(`https://assignment-eleven-server-brown.vercel.app/posttitle/${searchValue}`)
         .then(res=>{
             console.log(res.data);
             setaddedVolunteer(res.data)
@@ -75,7 +75,7 @@ const NeedVolunteer = () => {
             {
                 loadingaddedVolunteer ? <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1>:
 
-                    layout && <section id="" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    layout && <section id="" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-5">
                         {
                             addedVolunteer.map((value, index) => {
                                 return <>

@@ -24,12 +24,12 @@ const AddVolunteer = () => {
         let organizer_email=form.organizer_email.value
         let description=form.description.value
         let volunteer={vlId,thumbnail,post_title,category,location,volunteer_number,deadline,organizer_email,organizer_name,description}
-        console.log(thumbnail,post_title,category,location,volunteer_number,deadline,organizer_email,organizer_name,description);
-        console.log(volunteer);
+       console.log(thumbnail,post_title,category,location,volunteer_number,deadline,organizer_email,organizer_name,description);
+       // console.log(volunteer);
 
-        axios.post('http://localhost:5588/addvolunteer',volunteer)
+        axios.post('https://assignment-eleven-server-brown.vercel.app/addvolunteer',volunteer,{withCredentials:true})
         .then(res=>{
-            console.log(res.data);
+           console.log(res.data);
             if (res.data.acknowledged) {
                 toast.success('Your Post Successfully Added')
             }

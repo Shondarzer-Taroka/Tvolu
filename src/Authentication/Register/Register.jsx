@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logBG from '../../assets/9142206.jpg'
+import logBG from '../../assets/register.jpg'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from "react";
@@ -10,14 +10,14 @@ const Register = () => {
     let { createUser, updateUser } = useContext(AuthContext)
     let navigate = useNavigate()
     let loc = useLocation()
-    console.log(loc);
+    // console.log(loc);
     function onsubmit(e) {
         e.preventDefault()
         let email = e.target.email.value
         let password = e.target.password.value
         let name = e.target.name.value
         let photo = e.target.image.value
-        console.log(email, password, name, photo);
+        // console.log(email, password, name, photo);
 
 
         if (password.length < 6) {
@@ -45,20 +45,20 @@ const Register = () => {
             .then((result => {
                 let logUser = result.user
                 let { user } = email
-                axios.post('http://localhost:5588/jwt', user, { withCredentials: true })
+                axios.post('https://assignment-eleven-server-brown.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                     })
                     .catch(err => {
-                        console.log(err);
+                        // console.log(err);
                     })
-                console.log(logUser);
+                // console.log(logUser);
                 updateUser(name, photo)
                     .then(() => {
 
                     })
                     .catch(er => {
-                        console.log(er);
+                        // console.log(er);
                     })
                 e.target.reset()
                 toast.success('Successfully registered')
@@ -70,7 +70,7 @@ const Register = () => {
             }))
             .catch(er => {
                 er.message == 'Firebase: Error (auth/email-already-in-use).' ? toast.error('Email already in used') : ''
-                console.log(er.message);
+                // console.log(er.message);
                 // console.log(er);
             })
 
@@ -80,10 +80,10 @@ const Register = () => {
 
             <div className=" rounded-lg w-full h-screen bg-cover bg-no-repeat" style={{ backgroundImage: `url(${logBG})` }}>
 
-                <section className="flex items-center justify-center w-full h-full bg-[#2222226c]">
+                <section className="flex items-center justify-center w-full h-full bg-[#22222278]">
                     <form onSubmit={onsubmit}>
                         <section className="md:w-[300px]">
-                            <aside className="bg-[rgba(255,255,255,0.22)] p-5 md:p-7 rounded-xl text-white ">
+                            <aside className="bg-[rgba(44,42,42,0.83)] p-5 md:p-7 rounded-xl text-white ">
                                 <h1 className="text-center text-3xl font-bold font-poppins pb-3"> Register Here </h1>
                                 <div className="flex flex-col">
                                     <span className="font-semibold">Name</span>
@@ -113,7 +113,7 @@ const Register = () => {
                                 </div>
 
                                 <div className="mt-4">
-                                    <small >Already registered ? Please <Link className="font-semibold" to={'/login'}> Log In</Link> </small>
+                                    <small >Already registered ? Please <Link className="font-bold text-xl" to={'/login'}> Log In</Link> </small>
 
                                 </div>
 

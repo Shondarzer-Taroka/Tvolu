@@ -8,7 +8,7 @@ import axios from "axios";
 import '../../Components/nav.css'
 
 const NavBar = () => {
-  let { user, logout, spinner } = useContext(AuthContext)
+  let { user, logout, spinner,setSpinner} = useContext(AuthContext)
   // console.log(user);
 
   const navlinks = <>
@@ -21,7 +21,8 @@ const NavBar = () => {
   function logUtFromFireBase() {
     logout()
       .then(() => { 
-        axios.post('http://localhost:5588/logout',user,{withCredentials:true})
+        axios.post('https://assignment-eleven-server-brown.vercel.app/logout',user,{withCredentials:true})
+        setSpinner(false)
       })
       .catch(er => {
         console.log(er);

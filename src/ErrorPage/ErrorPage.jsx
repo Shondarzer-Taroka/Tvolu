@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
  import errorPage from '../../src/assets/notfo.png'
+import { Helmet } from 'react-helmet-async';
 const ErrorPage = () => {
     let navigate = useNavigate()
 
@@ -12,6 +13,10 @@ const ErrorPage = () => {
 
     return (
         <div className='flex items-center justify-center'>
+
+            <Helmet>
+                <title>Error page</title>
+            </Helmet>
 
             <div className='flex justify-center items-center flex-col h-[400px]'>
                 <div className=''>

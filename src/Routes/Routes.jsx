@@ -38,7 +38,7 @@ let router=createBrowserRouter([
             {
                 path:'/update/:id',
                 element:<PrivateRoute><Update></Update></PrivateRoute>,
-                // loader:({params})=> fetch(`http://localhost:5588/updateitem/${params.id}`)
+                // loader:({params})=> fetch(`https://assignment-eleven-server-brown.vercel.app/updateitem/${params.id}`)
             },
             {
                 path:'/myprofile',

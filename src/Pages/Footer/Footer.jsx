@@ -36,7 +36,7 @@ const Footer = () => {
               </div>
 
               <div className="flex items-center gap-2">
-                <PiPhoneCall></PiPhoneCall> +88018976867578
+                <PiPhoneCall></PiPhoneCall> +8801896867578
               </div>
               <div className="flex items-center gap-2">
                 <FaHome></FaHome> Nikunja-1,Dhaka,Bangladesh
@@ -69,7 +69,7 @@ const Footer = () => {
             <div className="text-center mt-3" >
               {/* <h1 className="text-4xl font-semibold">Fitro</h1> */}
               {/* <small> <span className="text-2xl font-semibold">TaNa House</span> All Rights Reserved</small> */}
-              <small>Copyright © 2024 Tvolunexa. All Rights Reserved.</small>
+              <small>Copyright © 2024 Tvolu. All Rights Reserved.</small>
             </div>
           </menu>
 

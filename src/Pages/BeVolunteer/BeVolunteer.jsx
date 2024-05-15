@@ -15,11 +15,11 @@ const BeVolunteer = () => {
     let { id } = useParams()
     
     let h=id
-   console.log(id);
+//    console.log(id);
     // let {volunteer_number,deadline,organizer_name,organizer_email,category,description,post_title}=postDetails
     useEffect(() => {
         setbeVolunteerLoading(true)
-        axios.get(`http://localhost:5588/bevolunteer/${id}`)
+        axios.get(`https://assignment-eleven-server-brown.vercel.app/bevolunteer/${id}`,{withCredentials:true})
             .then(res => {
                 console.log(res.data);
                 setbeVolunteer(res.data)
@@ -68,7 +68,7 @@ const BeVolunteer = () => {
         // let {id}=id
         // console.log({vlId,thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}); // Output: "2024-05-10T00:00:00.000Z"
         let reqVolunteer={g,vlId,thumbnail,post_title,location,volunteer_number,organizer_name,organizer_email,volunteer_name,volunteer_email,category,status,suggestion,description,deadline}
-        console.log(reqVolunteer);
+        // console.log(reqVolunteer);
         if (organizer_email===user.email) {
             return toast.error('You are Organizer. You cannot Request')
         }
@@ -77,9 +77,9 @@ const BeVolunteer = () => {
             return toast.error('You cannot Requst')
         }
         
-        axios.post('http://localhost:5588/requsted',reqVolunteer)
+        axios.post('https://assignment-eleven-server-brown.vercel.app/requsted',reqVolunteer,{withCredentials:true})
         .then(res=>{
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.acknowledged) {
                 toast.success('Successfully Requested')
                 

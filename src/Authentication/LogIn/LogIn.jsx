@@ -13,24 +13,24 @@ const LogIn = () => {
 
     let navigate= useNavigate()
     let loc=useLocation()
-    console.log(loc);
+    // console.log(loc);
     function onsubmit(e) {
     e.preventDefault()
     let email=e.target.email.value
     let password=e.target.password.value
-    console.log(email,password);
+    // console.log(email,password);
     signInUser(email,password)
     .then((result)=>{
       let loggedInUser=result.user 
       toast.success('Successfully Log In')
       let user={email}
-       console.log(user);
-       axios.post('http://localhost:5588/jwt',user,{withCredentials:true})
+    //    console.log(user);
+       axios.post('https://assignment-eleven-server-brown.vercel.app/jwt',user,{withCredentials:true})
        .then(res=>{
-           console.log(res.data);
+        //    console.log(res.data);
        })
        .catch(err=>{
-           console.log(err);
+        //    console.log(err);
        })
       // navigate(loc?.state ? loc.state : '/')
       
@@ -38,10 +38,10 @@ const LogIn = () => {
         navigate(loc?.state ? loc.state : '/')
        },1000)
       e.target.reset()
-      console.log(user);
+    //   console.log(user);
     })
     .catch((er)=>{
-      console.log(er.message);
+    //   console.log(er.message);
       let storeError=[]
       let errorLetter=er.message.split(' ')[2].split('')
       for (let i = 6; i < errorLetter.length-2; i++) {
@@ -58,22 +58,24 @@ const LogIn = () => {
       signInbyGoogle()
       .then((result)=>{
         let user=result.user 
-        axios.post('http://localhost:5588/jwt',user.email,{withCredentials:true})
+        let email=user.email
+        axios.post('https://assignment-eleven-server-brown.vercel.app/jwt',{email},{withCredentials:true})
         .then(res=>{
-            console.log(res.data);
+            // console.log(res.data);
         })
         .catch(err=>{
-            console.log(err);
+            // console.log(err);
         })
         toast.success('Successfully log In')
         setTimeout(()=>{
           navigate(loc?.state ? loc.state : '/')
          },1000)
-        console.log(user);
+        // console.log(user);
       })
       .catch(er=>{
-        console.log(er);
+        // console.log(er);
         toast.error(er.message)
+        setSpinner(false)
       })
     }
 
@@ -119,7 +121,7 @@ const LogIn = () => {
                             
 
                             <div className="mt-4">
-                            <small >Don't have an account ? Please <Link className="font-semibold" to={'/register'}> Register</Link> </small>
+                            <small >Don't have an account ? Please <Link className="font-bold" to={'/register'}> Register</Link> </small>
 
                             </div>
 

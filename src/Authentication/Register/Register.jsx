@@ -44,7 +44,8 @@ const Register = () => {
         createUser(email, password)
             .then((result => {
                 let logUser = result.user
-                let { user } = email
+                let  user  = {email}
+                // console.log(user);
                 axios.post('https://assignment-eleven-server-brown.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         // console.log(res.data);

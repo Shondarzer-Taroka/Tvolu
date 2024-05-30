@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
@@ -6,11 +6,14 @@ import '../../Components/imgCount.css'
 import MyTHeme from "../MyTheme/MyTheme";
 import axios from "axios";
 import '../../Components/nav.css'
+import FeedBack from "../FeedBack/FeedBack";
+import { ToastContainer, toast } from "react-toastify";
 
 const NavBar = () => {
   let { user, logout, spinner,setSpinner} = useContext(AuthContext)
   // console.log(user);
-
+  let feedback = useRef()
+  let [myDisable, setMyDisable] = useState(true)
   const navlinks = <>
     <NavLink to={'/'}>Home</NavLink>
     <NavLink to={'/need'}>Need Volunteer</NavLink>
@@ -27,6 +30,36 @@ const NavBar = () => {
       .catch(er => {
         console.log(er);
       })
+  }
+
+  // feedback related function
+  function handleToggle(ev) {
+    ev.preventDefault()
+    feedback.current.value.trim() === '' ? setMyDisable(true) : setMyDisable(false)
+
+    // console.log(feedback.current.value);
+  }
+
+  function handlefeedback(e) {
+    e.preventDefault()
+    // console.log('hi');
+    let feedbackValue = e.target.feedback.value
+    // console.log(feedbackValue);
+    axios.post('https://assignment-eleven-server-brown.vercel.app/feedback',{feedbackValue})
+    .then(res=>{
+      console.log(res.data);
+      if (res.data.acknowledged) {
+        toast.success('Thanks for your feedback')
+        e.target.reset()
+        setMyDisable(true)
+    }
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+    // toast.success('Thanks For Your Feedback')
+    
+    setMyDisable(true)
   }
   return (
     <div >
@@ -56,6 +89,7 @@ const NavBar = () => {
             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-max">
             <NavLink to={'/addvolunteer'}> <button className="p-2"> Add Volunteer Post </button> </NavLink>
             <NavLink to={'/managepost'}> <button className="p-2"> Manage My Post </button> </NavLink>
+            <> <FeedBack handleToggle={handleToggle} handlefeedback={handlefeedback} feedback={feedback} myDisable={myDisable} setMyDisable={setMyDisable}></FeedBack> </>
             </ul>
           </div>
 
@@ -72,7 +106,7 @@ const NavBar = () => {
               <button onClick={logUtFromFireBase} className="btn p-4 bg-violet-500 mt-4">Log Out</button>
             </div>
 
-          </div> : <div>  <div className="w-full h-full relative" id="img-contaner">  <span> <FaUser></FaUser> </span>
+          </div> : <div>  <div className="w-full h-full flex items-center relative" id="img-contaner">  <span className=""> <FaUser></FaUser> </span>
 
             <div id="namebtn" className="w-[150px] h-[max-content] p-4 border-2 absolute left-[-100px] z-50 hidden">
               <p className="font-semibold"> {user?.displayName} </p>
@@ -103,6 +137,7 @@ const NavBar = () => {
 
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

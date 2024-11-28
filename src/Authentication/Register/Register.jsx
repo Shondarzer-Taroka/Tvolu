@@ -46,7 +46,7 @@ const Register = () => {
                 let logUser = result.user
                 let  user  = {email}
                 // console.log(user);
-                axios.post('https://assignment-eleven-server-brown.vercel.app/jwt', user, { withCredentials: true })
+                axios.post(`${import.meta.env.Vite_BASE_URL}/jwt`, user, { withCredentials: true })
                     .then(res => {
                         // console.log(res.data);
                     })

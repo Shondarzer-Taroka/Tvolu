@@ -42,7 +42,7 @@ const ManageMyPost = () => {
 
     useEffect(() => {
         setloadPostrequest(true)
-        axios.get(`https://assignment-eleven-server-brown.vercel.app/myrequestedvolunteer/${user?.email}`,{withCredentials:true})
+        axios.get(`${import.meta.env.Vite_BASE_URL}/myrequestedvolunteer/${user?.email}`,{withCredentials:true})
             .then(res => {
                 setmyRequested(res.data)
                 setloadPostrequest(false)
@@ -72,7 +72,7 @@ const ManageMyPost = () => {
 
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`https://assignment-eleven-server-brown.vercel.app/deletevolunteer/${id}`)
+                    axios.delete(`${import.meta.env.Vite_BASE_URL}/deletevolunteer/${id}`)
                         .then(res => {
                             // console.log(res.data);
                             if (res.data.deletedCount > 0) {
@@ -115,7 +115,7 @@ const ManageMyPost = () => {
 
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`https://assignment-eleven-server-brown.vercel.app/cancelrequested/${id}`)
+                    axios.delete(`${import.meta.env.Vite_BASE_URL}/cancelrequested/${id}`)
                         .then(res => {
                             // console.log(res.data);
                             if (res.data.deletedCount > 0) {

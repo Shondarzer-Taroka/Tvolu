@@ -45,6 +45,7 @@ const AuthProvider = ({children}) => {
    useEffect(()=>{
       let unsubscribe= onAuthStateChanged(auth,(user)=>{
          setUser(user)
+         console.log();
          setSpinner(false)
       })
 

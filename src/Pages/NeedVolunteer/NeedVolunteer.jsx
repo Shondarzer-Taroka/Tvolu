@@ -11,7 +11,7 @@ const NeedVolunteer = () => {
     let [layout, setLayOut] = useState(true)
     useEffect(() => {
         setloadingaddedVolunteer(true)
-        axios.get('https://assignment-eleven-server-brown.vercel.app/needaddvolunteer')
+        axios.get(`${import.meta.env.Vite_BASE_URL}/needaddvolunteer`)
             .then(res => {
                 setaddedVolunteer(res.data)
                 setloadingaddedVolunteer(false)
@@ -37,7 +37,7 @@ const NeedVolunteer = () => {
           console.log(document.getElementById('search').value);
           setloadingaddedVolunteer(true)
          let searchValue=document.getElementById('search').value
-         axios.get(`https://assignment-eleven-server-brown.vercel.app/posttitle/${searchValue}`)
+         axios.get(`${import.meta.env.Vite_BASE_URL}/posttitle/${searchValue}`)
         .then(res=>{
             console.log(res.data);
             setaddedVolunteer(res.data)

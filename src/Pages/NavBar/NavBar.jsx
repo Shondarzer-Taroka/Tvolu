@@ -24,7 +24,7 @@ const NavBar = () => {
   function logUtFromFireBase() {
     logout()
       .then(() => { 
-        axios.post('https://assignment-eleven-server-brown.vercel.app/logout',user,{withCredentials:true})
+        axios.post(`${import.meta.env.Vite_BASE_URL}/logout`,user,{withCredentials:true})
         setSpinner(false)
       })
       .catch(er => {
@@ -45,7 +45,7 @@ const NavBar = () => {
     // console.log('hi');
     let feedbackValue = e.target.feedback.value
     // console.log(feedbackValue);
-    axios.post('https://assignment-eleven-server-brown.vercel.app/feedback',{feedbackValue})
+    axios.post(`${import.meta.env.Vite_BASE_URL}/feedback`,{feedbackValue})
     .then(res=>{
       console.log(res.data);
       if (res.data.acknowledged) {

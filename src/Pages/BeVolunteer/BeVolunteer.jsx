@@ -19,7 +19,7 @@ const BeVolunteer = () => {
     // let {volunteer_number,deadline,organizer_name,organizer_email,category,description,post_title}=postDetails
     useEffect(() => {
         setbeVolunteerLoading(true)
-        axios.get(`https://assignment-eleven-server-brown.vercel.app/bevolunteer/${id}`,{withCredentials:true})
+        axios.get(`${import.meta.env.Vite_BASE_URL}/bevolunteer/${id}`,{withCredentials:true})
             .then(res => {
                 console.log(res.data);
                 setbeVolunteer(res.data)
@@ -77,7 +77,7 @@ const BeVolunteer = () => {
             return toast.error('You cannot request')
         }
         
-        axios.post('https://assignment-eleven-server-brown.vercel.app/requsted',reqVolunteer,{withCredentials:true})
+        axios.post(`${import.meta.env.Vite_BASE_URL}/requsted`,reqVolunteer,{withCredentials:true})
         .then(res=>{
             // console.log(res.data);
             if (res.data.acknowledged) {

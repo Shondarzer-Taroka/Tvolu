@@ -9,7 +9,7 @@ const VolunteerNeedsNow = () => {
     const [loadingVolunteer, setloadingVolunteer] = useState(true)
     useEffect(() => {
         setloadingVolunteer(true)
-        axios.get('https://assignment-eleven-server-brown.vercel.app/volunteerneed')
+        axios.get(`${import.meta.env.Vite_BASE_URL}/volunteerneed`)
             .then(res => {
                 setVolunteer(res.data)
                 setloadingVolunteer(false)

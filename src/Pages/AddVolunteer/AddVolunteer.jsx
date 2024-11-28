@@ -39,7 +39,7 @@ const AddVolunteer = () => {
     //    console.log(thumbnail,post_title,category,location,volunteer_number,deadline,organizer_email,organizer_name,description);
        console.log(volunteer);
 
-        axios.post('https://assignment-eleven-server-brown.vercel.app/addvolunteer',volunteer,{withCredentials:true})
+        axios.post(`${import.meta.env.Vite_BASE_URL}/addvolunteer`,volunteer,{withCredentials:true})
         .then(res=>{
            console.log(res.data);
             if (res.data.acknowledged) {

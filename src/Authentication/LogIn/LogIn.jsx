@@ -6,6 +6,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { Toaster } from "react-hot-toast";
 
 const LogIn = () => {
 
@@ -25,7 +26,7 @@ const LogIn = () => {
       toast.success('Successfully Log In')
       let user={email}
     //    console.log(user);
-       axios.post('https://assignment-eleven-server-brown.vercel.app/jwt',user,{withCredentials:true})
+       axios.post(`${import.meta.env.Vite_BASE_URL}/jwt`,user,{withCredentials:true})
        .then(res=>{
         //    console.log(res.data);
        })
@@ -59,7 +60,7 @@ const LogIn = () => {
       .then((result)=>{
         let user=result.user 
         let email=user.email
-        axios.post('https://assignment-eleven-server-brown.vercel.app/jwt',{email},{withCredentials:true})
+        axios.post(`${import.meta.env.Vite_BASE_URL}/jwt`,{email},{withCredentials:true})
         .then(res=>{
             // console.log(res.data);
         })
@@ -132,7 +133,7 @@ const LogIn = () => {
             </section>
           
         </div>
-            <ToastContainer></ToastContainer>
+            {/* <Toaster></Toaster> */}
         </div>
     );
 };

@@ -1,10 +1,3 @@
-
-
-
-
-
-
-import React from 'react';
 import donation_2 from '../../../src/assets/donation/alexander-simonsen-pPDzeITv26o-unsplash.jpg';
 import { FaRegStar, FaQuoteRight } from "react-icons/fa";
 import Slider from 'react-slick';

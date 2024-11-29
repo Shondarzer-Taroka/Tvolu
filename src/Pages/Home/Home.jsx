@@ -6,6 +6,9 @@ import VolunteerNeedsNow from "../../VolunteerNeedsNow/VolunteerNeedsNow";
 import SecondBanner from "../SecondBanner/SecondBanner";
 import DonationPage from "../DonationPage/DonationPage";
 import TestimonialPage from "../TestimonialPage/TestimonialPage";
+import FAQ from "../FAQ/FAQ";
+import NewsPage from "../NewsPage/NewsPage";
+import OurLatestEvents from "../../OurLatestEvents/OurLatestEvents";
 
 
 
@@ -22,6 +25,9 @@ const Home = () => {
             <SecondBanner></SecondBanner>
             <DonationPage/>
             <TestimonialPage/>
+            <FAQ/>
+            <NewsPage/>
+            <OurLatestEvents/>
             <VolunteerNeedsNow></VolunteerNeedsNow>
             <OurVolunteerCamp></OurVolunteerCamp>
             <OurExparter></OurExparter>

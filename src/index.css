@@ -8,3 +8,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.parallax-bg {
+    background-image: url('https://via.placeholder.com/1920x1080'); /* Replace with your background image URL */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

@@ -23,6 +23,11 @@ export default {
         primary: '#443927', // Add custom colors if needed
         accent: '#D4AF7A',
         background: '#FAFAFA',
+        brown: {
+          400: "#a65e3d",
+          600: "#6d3d27",
+          700: "#502d1e",
+        },
       },
       fontFamily: {
         sans: ['Arial', 'sans-serif'],

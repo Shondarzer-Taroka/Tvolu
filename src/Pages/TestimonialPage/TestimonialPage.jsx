@@ -1,82 +1,78 @@
+
+
+
+
+
+
 import React from 'react';
-import donation_2 from '../../../src/assets/donation/alexander-simonsen-pPDzeITv26o-unsplash.jpg'
-import { FaRegStar } from "react-icons/fa";
-import './TestimonialPage.css'
+import donation_2 from '../../../src/assets/donation/alexander-simonsen-pPDzeITv26o-unsplash.jpg';
+import { FaRegStar, FaQuoteRight } from "react-icons/fa";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './TestimonialPage.css';
+
+// Testimonial Card Component
 const TestimonialCard = ({ text, name, role, image }) => {
     return (
-        <div className="bg-white shadow-lg p-6 rounded-xl">
-            <p className="text-gray-700 italic mb-4">"{text}"</p>
+        <aside className="bg-[#eae8e8] p-9 rounded-3xl shadow-md mt-7">
+            {/* Quotation */}
+            <blockquote className="text-sm text-gray-600 italic mb-6">
+                &quot;{text}&quot;
+            </blockquote>
+
+            {/* User Info */}
             <div className="flex items-center gap-4">
                 <img
+                    className="rounded-full w-12 h-12 object-cover"
                     src={image}
                     alt={name}
-                    className="w-10 h-10 rounded-full object-cover"
                 />
                 <div>
-                    <h5 className="text-sm font-bold text-gray-800">{name}</h5>
-                    <p className="text-xs text-gray-500">{role}</p>
+                    <h1 className="font-semibold text-gray-800 text-[20px]">{name}</h1>
+                    <p className="text-xs uppercase text-gray-500">{role}</p>
                 </div>
             </div>
-        </div>
+
+            {/* Inverted Icon */}
+            <div className="flex justify-end mt-4">
+                <FaQuoteRight className="text-3xl text-gray-400 opacity-50" />
+            </div>
+        </aside>
     );
 };
 
-
-
-
-
-// const TestimonialPage = () => {
-   
-
-//     return (
-//         <div className="bg-background min-h-screen py-10 px-6">
-//             {/* <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        
-//       </div> */}
-
-//             <div id='parent' className='flex gap-2'>
-
-//                 <div className='w-[45%]'>
-//                     <img className='h-full w-full' src={donation_2} alt="inspiring man" />
-//                 </div>
-
-//                 <div className='w-[55%]'>
-//                     <div className='ml-9'>
-//                         <FaRegStar />
-
-//                         <div className='relative flex justify-center'>
-//                             <div className='w-[50px] h-[50px] bg-red-400 rounded-full '>
-//                             </div>
-//                             <div className='w-[50px] h-[50px] bg-red-400 rounded-full border-2 border-gray-300 absolute top-1'>
-//                             </div>
-//                         </div>
-//                     </div>
-
-//                     <div className='flex items-center opacity-50'>
-//                         <div className='w-[70px] h-[2px] bg-neutral-500'></div>
-//                         <h1 className='uppercase font-semibold text-[14px]'>Stories of Change</h1>
-//                     </div>
-//                     <div>
-//                         <h1 className='text-3xl font-bold'>
-//                             Read inspiring stories of individuals and communities.
-//                         </h1>
-//                         <p className='opacity-75'>
-//                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-//                             Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
-//                         </p>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default TestimonialPage;
-
-
+// Testimonial Page Component
 const TestimonialPage = () => {
+    const testimonials = [
+        {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
+            name: 'Mr. John Doe',
+            role: 'Charity Recipient',
+            image: donation_2,
+        },
+        {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
+            name: 'Mr. Jane Doe',
+            role: 'Charity Recipient',
+            image: donation_2,
+        },
+    ];
+
+    // React Slick settings
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        arrows: false,
+
+
+    };
+
     return (
-        <div className="bg-background min-h-screen  px-6">
+        <div className="bg-background min-h-screen px-6 relative">
             <div id="parent" className="flex gap-6 justify-center">
                 {/* Left Section */}
                 <div className="w-[45%]">
@@ -88,7 +84,7 @@ const TestimonialPage = () => {
                 </div>
 
                 {/* Right Section */}
-                <div className="w-[55%]">
+                <div className="w-[55%] relative">
                     <div className="ml-9 relative ">
                         {/* Spinning Star */}
                         <FaRegStar
@@ -119,13 +115,26 @@ const TestimonialPage = () => {
                             Read inspiring stories of individuals and communities.
                         </h1>
                         <p className="opacity-75 mt-3 text-[16px] leading-[1.3]">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
                         </p>
                     </div>
 
+                    {/* Testimonial Slider */}
+                    <Slider {...settings} className="mt-6 absolute left-[-120px]">
+                        {testimonials.map((card, index) => (
+                            <div key={index} className='px-2'>
+                                <TestimonialCard
 
-                    
+
+                                    text={card.text}
+                                    name={card.name}
+                                    role={card.role}
+                                    image={card.image}
+                                />
+                            </div>
+
+                        ))}
+                    </Slider>
                 </div>
             </div>
         </div>
@@ -133,19 +142,3 @@ const TestimonialPage = () => {
 };
 
 export default TestimonialPage;
-
-
-const testimonials = [
-    {
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
-        name: 'Mr. John Doe',
-        role: 'Charity Recipient',
-        image: donation_2,
-    },
-    {
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
-        name: 'Mr. John Doe',
-        role: 'Charity Recipient',
-        image: donation_2,
-    },
-];

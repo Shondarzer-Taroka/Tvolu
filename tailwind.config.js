@@ -8,6 +8,17 @@ export default {
   theme: {
     
     extend: {
+      animation: {
+        spin: 'spin 2s linear infinite',
+        'spin-slow': 'spin 4s linear infinite',
+        'spin-reverse': 'reverse-spin 2s linear infinite',
+      },
+      keyframes: {
+        'reverse-spin': {
+          from: { transform: 'rotate(360deg)' },
+          to: { transform: 'rotate(0deg)' },
+        },
+      },
       colors: {
         primary: '#443927', // Add custom colors if needed
         accent: '#D4AF7A',
@@ -64,22 +75,3 @@ export default {
 
 
 
-
-
-
-// module.exports = {
-//   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
-//   theme: {
-//     extend: {
-//       colors: {
-//         primary: '#443927', // Add custom colors if needed
-//         accent: '#D4AF7A',
-//         background: '#FAFAFA',
-//       },
-//       fontFamily: {
-//         sans: ['Arial', 'sans-serif'],
-//       },
-//     },
-//   },
-//   plugins: [],
-// };

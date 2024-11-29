@@ -44,7 +44,7 @@ const Update = () => {
         console.log(thumbnail,post_title,category,location,volunteer_number,deadline,organizer_email,organizer_name,description);
         console.log(volunteer);
         
-        axios.put(`${import.meta.env.Vite_BASE_URL}/updatevolunteer/${id}`,volunteer,{withCredentials:true})
+        axios.put(`${import.meta.env.VITE_BASE_URL}/updatevolunteer/${id}`,volunteer,{withCredentials:true})
         .then(res=>{
             console.log(res.data);
             if (res.data.modifiedCount>0) {

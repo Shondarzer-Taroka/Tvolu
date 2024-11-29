@@ -9,7 +9,7 @@ const VolunteerNeedsNow = () => {
     const [loadingVolunteer, setloadingVolunteer] = useState(true)
     useEffect(() => {
         setloadingVolunteer(true)
-        axios.get(`${import.meta.env.Vite_BASE_URL}/volunteerneed`)
+        axios.get(`${import.meta.env.VITE_BASE_URL}/volunteerneed`)
             .then(res => {
                 setVolunteer(res.data)
                 setloadingVolunteer(false)
@@ -57,7 +57,7 @@ const VolunteerNeedsNow = () => {
                                     <h6 className="text-[16px]">Deadline:  {new Date(new Date(value.deadline)?.getTime() + (6 * 60 * 60 * 1000))?.toISOString()?.split('T')[0]} </h6>
 
                                 </div>
-                                <Link to={`/postdeatails/${value._id}`}><button className=" text-white btn btn-info mx-4 mb-4">View Details</button></Link>
+                                <Link to={`/postdetails/${value._id}`}><button className=" text-white btn btn-info mx-4 mb-4">View Details</button></Link>
                                 
                             </aside>
                         </>

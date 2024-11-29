@@ -12,56 +12,65 @@ import BeVolunteer from "../Pages/BeVolunteer/BeVolunteer";
 import ManageMyPost from "../Pages/ManageMyPost/ManageMyPost";
 import Update from "../Pages/Update/Update";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import GoDashboard from "../DashboardRelated/GoDashboard/GoDashboard";
 
-let router=createBrowserRouter([
+let router = createBrowserRouter([
     {
-        path:'/',
+        path: '/',
         element: <Root></Root>,
-        errorElement:<ErrorPage></ErrorPage>,
-        children:[
+        errorElement: <ErrorPage></ErrorPage>,
+        children: [
             {
-                path:'/',
+                path: '/',
                 element: <Home></Home>
             },
             {
-                path:'/login',
-                element:<LogIn></LogIn>
+                path: '/login',
+                element: <LogIn></LogIn>
             },
             {
-                path:'/register',
-                element:<Register></Register>
+                path: '/register',
+                element: <Register></Register>
             },
             {
-                path:'/need',
-                element:<NeedVolunteer></NeedVolunteer>
+                path: '/need',
+                element: <NeedVolunteer></NeedVolunteer>
             },
             {
-                path:'/update/:id',
-                element:<PrivateRoute><Update></Update></PrivateRoute>,
-                // loader:({params})=> fetch(`https://assignment-eleven-server-brown.vercel.app/updateitem/${params.id}`)
+                path: '/update/:id',
+                element: <PrivateRoute><Update></Update></PrivateRoute>,
+                // loader:({params})=> fetch(`${import.meta.env.VITE_BASE_URL}/updateitem/${params.id}`)
             },
             {
-                path:'/myprofile',
-                element:<MyProfile></MyProfile>
+                path: '/myprofile',
+                element: <MyProfile></MyProfile>
             },
             {
-                path:'/addvolunteer',
-                element:<PrivateRoute><AddVolunteer></AddVolunteer></PrivateRoute>
-                
-            },
-            {
-                path:'/managepost',
-                element:<PrivateRoute> <ManageMyPost></ManageMyPost></PrivateRoute>
-            },
-            {
-                path:'/postdeatails/:id',
-                element:<PrivateRoute><VolunteerNeedPostDetails></VolunteerNeedPostDetails></PrivateRoute>
-            },
-            {
-                path:'/bevolunteer/:id',
-                element: <PrivateRoute><BeVolunteer></BeVolunteer></PrivateRoute>
-            }
+                path: '/addvolunteer',
+                element: <PrivateRoute><AddVolunteer></AddVolunteer></PrivateRoute>
 
+            },
+            {
+                path: '/managepost',
+                element: <PrivateRoute> <ManageMyPost></ManageMyPost></PrivateRoute>
+            },
+            {
+                path: '/postdetails/:id',
+                element: <PrivateRoute><VolunteerNeedPostDetails></VolunteerNeedPostDetails></PrivateRoute>
+            },
+            {
+                path: '/bevolunteer/:id',
+                element: <PrivateRoute><BeVolunteer></BeVolunteer></PrivateRoute>
+            },
+            {
+                path: '/go-dashboard',
+                element: <PrivateRoute><GoDashboard /></PrivateRoute>,
+                children:[
+                    {
+                    
+                    }
+                ]
+            }
         ]
     }
 ])

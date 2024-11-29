@@ -5,7 +5,7 @@ import {  useNavigate } from "react-router-dom";
 
 
 const axiosSecure = axios.create({
-    baseURL:`${import.meta.env.Vite_BASE_URL}`,
+    baseURL:`${import.meta.env.VITE_BASE_URL}`,
     withCredentials: true
 })
 const useAxiosSecure = () => {
@@ -23,8 +23,8 @@ const useAxiosSecure = () => {
            await logout()
              .then(()=>{
                 setSpinner(false)
-                axios.post(`${import.meta.env.Vite_BASE_URL}/logout`,user,{withCredentials:true})
-                // axios.post('https://assignment-eleven-server-brown.vercel.app/logout',user,{withCredentials:true})
+                axios.post(`${import.meta.env.VITE_BASE_URL}/logout`,user,{withCredentials:true})
+                // axios.post('${import.meta.env.VITE_BASE_URL}/logout',user,{withCredentials:true})
                navigate('/login')
              })
              .catch()

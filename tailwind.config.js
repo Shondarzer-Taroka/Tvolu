@@ -1,18 +1,3 @@
-// /** @type {import('tailwindcss').Config} */
-// export default {
-//   content: [
-//     "./index.html",
-//     "./src/**/*.{js,ts,jsx,tsx}",
-//   ],
-//   theme: {
-//     extend: {},
-//   },
-//   plugins: [
-//     require('daisyui'),
-//   ],
-
-// }
-
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -22,7 +7,16 @@ export default {
   ],
   theme: {
     
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#443927', // Add custom colors if needed
+        accent: '#D4AF7A',
+        background: '#FAFAFA',
+      },
+      fontFamily: {
+        sans: ['Arial', 'sans-serif'],
+      },
+    },
    
     fontFamily: {
       poppins:"'Poppins', sans-serif"
@@ -67,3 +61,25 @@ export default {
   },
 }
 
+
+
+
+
+
+
+// module.exports = {
+//   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+//   theme: {
+//     extend: {
+//       colors: {
+//         primary: '#443927', // Add custom colors if needed
+//         accent: '#D4AF7A',
+//         background: '#FAFAFA',
+//       },
+//       fontFamily: {
+//         sans: ['Arial', 'sans-serif'],
+//       },
+//     },
+//   },
+//   plugins: [],
+// };

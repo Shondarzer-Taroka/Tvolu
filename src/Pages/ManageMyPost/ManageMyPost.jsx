@@ -21,7 +21,7 @@ const ManageMyPost = () => {
     useEffect(() => {
         setLoadPost(true)
         
-        // axios.get(`https://assignment-eleven-server-brown.vercel.app/myneedvolunteer/${user?.email}`,{withCredentials:true})
+        // axios.get(`${import.meta.env.VITE_BASE_URL}/myneedvolunteer/${user?.email}`,{withCredentials:true})
         //     .then(res => {
         //         setManageData(res.data)
         //         setLoadPost(false)
@@ -42,7 +42,7 @@ const ManageMyPost = () => {
 
     useEffect(() => {
         setloadPostrequest(true)
-        axios.get(`${import.meta.env.Vite_BASE_URL}/myrequestedvolunteer/${user?.email}`,{withCredentials:true})
+        axios.get(`${import.meta.env.VITE_BASE_URL}/myrequestedvolunteer/${user?.email}`,{withCredentials:true})
             .then(res => {
                 setmyRequested(res.data)
                 setloadPostrequest(false)
@@ -54,7 +54,7 @@ const ManageMyPost = () => {
     }, [user, postLoadToggle])
 
     // function handleUpdate(id) {
-    //     axios.put(`https://assignment-eleven-server-brown.vercel.app/updatevolunteer/${id}`)
+    //     axios.put(`${import.meta.env.VITE_BASE_URL}/updatevolunteer/${id}`)
     //     // console.log('kkk',id);
     //     // console.log('dfgfgd');
     // }
@@ -72,7 +72,7 @@ const ManageMyPost = () => {
 
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`${import.meta.env.Vite_BASE_URL}/deletevolunteer/${id}`)
+                    axios.delete(`${import.meta.env.VITE_BASE_URL}/deletevolunteer/${id}`)
                         .then(res => {
                             // console.log(res.data);
                             if (res.data.deletedCount > 0) {
@@ -115,7 +115,7 @@ const ManageMyPost = () => {
 
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`${import.meta.env.Vite_BASE_URL}/cancelrequested/${id}`)
+                    axios.delete(`${import.meta.env.VITE_BASE_URL}/cancelrequested/${id}`)
                         .then(res => {
                             // console.log(res.data);
                             if (res.data.deletedCount > 0) {

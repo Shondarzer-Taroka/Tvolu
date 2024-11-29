@@ -26,7 +26,7 @@ const LogIn = () => {
       toast.success('Successfully Log In')
       let user={email}
     //    console.log(user);
-       axios.post(`${import.meta.env.Vite_BASE_URL}/jwt`,user,{withCredentials:true})
+       axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`,user,{withCredentials:true})
        .then(res=>{
         //    console.log(res.data);
        })
@@ -60,7 +60,7 @@ const LogIn = () => {
       .then((result)=>{
         let user=result.user 
         let email=user.email
-        axios.post(`${import.meta.env.Vite_BASE_URL}/jwt`,{email},{withCredentials:true})
+        axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`,{email},{withCredentials:true})
         .then(res=>{
             // console.log(res.data);
         })

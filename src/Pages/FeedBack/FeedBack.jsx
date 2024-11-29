@@ -6,7 +6,7 @@ const FeedBack = ({handleToggle,handlefeedback,feedback,myDisable,setMyDisable})
         <div>
             <div>
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
-                <button className="p-2" onClick={() => document.getElementById('my_modal_5').showModal()}>Add feedback </button>
+                <button className="" onClick={() => document.getElementById('my_modal_5').showModal()}>Add feedback </button>
                 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box relative">
                         {/* <h3 className="font-bold text-lg">Hello!</h3>

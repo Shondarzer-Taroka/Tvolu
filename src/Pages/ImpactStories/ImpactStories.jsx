@@ -6,8 +6,14 @@ import { IoClose } from "react-icons/io5";
 import { FaPlay } from "react-icons/fa6";
 import donation_5 from "../../../src/assets/donation/madeleine-maguire-T1bT4Os3t3w-unsplash.jpg";
 import { FaPlus } from "react-icons/fa6";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 const ImpactStories = () => {
+    const [ref, inView] = useInView({
+        threshold: 0.5, // Trigger when 50% of the component is visible
+        triggerOnce: true, // Only trigger once
+    });
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handlePlayClick = () => {
@@ -98,48 +104,30 @@ const ImpactStories = () => {
             )}
 
             <article >
-                <div className="bg-[#232020] rounded-t-3xl flex gap-5">
 
-
-                    <div className="relative p-12">
-
-                        <div className="relative">
-                            <h1 className=" text-3xl font-bold text-[#9c914f]">10,000 </h1>
-                            <FaPlus className="text-white text-[17px] absolute top-1 left-[100px] opacity-75" />
+                <div className="bg-[#232020] rounded-t-3xl flex gap-5" ref={ref}>
+                    {[1, 2, 3].map((item, idx) => (
+                        <div key={idx} className="relative p-12">
+                            <div className="relative">
+                                <h1 className="text-3xl font-bold text-[#9c914f]">
+                                    {inView && (
+                                        <CountUp start={0} end={10000} duration={2} separator="," />
+                                    )}
+                                </h1>
+                                <FaPlus className="text-white text-[17px] absolute top-1 left-[100px] opacity-75" />
+                            </div>
+                            <div className="leading-[1.5] mt-7">
+                                <h2 className="text-white text-[20px] font-semibold">
+                                    Volunteer Hours Logged
+                                </h2>
+                                <p className="text-white text-[20px] opacity-60">
+                                    Lorem ipsum dolor sit amet
+                                </p>
+                            </div>
                         </div>
-
-                        <div className="leading-[1.5] mt-7">
-                            <h2 className="text-white text-[20px] font-semibold">Volunteer Hours Logged</h2>
-                            <p className="text-white text-[20px] opacity-60">Lorem ipsum dolor sit amet</p>
-                        </div>
-                    </div>
-                    <div className="relative p-12">
-
-                        <div className="relative">
-                            <h1 className=" text-3xl font-bold text-[#9c914f]">10,000 </h1>
-                            <FaPlus className="text-white text-[17px] absolute top-1 left-[100px] opacity-75" />
-                        </div>
-
-                        <div className="leading-[1.5] mt-7">
-                            <h2 className="text-white text-[20px] font-semibold">Volunteer Hours Logged</h2>
-                            <p className="text-white text-[20px] opacity-60">Lorem ipsum dolor sit amet</p>
-                        </div>
-                    </div>
-                    <div className="relative p-12">
-
-                        <div className="relative">
-                            <h1 className=" text-3xl font-bold text-[#9c914f]">10,000 </h1>
-                            <FaPlus className="text-white text-[17px] absolute top-1 left-[100px] opacity-75" />
-                        </div>
-
-                        <div className="leading-[1.5] mt-7">
-                            <h2 className="text-white text-[20px] font-semibold">Volunteer Hours Logged</h2>
-                            <p className="text-white text-[20px] opacity-60">Lorem ipsum dolor sit amet</p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
-               
                 <div
                     style={{
                         backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 50%), url(${donation_6})`,

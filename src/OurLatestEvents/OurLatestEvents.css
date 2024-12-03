@@ -1,0 +1,17 @@
+.reminder-cont{
+    transition: all .5s;
+}
+.reminder-cont:hover{
+    background-color: brown;
+    color: white;
+}
+
+.reminder-cont:hover .reminder-btn{
+    color: white;
+
+}
+
+.reminder-btn:hover {
+    transform:  translateY(-5px); /* Scale vertically and move up */
+    transition: transform 0.3s ease; /* Smooth animation */
+}

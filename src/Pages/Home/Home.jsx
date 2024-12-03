@@ -9,6 +9,7 @@ import TestimonialPage from "../TestimonialPage/TestimonialPage";
 import FAQ from "../FAQ/FAQ";
 import NewsPage from "../NewsPage/NewsPage";
 import OurLatestEvents from "../../OurLatestEvents/OurLatestEvents";
+import ImpactStories from "../ImpactStories/ImpactStories";
 
 
 
@@ -28,6 +29,7 @@ const Home = () => {
             <FAQ/>
             <NewsPage/>
             <OurLatestEvents/>
+            <ImpactStories/>
             <VolunteerNeedsNow></VolunteerNeedsNow>
             <OurVolunteerCamp></OurVolunteerCamp>
             <OurExparter></OurExparter>

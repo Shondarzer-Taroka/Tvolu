@@ -166,7 +166,7 @@ const ImpactStories = () => {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit <br />
                         tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
                     </p>
-                    <button className="px-6 py-3 rounded-full bg-[#955e42] text-white font-semibold text-lg shadow-lg hover:bg-[#7a4b36] transition-all">
+                    <button className="px-6 uppercase py-3 rounded-full bg-[#955e42] text-white font-semibold text-lg shadow-lg hover:bg-[#7a4b36] transition-all">
                         Our Volunteer
                     </button>
                 </div>

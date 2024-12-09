@@ -170,10 +170,11 @@ const NavBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const navlinks = (
-    <>
-      <NavLink to={"/"}>Home</NavLink>
-      <NavLink to={"/need"}>Need Volunteer</NavLink>
-    </>
+    <div className="">
+      <NavLink className={'px-4 py-6 hover:bg-slate-300 h-full'} to={"/"}>Home</NavLink>
+      <NavLink className={'px-4 py-6 hover:bg-slate-300 h-full'} to={"/need"}>Need Volunteer</NavLink>
+      <a className={'px-4 py-6 hover:bg-slate-300 h-full'} href="#makedo">Make Donation</a>
+    </div>
   );
 
   // Logout Function
@@ -235,7 +236,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <div id="navbar" className="navbar bg-base-100">
+      <div id="navbar" className="navbar bg-base-100 shadow-lg fixed top-0 left-0 w-full z-50">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn p-2 lg:hidden">

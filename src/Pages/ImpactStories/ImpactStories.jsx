@@ -57,7 +57,7 @@ const ImpactStories = () => {
                         </h2>
                     </div>
                     <h1 className="text-4xl font-bold leading-tight">
-                        Discover how we're making a difference and how you can get involved.
+                        Discover how we&apos;re making a difference and how you can get involved.
                     </h1>
                     <p className="opacity-70 text-lg">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit

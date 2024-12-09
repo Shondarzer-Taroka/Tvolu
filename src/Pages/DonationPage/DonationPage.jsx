@@ -1,10 +1,63 @@
-import React from 'react';
-import donation_1 from '../../../src/assets/donation/group-of-volunteers-with-working-in-community-charity-donation-center--1024x682.jpg'
+import React, { useState } from 'react';
+import donation_1 from '../../../src/assets/donation/group-of-volunteers-with-working-in-community-charity-donation-center--1024x682.jpg';
+
 const Card = ({ title, description, collected, target, image }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    amount: '',
+  });
+
   const progress = (collected / target) * 100;
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleDonateClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setFormData({ name: '', email: '', amount: '' }); // Reset form data
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await fetch('http://localhost:5588/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          amount: formData.amount,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to create checkout session');
+      }
+  
+      const { url } = await response.json();
+  
+      // Redirect to the Stripe Checkout page
+      window.location.href = url;
+    } catch (error) {
+      console.error('Error creating checkout session:', error);
+      alert('Something went wrong. Please try again.');
+    }
+  };
+  
+
   return (
-    <div className="rounded-xl overflow-hidden shadow-lg ">
+    <div className="rounded-xl overflow-hidden shadow-lg">
       <img src={image} alt={title} className="w-full h-48 object-cover" />
       <div className="p-5">
         <span className="bg-gray-100 px-3 py-1 rounded-full text-xs uppercase">Social</span>
@@ -28,13 +81,79 @@ const Card = ({ title, description, collected, target, image }) => {
             <span>Target: ${target}</span>
           </div>
         </div>
-        <button className="mt-4 w-full bg-button py-2 rounded-lg hover:bg-accent transition">
+        <button
+          className="mt-4 w-full bg-button py-2 rounded-lg hover:bg-accent transition"
+          onClick={handleDonateClick}
+        >
           Donate Now
         </button>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg shadow-lg w-[90%] md:w-[50%] p-6">
+            <h2 className="text-xl font-bold mb-4">Donator Information</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium">Donation Amount</label>
+                <input
+                  type="number"
+                  name="amount"
+                  value={formData.amount}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg"
+                  min="1"
+                  required
+                />
+              </div>
+              <div className="flex justify-between mt-6">
+                <button
+                  type="button"
+                  onClick={handleCloseModal}
+                  className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-button text-black rounded-lg hover:bg-accent transition"
+                >
+                  Submit Donation
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
+
+
+
 
 const DonationPage = () => {
   const campaigns = [
@@ -62,7 +181,7 @@ const DonationPage = () => {
   ];
 
   return (
-    <div className=" min-h-screen flex flex-col items-center py-10 space-y-10 max-w-6xl mx-auto">
+    <div className=" min-h-screen flex flex-col items-center py-10 space-y-10 max-w-6xl mx-auto" id='makedo'>
       <h1 className="uppercase text-4xl font-bold text-center">
         Make A Difference Today By Donating To Our Cause.
       </h1>

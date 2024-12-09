@@ -13,6 +13,7 @@ import ManageMyPost from "../Pages/ManageMyPost/ManageMyPost";
 import Update from "../Pages/Update/Update";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import GoDashboard from "../DashboardRelated/GoDashboard/GoDashboard";
+import SuccessPage from "../Pages/SuccessPage/SuccessPage";
 
 let router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ let router = createBrowserRouter([
             {
                 path: '/login',
                 element: <LogIn></LogIn>
+            },
+            {
+                path: '/success',
+                element: <SuccessPage/>
             },
             {
                 path: '/register',

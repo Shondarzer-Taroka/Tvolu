@@ -6,11 +6,11 @@ import VolunteerNeedsNow from "../../VolunteerNeedsNow/VolunteerNeedsNow";
 import SecondBanner from "../SecondBanner/SecondBanner";
 import DonationPage from "../DonationPage/DonationPage";
 import TestimonialPage from "../TestimonialPage/TestimonialPage";
-import FAQ from "../FAQ/FAQ";
+
 import NewsPage from "../NewsPage/NewsPage";
 import OurLatestEvents from "../../OurLatestEvents/OurLatestEvents";
 import ImpactStories from "../ImpactStories/ImpactStories";
-
+import FAQ from '../../../src/Pages/FAQ/FAQ'
 
 
 const Home = () => {

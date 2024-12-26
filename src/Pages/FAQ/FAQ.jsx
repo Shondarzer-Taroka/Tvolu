@@ -48,13 +48,13 @@ function FAQ() {
         </div>
 
         {/* Right Section */}
-        <div className="">
+        <div className="relative md:static">
           <img
             className=" inset-0 w-full h-full object-cover rounded-lg shadow-lg"
             src={donation_3}// Replace with your image path
             alt="Volunteer"
           />
-          <div className=" top-[20%] right-0 absolute z-10 w-[450px] ">
+          <div className=" top-[30%] md:top-[20%] right-4 md:right-0 absolute z-10 w-[450px] ">
             {faqs.map((faq, index) => (
               <Disclosure key={index}>
                 {({ open }) => (

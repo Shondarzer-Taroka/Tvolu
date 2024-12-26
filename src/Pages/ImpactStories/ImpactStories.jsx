@@ -26,9 +26,9 @@ const ImpactStories = () => {
 
     return (
         <section className="py-16">
-            <div className="container mx-auto  flex justify-between items-stretch gap-6 relative">
+            <div className="container mx-auto  flex flex-col md:flex-row justify-between items-stretch gap-6 relative">
                 {/* Left Section: Image with Play Icon */}
-                <aside className="w-1/2 relative flex items-stretch">
+                <aside className=" w-full md:w-1/2 relative flex items-stretch">
                     <div className="relative rounded-3xl overflow-hidden shadow-lg flex-1">
                         <img
                             src={donation_5}
@@ -49,7 +49,7 @@ const ImpactStories = () => {
                 </aside>
 
                 {/* Right Section: Content */}
-                <aside className="w-1/2 flex flex-col justify-center space-y-6 bg-white rounded-3xl shadow-lg p-8">
+                <aside className="w-full md:w-1/2 flex flex-col justify-center space-y-6 bg-white rounded-3xl shadow-lg p-8">
                     <div className="flex items-center opacity-70">
                         <div className="w-16 h-[2px] bg-neutral-500"></div>
                         <h2 className="uppercase font-semibold text-sm ml-3 tracking-wider">
@@ -105,7 +105,7 @@ const ImpactStories = () => {
 
             <article >
 
-                <div className="bg-[#232020] rounded-t-3xl flex gap-5" ref={ref}>
+                <div className="bg-[#232020] rounded-t-3xl grid grid-cols-2 md:flex gap-5" ref={ref}>
                     {[1, 2, 3].map((item, idx) => (
                         <div key={idx} className="relative p-12">
                             <div className="relative">

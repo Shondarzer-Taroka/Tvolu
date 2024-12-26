@@ -1,51 +1,184 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+
+
+import React, { useState } from "react";
+import Sidebar from "./Sidebar";
+import TopBar from "./TopBar";
+import ManageMyPost from "../../Pages/ManageMyPost/ManageMyPost";
+import AddVolunteer from "../../Pages/AddVolunteer/AddVolunteer";
 
 const GoDashboard = () => {
-  const [activeTab, setActiveTab] = useState('admin'); // State to toggle between Admin and Users
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [selectedContent, setSelectedContent] = useState("Manage My Post");
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  };
 
+  const handleSidebarItemClick = (content) => {
+    setSelectedContent(content);
+  };
+
+  const toggleMobileSidebar = () => {
+    setShowMobileSidebar(!showMobileSidebar);
+  };
   return (
-    <div className="flex h-screen">
-      {/* Left Sidebar */}
-      <div className="w-1/4 bg-gray-800 text-white p-4">
-        <h2 className="text-xl font-bold mb-4">Dashboard</h2>
-        {/* admin */}
-       {/* users */}
-       <NavLink to={'/managepost'}>Manage MyPost</NavLink>
-       <NavLink to={'/managepost'}>Add Volunteer Post</NavLink>
-       <NavLink to={'/managepost'}>Add Feedback</NavLink>
-      </div>
+    <div className="flex">
+      {/* Sidebar */}
+      <Sidebar
+      
+        showMobileSidebar={showMobileSidebar}
+        isCollapsed={isSidebarCollapsed}
+        onSidebarItemClick={handleSidebarItemClick}
+      />
 
-      {/* Right Content */}
-      <div className="w-3/4 p-6">
-        {activeTab === 'admin' && (
-          <div>
-            <h1 className="text-2xl font-semibold mb-4">Admin Section</h1>
-            <p className="text-gray-700">
-              Here you can manage administrative tasks, including managing posts, reviewing feedback, and more.
-            </p>
-            <div className="mt-4 space-y-4">
-              <button className="btn btn-primary">Manage Posts</button>
-              <button className="btn btn-secondary">View Feedback</button>
-            </div>
+      {/* Main Content */}
+      <div className="flex-1">
+        <TopBar onToggleSidebar={toggleSidebar} toggleMobileSidebar={toggleMobileSidebar} />
+        <div className="p-4">
+          <h1 className="text-2xl font-bold">{selectedContent}</h1>
+          <div className="mt-4">
+            {selectedContent === "Manage My Post" && <ManagePosts />}
+            {selectedContent === "Add Post" && <AddPost />}
+            {selectedContent === "Feedback" && <Feedback />}
           </div>
-        )}
-
-        {activeTab === 'users' && (
-          <div>
-            <h1 className="text-2xl font-semibold mb-4">Users Section</h1>
-            <p className="text-gray-700">
-              This section allows you to view and manage user-related data, such as profiles, activities, and permissions.
-            </p>
-            <div className="mt-4 space-y-4">
-              <button className="btn btn-primary">View Profiles</button>
-              <button className="btn btn-secondary">Manage Activities</button>
-            </div>
-          </div>
-        )}
+        </div>
       </div>
+      {showMobileSidebar && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={toggleMobileSidebar}
+        ></div>
+      )}
     </div>
   );
 };
 
+const ManagePosts = () => <div><ManageMyPost /></div>;
+const AddPost = () => <div className="overflow-y-scroll max-h-screen"><AddVolunteer /></div>;
+const Feedback = () => <div>Content for Feedback</div>;
+
 export default GoDashboard;
+
+
+
+
+
+
+
+
+
+
+// // import React, { useState } from "react";
+// // import Sidebar from "./Sidebar";
+// // import TopBar from "./TopBar";
+// // import ManageMyPost from "../../Pages/ManageMyPost/ManageMyPost";
+// // import AddVolunteer from "../../Pages/AddVolunteer/AddVolunteer";
+
+// // const GoDashboard = () => {
+// //   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+// //   const [selectedContent, setSelectedContent] = useState("Manage My Post");
+
+// //   const toggleSidebar = () => {
+// //     setIsSidebarCollapsed(!isSidebarCollapsed);
+// //   };
+
+// //   const handleSidebarItemClick = (content) => {
+// //     setSelectedContent(content);
+// //   };
+
+// //   return (
+// //     <div className="flex">
+// //       {/* Sidebar */}
+// //       <Sidebar
+// //         isCollapsed={isSidebarCollapsed}
+// //         onSidebarItemClick={handleSidebarItemClick}
+// //       />
+
+// //       {/* Main Content */}
+// //       <div className="flex-1">
+// //         <TopBar onToggleSidebar={toggleSidebar} />
+// //         <div className="p-4">
+// //           <h1 className="text-2xl font-bold">{selectedContent}</h1>
+// //           <div className="mt-4">
+// //             {selectedContent === "Manage My Post" && <ManagePosts />}
+// //             {selectedContent === "Add Post" && <AddPost />}
+// //             {selectedContent === "Feedback" && <Feedback />}
+// //           </div>
+// //         </div>
+// //       </div>
+// //     </div>
+// //   );
+// // };
+
+// // const ManagePosts = () => <div><ManageMyPost /></div>;
+// // const AddPost = () => <div><AddVolunteer /></div>;
+// // const Feedback = () => <div>Content for Feedback</div>;
+
+// // export default GoDashboard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from "react";
+// import Sidebar from "./Sidebar";
+// import TopBar from "./TopBar";
+// import ManageMyPost from "../../Pages/ManageMyPost/ManageMyPost";
+// import AddVolunteer from "../../Pages/AddVolunteer/AddVolunteer";
+
+// const GoDashboard = () => {
+//   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+//   const [selectedContent, setSelectedContent] = useState("Manage My Post");
+
+//   const toggleSidebar = () => {
+//     setIsSidebarCollapsed(!isSidebarCollapsed);
+//   };
+
+//   const handleSidebarItemClick = (content) => {
+//     setSelectedContent(content);
+//   };
+
+//   return (
+//     <div className="flex">
+//       {/* Sidebar */}
+//       <Sidebar
+//         isCollapsed={isSidebarCollapsed}
+//         onSidebarItemClick={handleSidebarItemClick}
+//       />
+
+//       {/* Main Content */}
+//       <div className="flex-1">
+//         <TopBar onToggleSidebar={toggleSidebar} />
+//         <div className="p-4">
+//           <h1 className="text-2xl font-bold">{selectedContent}</h1>
+//           <div className="mt-4">
+//             {selectedContent === "Manage My Post" && <ManagePosts />}
+//             {selectedContent === "Add Post" && <AddPost />}
+//             {selectedContent === "Feedback" && <Feedback />}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// const ManagePosts = () => <div><ManageMyPost /></div>;
+// const AddPost = () => <div><AddVolunteer /></div>;
+// const Feedback = () => <div>Content for Feedback</div>;
+
+// export default GoDashboard;

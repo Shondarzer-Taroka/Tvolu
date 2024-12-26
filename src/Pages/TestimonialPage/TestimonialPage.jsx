@@ -66,9 +66,9 @@ const TestimonialPage = () => {
 
     return (
         <div className="bg-background min-h-screen px-6 relative">
-            <div id="parent" className="flex gap-6 justify-center">
+            <div id="parent" className=" grid grid-cols-2 md:flex gap-6  justify-center">
                 {/* Left Section */}
-                <div className="w-[45%]">
+                <div className="md:w-[45%] col-span-2 md:col-span-1">
                     <img
                         className="h-full w-full rounded-lg object-cover"
                         src={donation_2}
@@ -77,7 +77,7 @@ const TestimonialPage = () => {
                 </div>
 
                 {/* Right Section */}
-                <div className="w-[55%] relative">
+                <div className="md:w-[55%] col-span-2 md:col-span-1 relative">
                     <div className="ml-9 relative ">
                         {/* Spinning Star */}
                         <FaRegStar
@@ -113,7 +113,7 @@ const TestimonialPage = () => {
                     </div>
 
                     {/* Testimonial Slider */}
-                    <Slider {...settings} className="mt-6 absolute left-[-120px]">
+                    <Slider {...settings} className="mt-6 md:absolute left-0 md:left-[-120px]">
                         {testimonials.map((card, index) => (
                             <div key={index} className='px-2'>
                                 <TestimonialCard

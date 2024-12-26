@@ -16,7 +16,7 @@ const OurVolunteerCamp = () => {
                     </div>
 
                     <div id='content' className='px-4 pl-4'>
-                        <h6 className='font-semibold text-[20px]'> Uniting Hearts through Volunteerism</h6>
+                        <h6 className='font-semibold text-[20px]'> Uniting Hearts  Volunteerism</h6>
                         <span className='text-[gray] flex gap-2 text-[16px] items-center'> <CiStopwatch /> May 9, 2024 @ 11:03-01:00 </span>
                         <span className='text-[gray] flex gap-2 text-[16px] items-center'> <IoLocationOutline /> 85 Preston Rd. Inglewood</span>
                     </div>

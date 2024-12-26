@@ -26,9 +26,9 @@ const OurLatestEvents = () => {
                     </h1>
                 </div>
 
-                <div id='content' className='flex gap-2'>
+                <div id='content' className=' grid grid-cols-1 md:flex gap-2'>
                     {[1, 2, 3].map((_, idx) => (
-                        <div key={idx} className=" w-[300px] relative rounded-xl border-[8px] border-white">
+                        <div key={idx} className=" md:w-[300px] relative rounded-xl border-[8px] border-white">
                             <img className='w-full rounded' src={donation_4} alt="Event Thumbnail" />
                             <button className='absolute top-2 left-2 uppercase text-[20px] bg-[#748e54] px-3 py-1 rounded-full text-white'>
                                 Upcoming
@@ -36,7 +36,7 @@ const OurLatestEvents = () => {
                             <button className='hover:bg-brown-400 absolute top-0 right-0 bg-white px-4 py-3 rounded-bl-3xl rounded-tr'>
                                 <FaPlay className='text-[20px] text-black -mt-1' />
                             </button>
-                            <div className='reminder-cont absolute left-3 bottom-[-90px] w-[260px] rounded-3xl p-4 text-[23px] space-y-4 bg-white text-black'>
+                            <div className='reminder-cont absolute md:left-3 bottom-0 md:bottom-[-90px] w-full md:w-[260px] rounded-t-2xl md:rounded-3xl p-4 text-[23px] space-y-4 bg-white text-black'>
                                 <h1 className='font-semibold leading-[1.4]'>
                                     Community Cleanup Day Events
                                 </h1>

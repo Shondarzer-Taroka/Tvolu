@@ -173,7 +173,7 @@ const NavBar = () => {
     <div className="">
       <NavLink className={'px-4 py-6 hover:bg-slate-300 h-full'} to={"/"}>Home</NavLink>
       <NavLink className={'px-4 py-6 hover:bg-slate-300 h-full'} to={"/need"}>Need Volunteer</NavLink>
-      <a className={'px-4 py-6 hover:bg-slate-300 h-full'} href="#makedo">Make Donation</a>
+      <NavLink className={'px-4 py-6 hover:bg-slate-300 h-full donation-nav'} to="/#makedo">Make Donation</NavLink>
     </div>
   );
 

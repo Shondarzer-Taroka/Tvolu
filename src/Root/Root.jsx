@@ -43,7 +43,7 @@ const Root = () => {
 
   return (
     <section>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto" id="rootelement">
         {/* Conditionally render TanaNavBar */}
         {!shouldExclude && (
           <>

@@ -17,3 +17,8 @@
     background-size: cover;
   }
 
+  .custom-dashboard-width {
+    max-width: 1444px; /* Adjust as needed */
+    width: 100%; /* Ensures it fills the available space */
+  }
+  

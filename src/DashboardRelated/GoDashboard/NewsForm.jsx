@@ -144,12 +144,11 @@
 
 
 
-
-
-
 import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const NewsForm = () => {
   const [newsData, setNewsData] = useState({
@@ -162,6 +161,7 @@ const NewsForm = () => {
   });
 
   const [uploading, setUploading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -197,10 +197,10 @@ const NewsForm = () => {
         image: data.secure_url,
       });
 
-      alert("Image uploaded successfully!");
+      toast.success("Image uploaded successfully!");
     } catch (error) {
       console.error("Image upload failed:", error);
-      alert("Image upload failed. Please try again.");
+      toast.error("Image upload failed. Please try again.");
     } finally {
       setUploading(false);
     }
@@ -213,11 +213,39 @@ const NewsForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newsData);
-    alert("News submitted successfully!");
-    // Add your form submission logic here
+    setSubmitting(true);
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/news-content`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newsData),
+      });
+
+      if (response.ok) {
+        toast.success("News submitted successfully!");
+        setNewsData({
+          title: "",
+          category: "",
+          date: "",
+          description: "",
+          newsContent: "",
+          image: null,
+        });
+      } else {
+        // const errorData = await response.json();
+        toast.error(`Failed to submit news:`);
+      }
+    } catch (error) {
+      console.error("Error submitting news:", error);
+      toast.error("An error occurred while submitting the news.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -333,11 +361,13 @@ const NewsForm = () => {
           <button
             type="submit"
             className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            disabled={submitting}
           >
-            Submit
+            {submitting ? "Submitting..." : "Submit"}
           </button>
         </div>
       </form>
+      <Toaster/>
     </div>
   );
 };

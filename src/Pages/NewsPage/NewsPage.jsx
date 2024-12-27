@@ -1,66 +1,29 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
 
-const NewsCard = () => {
+const NewsCard = ({ title, description, image, date, newsContent, category }) => {
+    const mydate = new Date(date);
+    const day = mydate.toLocaleDateString('en-GB', { day: '2-digit' });
+    const month = mydate.toLocaleDateString('en-GB', { month: 'short' });
     return (
         <div>
-            {/* <div className="max-w-sm rounded-lg  shadow-lg bg-white">
-         
-                <div className="relative">
-                    <img
-                        className="w-full h-48 object-cover"
-                        src="https://via.placeholder.com/350x250"
-                        alt="Volunteer working"
-                    />
-                 
-                    <div className="absolute top-3 left-3 bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
-                        CHARITY
-                    </div>
-                
-                    <div className="absolute bottom-4 left-[-10px] bg-brown-600 text-white px-3 py-2">
-                        <p className="text-xs font-semibold">03</p>
-                        <p className="text-xs uppercase">May</p>
-                        <div className='w-[10px] h-[10px] bg-black rotate-6 absolute top-[-10px] left-[0px]'>
-                            
-                        </div>
-                    </div>
-                </div>
-
-         
-                <div className="p-5">
-                    <h3 className="text-lg font-semibold text-gray-800">
-                        A Day In The Life Of A Volunteer
-                    </h3>
-                    <p className="text-sm text-gray-600 mt-2 leading-relaxed">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-                        tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
-                    </p>
-
-         
-                    <a
-                        href="#"
-                        className="flex items-center text-sm font-medium text-brown-700 mt-4 hover:underline"
-                    >
-                        Read More <span className="ml-1">&rarr;</span>
-                    </a>
-                </div>
-            </div> */}
-            <div className="max-w-sm rounded-lg shadow-lg bg-white">
+            <div className="md:max-w-sm rounded-lg shadow-lg bg-white">
                 {/* Image Section */}
                 <div className="relative">
                     <img
                         className="w-full h-48 object-cover"
-                        src="https://via.placeholder.com/350x250"
+                        src={image}
                         alt="Volunteer working"
                     />
                     {/* Badge */}
                     <div className="absolute top-3 left-3 bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
-                        CHARITY
+                        {category}
                     </div>
                     {/* Date */}
                     <div className="absolute bottom-4 left-[-12px] bg-brown-600 text-white px-3 py-2">
-                        <p className="text-xs font-semibold">03</p>
-                        <p className="text-xs uppercase">May</p>
+                        <p className="text-xs font-semibold">{day} </p>
+                        <p className="text-xs uppercase">{month}</p>
                         {/* Triangle */}
                         <div
                             className="absolute rotate-[135deg] top-[-7px] left-[1px]  w-0 h-0"
@@ -100,6 +63,41 @@ const NewsCard = () => {
 
 
 const NewsPage = () => {
+    let [news, setNews] = useState([])
+    let [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        // async function getData() {
+        //     setLoading(true)
+        //     let result = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/news-content`)
+        //     if (Array.isArray(result.data)) {
+        //         console.log(result.data);
+
+        //         setNews(result.data)
+        //     }
+        //     else{
+        //         setNews([])
+        //     }
+
+        //     setLoading(false)
+        // }
+        // getData()
+        setLoading(true)
+        fetch(`${import.meta.env.VITE_BASE_URL}/api/news-content`)
+        .then(res => res.json())
+        .then(data => setNews(data)) // No need to call data.json() here, because it's already parsed
+        .catch(error => {
+          console.error('Error fetching news content:', error);
+          // Handle error (e.g., show an error message to the user)
+        }).finally(()=> setLoading(false))
+       
+    }, [])
+    console.log(news);
+
+    if (loading) {
+        return 'loading....'
+    }
+
     return (
         <section>
             <aside>
@@ -130,8 +128,14 @@ const NewsPage = () => {
                 <h5 className='text-5xl font-bold text-center'>Discover Our Updates & Charity <br /> News Content.</h5>
             </aside>
 
-            <aside>
-                <NewsCard />
+            <aside className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 '>
+                {news.map(newsCard => <NewsCard key={newsCard._id}
+                    title={newsCard.title}
+                    description={newsCard.description}
+                    category={newsCard.category}
+                    image={newsCard.image}
+                    date={newsCard.date}
+                    newsContent={newsCard.newsContent} />)}
             </aside>
 
         </section>

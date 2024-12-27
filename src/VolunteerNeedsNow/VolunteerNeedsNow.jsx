@@ -58,7 +58,7 @@
 
 //                                 </div>
 //                                 <Link to={`/postdetails/${value._id}`}><button className=" text-white btn btn-info mx-4 mb-4">View Details</button></Link>
-                                
+
 //                             </aside>
 //                         </>
 //                     })
@@ -84,7 +84,7 @@ import { Link } from "react-router-dom";
 const VolunteerNeedsNow = () => {
     const [Volunteer, setVolunteer] = useState([]); // Ensure initial state is an empty array
     const [loadingVolunteer, setLoadingVolunteer] = useState(true);
-console.log(Volunteer);
+    console.log(Volunteer);
 
     useEffect(() => {
         setLoadingVolunteer(true);

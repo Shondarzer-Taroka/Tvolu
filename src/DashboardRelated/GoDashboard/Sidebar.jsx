@@ -106,6 +106,7 @@
 import React from "react";
 import { FaHome, FaPlusCircle, FaComments } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
+import { IoNewspaperSharp } from "react-icons/io5";
 
 const Sidebar = ({ isCollapsed, onSidebarItemClick,showMobileSidebar, }) => {
   return (
@@ -144,6 +145,12 @@ const Sidebar = ({ isCollapsed, onSidebarItemClick,showMobileSidebar, }) => {
             label="Feedback"
             isCollapsed={isCollapsed}
             onClick={() => onSidebarItemClick("Feedback")}
+          />
+          <SidebarItem
+            icon={<IoNewspaperSharp/>}
+            label="Make a News"
+            isCollapsed={isCollapsed}
+            onClick={() => onSidebarItemClick("Make a News")}
           />
         </div>
 

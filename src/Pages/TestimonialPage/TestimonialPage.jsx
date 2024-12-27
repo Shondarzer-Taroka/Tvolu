@@ -65,7 +65,7 @@ const TestimonialPage = () => {
     };
 
     return (
-        <div className="bg-background min-h-screen px-6 relative">
+        <div className="bg-background min-h-screen md:px-6 relative">
             <div id="parent" className=" grid grid-cols-2 md:flex gap-6  justify-center">
                 {/* Left Section */}
                 <div className="md:w-[45%] col-span-2 md:col-span-1">

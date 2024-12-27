@@ -5,12 +5,12 @@ import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
 import ManageMyPost from "../../Pages/ManageMyPost/ManageMyPost";
 import AddVolunteer from "../../Pages/AddVolunteer/AddVolunteer";
+import NewsForm from "./NewsForm";
 
 const GoDashboard = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [selectedContent, setSelectedContent] = useState("Manage My Post");
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
@@ -36,11 +36,12 @@ const GoDashboard = () => {
       <div className="flex-1">
         <TopBar onToggleSidebar={toggleSidebar} toggleMobileSidebar={toggleMobileSidebar} />
         <div className="p-4">
-          <h1 className="text-2xl font-bold">{selectedContent}</h1>
-          <div className="mt-4">
+          {/* <h1 className="text-2xl font-bold">{selectedContent}</h1> */}
+          <div className="mt-4 h-[200px]">
             {selectedContent === "Manage My Post" && <ManagePosts />}
             {selectedContent === "Add Post" && <AddPost />}
             {selectedContent === "Feedback" && <Feedback />}
+            {selectedContent === "Make a News" && <MakeNews />}
           </div>
         </div>
       </div>
@@ -57,128 +58,10 @@ const GoDashboard = () => {
 const ManagePosts = () => <div><ManageMyPost /></div>;
 const AddPost = () => <div className="overflow-y-scroll max-h-screen"><AddVolunteer /></div>;
 const Feedback = () => <div>Content for Feedback</div>;
+const MakeNews = ()=> <div><NewsForm/></div>
 
 export default GoDashboard;
 
 
 
 
-
-
-
-
-
-
-// // import React, { useState } from "react";
-// // import Sidebar from "./Sidebar";
-// // import TopBar from "./TopBar";
-// // import ManageMyPost from "../../Pages/ManageMyPost/ManageMyPost";
-// // import AddVolunteer from "../../Pages/AddVolunteer/AddVolunteer";
-
-// // const GoDashboard = () => {
-// //   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-// //   const [selectedContent, setSelectedContent] = useState("Manage My Post");
-
-// //   const toggleSidebar = () => {
-// //     setIsSidebarCollapsed(!isSidebarCollapsed);
-// //   };
-
-// //   const handleSidebarItemClick = (content) => {
-// //     setSelectedContent(content);
-// //   };
-
-// //   return (
-// //     <div className="flex">
-// //       {/* Sidebar */}
-// //       <Sidebar
-// //         isCollapsed={isSidebarCollapsed}
-// //         onSidebarItemClick={handleSidebarItemClick}
-// //       />
-
-// //       {/* Main Content */}
-// //       <div className="flex-1">
-// //         <TopBar onToggleSidebar={toggleSidebar} />
-// //         <div className="p-4">
-// //           <h1 className="text-2xl font-bold">{selectedContent}</h1>
-// //           <div className="mt-4">
-// //             {selectedContent === "Manage My Post" && <ManagePosts />}
-// //             {selectedContent === "Add Post" && <AddPost />}
-// //             {selectedContent === "Feedback" && <Feedback />}
-// //           </div>
-// //         </div>
-// //       </div>
-// //     </div>
-// //   );
-// // };
-
-// // const ManagePosts = () => <div><ManageMyPost /></div>;
-// // const AddPost = () => <div><AddVolunteer /></div>;
-// // const Feedback = () => <div>Content for Feedback</div>;
-
-// // export default GoDashboard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-// import Sidebar from "./Sidebar";
-// import TopBar from "./TopBar";
-// import ManageMyPost from "../../Pages/ManageMyPost/ManageMyPost";
-// import AddVolunteer from "../../Pages/AddVolunteer/AddVolunteer";
-
-// const GoDashboard = () => {
-//   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-//   const [selectedContent, setSelectedContent] = useState("Manage My Post");
-
-//   const toggleSidebar = () => {
-//     setIsSidebarCollapsed(!isSidebarCollapsed);
-//   };
-
-//   const handleSidebarItemClick = (content) => {
-//     setSelectedContent(content);
-//   };
-
-//   return (
-//     <div className="flex">
-//       {/* Sidebar */}
-//       <Sidebar
-//         isCollapsed={isSidebarCollapsed}
-//         onSidebarItemClick={handleSidebarItemClick}
-//       />
-
-//       {/* Main Content */}
-//       <div className="flex-1">
-//         <TopBar onToggleSidebar={toggleSidebar} />
-//         <div className="p-4">
-//           <h1 className="text-2xl font-bold">{selectedContent}</h1>
-//           <div className="mt-4">
-//             {selectedContent === "Manage My Post" && <ManagePosts />}
-//             {selectedContent === "Add Post" && <AddPost />}
-//             {selectedContent === "Feedback" && <Feedback />}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const ManagePosts = () => <div><ManageMyPost /></div>;
-// const AddPost = () => <div><AddVolunteer /></div>;
-// const Feedback = () => <div>Content for Feedback</div>;
-
-// export default GoDashboard;

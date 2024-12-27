@@ -84,6 +84,7 @@ import { Link } from "react-router-dom";
 const VolunteerNeedsNow = () => {
     const [Volunteer, setVolunteer] = useState([]); // Ensure initial state is an empty array
     const [loadingVolunteer, setLoadingVolunteer] = useState(true);
+console.log(Volunteer);
 
     useEffect(() => {
         setLoadingVolunteer(true);

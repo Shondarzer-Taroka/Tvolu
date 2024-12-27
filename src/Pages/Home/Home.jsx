@@ -20,19 +20,22 @@ const Home = () => {
             <Helmet>
                 <title> Home</title>
             </Helmet>
-          
+
             {/* <Banner></Banner> */}
 
             <SecondBanner></SecondBanner>
-            <DonationPage/>
-            <TestimonialPage/>
-            <FAQ/>
-            <NewsPage/>
-            <OurLatestEvents/>
-            <ImpactStories/>
-            <VolunteerNeedsNow></VolunteerNeedsNow>
-            <OurVolunteerCamp></OurVolunteerCamp>
-            <OurExparter></OurExparter>
+            <div className="px-4">
+                <DonationPage />
+                <TestimonialPage />
+                <FAQ />
+                <NewsPage />
+                <OurLatestEvents />
+                <ImpactStories />
+                <VolunteerNeedsNow></VolunteerNeedsNow>
+                <OurVolunteerCamp></OurVolunteerCamp>
+                <OurExparter></OurExparter>
+            </div>
+
         </div>
     );
 };

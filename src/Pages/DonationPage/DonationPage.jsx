@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import donation_1 from '../../../src/assets/donation/group-of-volunteers-with-working-in-community-charity-donation-center--1024x682.jpg';
+import donation_2 from '../../../src/assets/donation/children-2704878_640.jpg';
+import donation_3 from '../../../src/assets/donation/donate-5281984_640.jpg';
 
 const Card = ({ title, description, collected, target, image }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,7 +31,7 @@ const Card = ({ title, description, collected, target, image }) => {
     e.preventDefault();
   
     try {
-      const response = await fetch('http://localhost:5588/create-checkout-session', {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/create-checkout-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -156,32 +158,34 @@ const Card = ({ title, description, collected, target, image }) => {
 
 
 const DonationPage = () => {
+  
   const campaigns = [
     {
       title: 'Emergency Relief Fund',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut elit tellus.',
-      collected: 10000,
-      target: 11000,
+      description: 'Providing immediate support to communities affected by natural disasters such as earthquakes, floods, and hurricanes. Your contribution ensures timely food, shelter, and medical assistance.',
+      collected: 8700,
+      target: 15000,
       image: donation_1,
     },
     {
       title: 'Education Access Initiative',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut elit tellus.',
-      collected: 10000,
-      target: 11000,
-      image: donation_1,
+      description: 'Empowering underprivileged children with access to quality education, school supplies, and scholarships. Let’s build a brighter future, one child at a time.',
+      collected: 12000,
+      target: 20000,
+      image: donation_2,
     },
     {
       title: 'Healthcare Outreach Program',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut elit tellus.',
-      collected: 1000,
-      target: 11000,
-      image: donation_1,
-    },
+      description: 'Delivering free medical checkups, medicines, and health awareness programs to underserved rural communities. Together, we can save lives and promote wellness.',
+      collected: 4500,
+      target: 10000,
+      image: donation_3,
+    }
   ];
+  
 
   return (
-    <div className=" min-h-screen flex flex-col items-center py-10 space-y-10 max-w-6xl mx-auto" id='makedo'>
+    <div className=" min-h-screen flex flex-col items-center py-10 space-y-10 max-w-6xl mx-auto" id='#makedo'>
       <h1 className="uppercase text-4xl font-bold text-center">
         Make A Difference Today By Donating To Our Cause.
       </h1>

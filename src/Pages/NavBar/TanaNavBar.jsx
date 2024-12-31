@@ -251,8 +251,8 @@ const TanaNavBar = () => {
           <div className="hidden lg:flex space-x-8">
             <NavLink to="/" className="hover:text-gray-500">Home</NavLink>
             <NavLink to="/need" className="hover:text-gray-500">Need volunteer</NavLink>
-            <NavLink to="/#makedo" className="hover:text-gray-500">Make donation</NavLink>
-            <NavLink to="/services" className="hover:text-gray-500">Services</NavLink>
+            <NavLink to="#makedo" className="hover:text-gray-500">Make donation</NavLink>
+            {/* <NavLink to="/services" className="hover:text-gray-500">Services</NavLink> */}
           </div>
 
           {/* Profile and Dark Mode Toggle */}

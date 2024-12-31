@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
-const NewsCard = ({ title, description, image, date, newsContent, category }) => {
+const NewsCard = ({ title, description, image, date, newsContent, category, _id }) => {
     const mydate = new Date(date);
     const day = mydate.toLocaleDateString('en-GB', { day: '2-digit' });
     const month = mydate.toLocaleDateString('en-GB', { month: 'short' });
@@ -47,12 +48,12 @@ const NewsCard = ({ title, description, image, date, newsContent, category }) =>
                     </p>
 
                     {/* Read More */}
-                    <a
-                        href="#"
+                    <Link
+                       to={`/readmore/${_id}`}
                         className="flex items-center text-sm font-medium text-brown-700 mt-4 hover:underline"
                     >
                         Read More <span className="ml-1">&rarr;</span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -84,13 +85,13 @@ const NewsPage = () => {
         // getData()
         setLoading(true)
         fetch(`${import.meta.env.VITE_BASE_URL}/api/news-content`)
-        .then(res => res.json())
-        .then(data => setNews(data)) // No need to call data.json() here, because it's already parsed
-        .catch(error => {
-          console.error('Error fetching news content:', error);
-          // Handle error (e.g., show an error message to the user)
-        }).finally(()=> setLoading(false))
-       
+            .then(res => res.json())
+            .then(data => setNews(data)) // No need to call data.json() here, because it's already parsed
+            .catch(error => {
+                console.error('Error fetching news content:', error);
+                // Handle error (e.g., show an error message to the user)
+            }).finally(() => setLoading(false))
+
     }, [])
     console.log(news);
 
@@ -134,6 +135,7 @@ const NewsPage = () => {
                     description={newsCard.description}
                     category={newsCard.category}
                     image={newsCard.image}
+                    _id={newsCard._id}
                     date={newsCard.date}
                     newsContent={newsCard.newsContent} />)}
             </aside>

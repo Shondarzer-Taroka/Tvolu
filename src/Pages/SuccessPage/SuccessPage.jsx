@@ -12,7 +12,7 @@ const SuccessPage = () => {
           throw new Error('Session ID not found');
         }
 
-        const response = await fetch(`http://localhost:5588/donation-success?session_id=${sessionId}`);
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/donation-success?session_id=${sessionId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch donation details');
         }

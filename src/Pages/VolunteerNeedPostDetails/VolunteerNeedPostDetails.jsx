@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 // import axios from "axios";
 // import { useContext, useEffect, useState } from "react";
 // import { CgOrganisation } from "react-icons/cg";

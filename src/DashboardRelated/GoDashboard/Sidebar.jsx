@@ -152,6 +152,12 @@ const Sidebar = ({ isCollapsed, onSidebarItemClick,showMobileSidebar, }) => {
             isCollapsed={isCollapsed}
             onClick={() => onSidebarItemClick("Make a News")}
           />
+          <SidebarItem
+            icon={<IoNewspaperSharp/>}
+            label="My News"
+            isCollapsed={isCollapsed}
+            onClick={() => onSidebarItemClick("My News")}
+          />
         </div>
 
         {/* Secondary Section */}

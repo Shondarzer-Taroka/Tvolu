@@ -251,7 +251,7 @@ const TanaNavBar = () => {
           <div className="hidden lg:flex space-x-8">
             <NavLink to="/" className="hover:text-gray-500">Home</NavLink>
             <NavLink to="/need" className="hover:text-gray-500">Need volunteer</NavLink>
-            <NavLink to="#makedo" className="hover:text-gray-500">Make donation</NavLink>
+            <NavLink to="/Blogs" className="hover:text-gray-500">News</NavLink>
             {/* <NavLink to="/services" className="hover:text-gray-500">Services</NavLink> */}
           </div>
 
@@ -325,7 +325,7 @@ const TanaNavBar = () => {
           </div>
           <NavLink to="/" className="block text-lg py-2 hover:text-gray-500" onClick={() => setMobileMenuOpen(false)}>Home</NavLink>
           <NavLink to="/need" className="block text-lg py-2 hover:text-gray-500" onClick={() => setMobileMenuOpen(false)}>Need volunteer</NavLink>
-          <NavLink to="/#makedo" className="block text-lg py-2 hover:text-gray-500" onClick={() => setMobileMenuOpen(false)}>Make donation</NavLink>
+          <NavLink to="/Blogs" className="block text-lg py-2 hover:text-gray-500" onClick={() => setMobileMenuOpen(false)}>News</NavLink>
           <NavLink to="/services" className="block text-lg py-2 hover:text-gray-500" onClick={() => setMobileMenuOpen(false)}>Services</NavLink>
         </div>
       )}

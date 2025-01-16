@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
-const NewsCard = ({ title, description, image, date, newsContent, category, _id }) => {
+export const NewsCard = ({ title, description, image, date, newsContent, category, _id }) => {
     const mydate = new Date(date);
     const day = mydate.toLocaleDateString('en-GB', { day: '2-digit' });
     const month = mydate.toLocaleDateString('en-GB', { month: 'short' });
@@ -40,11 +40,10 @@ const NewsCard = ({ title, description, image, date, newsContent, category, _id 
                 {/* Content Section */}
                 <div className="p-5">
                     <h3 className="text-lg font-semibold text-gray-800">
-                        A Day In The Life Of A Volunteer
+                       {title}
                     </h3>
                     <p className="text-sm text-gray-600 mt-2 leading-relaxed">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-                        tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                      {description}
                     </p>
 
                     {/* Read More */}
@@ -68,21 +67,6 @@ const NewsPage = () => {
     let [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        // async function getData() {
-        //     setLoading(true)
-        //     let result = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/news-content`)
-        //     if (Array.isArray(result.data)) {
-        //         console.log(result.data);
-
-        //         setNews(result.data)
-        //     }
-        //     else{
-        //         setNews([])
-        //     }
-
-        //     setLoading(false)
-        // }
-        // getData()
         setLoading(true)
         fetch(`${import.meta.env.VITE_BASE_URL}/api/news-content`)
             .then(res => res.json())

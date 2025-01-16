@@ -83,6 +83,7 @@ import ManageMyPost from "../../Pages/ManageMyPost/ManageMyPost";
 import AddVolunteer from "../../Pages/AddVolunteer/AddVolunteer";
 import NewsForm from "./NewsForm";
 import { useLocation } from "react-router-dom";
+import MyNews from "./MyNews";
 
 
 const GoDashboard = () => {
@@ -131,6 +132,7 @@ const GoDashboard = () => {
           {selectedContent === "Add Post" && <AddPost />}
           {selectedContent === "Feedback" && <Feedback />}
           {selectedContent === "Make a News" && <MakeNews />}
+          {selectedContent === "My News" && <MYnews />}
         </div>
       </div>
 
@@ -166,6 +168,11 @@ const Feedback = () => (
 const MakeNews = () => (
   <div className="h-full overflow-y-auto">
     <NewsForm />
+  </div>
+);
+const MYnews = () => (
+  <div className="h-full overflow-y-auto">
+    <MyNews />
   </div>
 );
 

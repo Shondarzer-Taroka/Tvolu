@@ -15,6 +15,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import GoDashboard from "../DashboardRelated/GoDashboard/GoDashboard";
 import SuccessPage from "../Pages/SuccessPage/SuccessPage";
 import ReadMore from "../Pages/ReadMore/ReadMore";
+import Blogs from "../Pages/Blogs/Blogs";
 
 let router = createBrowserRouter([
     {
@@ -32,7 +33,11 @@ let router = createBrowserRouter([
             },
             {
                 path: '/success',
-                element: <SuccessPage/>
+                element: <SuccessPage />
+            },
+            {
+                path: '/Blogs',
+                element: <Blogs />
             },
             {
                 path: '/readmore/:id',
@@ -41,7 +46,7 @@ let router = createBrowserRouter([
                     if (!response.ok) throw new Response('Failed to fetch data', { status: response.status });
                     return response.json(); // Return the data for the component to use
                 },
-                element: <ReadMore/>
+                element: <ReadMore />
             },
             {
                 path: '/register',
@@ -80,9 +85,9 @@ let router = createBrowserRouter([
             {
                 path: '/go-dashboard',
                 element: <PrivateRoute><GoDashboard /></PrivateRoute>,
-                children:[
+                children: [
                     {
-                    
+
                     }
                 ]
             }

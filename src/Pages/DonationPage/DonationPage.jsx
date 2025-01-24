@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import donation_1 from '../../../src/assets/donation/group-of-volunteers-with-working-in-community-charity-donation-center--1024x682.jpg';
 import donation_2 from '../../../src/assets/donation/children-2704878_640.jpg';
 import donation_3 from '../../../src/assets/donation/donate-5281984_640.jpg';
+import axios from 'axios';
 
-const Card = ({ title, description, collected, target, image }) => {
+export const Card = ({ title, description, collected, target, image, cardId }) => {
+  console.log(description.split(''));
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     amount: '',
+    cardId: '' || cardId
   });
 
   const progress = (collected / target) * 100;
@@ -29,7 +33,7 @@ const Card = ({ title, description, collected, target, image }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await fetch(`${import.meta.env.VITE_BASE_URL}/create-checkout-session`, {
         method: 'POST',
@@ -40,15 +44,16 @@ const Card = ({ title, description, collected, target, image }) => {
           name: formData.name,
           email: formData.email,
           amount: formData.amount,
+          cardId: cardId || ''
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error('Failed to create checkout session');
       }
-  
+
       const { url } = await response.json();
-  
+
       // Redirect to the Stripe Checkout page
       window.location.href = url;
     } catch (error) {
@@ -56,7 +61,7 @@ const Card = ({ title, description, collected, target, image }) => {
       alert('Something went wrong. Please try again.');
     }
   };
-  
+
 
   return (
     <div className="rounded-xl overflow-hidden shadow-lg">
@@ -65,7 +70,7 @@ const Card = ({ title, description, collected, target, image }) => {
         <span className="bg-gray-100 px-3 py-1 rounded-full text-xs uppercase">Social</span>
         <div className="mt-4">
           <h3 className="text-xl font-bold">{title}</h3>
-          <p className="text-sm mt-2">{description}</p>
+          <p className="text-sm mt-2"> {description}</p>
         </div>
         <div className="mt-4">
           <div className="flex justify-between text-xs">
@@ -158,44 +163,49 @@ const Card = ({ title, description, collected, target, image }) => {
 
 
 const DonationPage = () => {
-  
-  const campaigns = [
-    {
-      title: 'Emergency Relief Fund',
-      description: 'Providing immediate support to communities affected by natural disasters such as earthquakes, floods, and hurricanes. Your contribution ensures timely food, shelter, and medical assistance.',
-      collected: 8700,
-      target: 15000,
-      image: donation_1,
-    },
-    {
-      title: 'Education Access Initiative',
-      description: 'Empowering underprivileged children with access to quality education, school supplies, and scholarships. Let’s build a brighter future, one child at a time.',
-      collected: 12000,
-      target: 20000,
-      image: donation_2,
-    },
-    {
-      title: 'Healthcare Outreach Program',
-      description: 'Delivering free medical checkups, medicines, and health awareness programs to underserved rural communities. Together, we can save lives and promote wellness.',
-      collected: 4500,
-      target: 10000,
-      image: donation_3,
+  const [donations, setDonations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch donations from the backend
+  const fetchDonations = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/donations`);
+      setDonations(response.data.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching donations:', error.response?.data || error.message);
+      setDonations([]); // Reset donations list on error
+      setLoading(false);
     }
-  ];
-  
+  };
+
+  // Fetch donations when component mounts
+  useEffect(() => {
+    fetchDonations();
+  }, []);
+
+  if (loading) {
+    return <h1>Loading.....</h1>;
+  }
+
+  // Take the first 6 donations
+  const campaigns = donations.slice(0, 3);
 
   return (
-    <div className=" min-h-screen flex flex-col items-center py-10 space-y-10 max-w-6xl mx-auto" id='#makedo'>
+    <div className="min-h-screen flex flex-col items-center py-10 space-y-10 max-w-6xl mx-auto" id="#makedo">
       <h1 className="uppercase text-4xl font-bold text-center">
         Make A Difference Today By Donating To Our Cause.
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {campaigns.map((campaign, index) => (
-          <Card key={index} {...campaign} />
-        ))}
+        {campaigns.length > 0 &&
+          campaigns.map((campaign, index) => (
+            <Card key={index} {...campaign} />
+          ))}
       </div>
     </div>
   );
 };
 
 export default DonationPage;
+

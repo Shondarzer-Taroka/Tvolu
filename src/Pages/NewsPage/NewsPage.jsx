@@ -4,6 +4,8 @@ import { IoClose } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
 export const NewsCard = ({ title, description, image, date, newsContent, category, _id }) => {
+    console.log(description.split(''));
+
     const mydate = new Date(date);
     const day = mydate.toLocaleDateString('en-GB', { day: '2-digit' });
     const month = mydate.toLocaleDateString('en-GB', { month: 'short' });
@@ -40,15 +42,28 @@ export const NewsCard = ({ title, description, image, date, newsContent, categor
                 {/* Content Section */}
                 <div className="p-5">
                     <h3 className="text-lg font-semibold text-gray-800">
-                       {title}
+                        {title}
                     </h3>
-                    <p className="text-sm text-gray-600 mt-2 leading-relaxed">
-                      {description}
-                    </p>
+                    {/* <p className="text-sm text-gray-600 mt-2 leading-relaxed">
+                        {description?.split('').length >100
+                            ? `${description.split('').slice(0, 100).join('')}...`
+                            : description}
+                    </p> */}
 
+                    <p
+                        className="text-sm text-gray-600 mt-2 leading-relaxed overflow-hidden text-ellipsis"
+                        style={{
+                            display: '-webkit-box',
+                            WebkitLineClamp: 3, // Adjust the number of lines
+                            WebkitBoxOrient: 'vertical',
+                        }}
+                    >
+                        {description}
+                    </p>
+                    
                     {/* Read More */}
                     <Link
-                       to={`/readmore/${_id}`}
+                        to={`/readmore/${_id}`}
                         className="flex items-center text-sm font-medium text-brown-700 mt-4 hover:underline"
                     >
                         Read More <span className="ml-1">&rarr;</span>

@@ -164,7 +164,7 @@ const VolunteerNeedPostDetails = () => {
   const customStyles = {
     content: {
       height:'100%',
-      top: "53%",
+      top: "59%",
       zIndex:'10000000',
       left: "50%",
       right: "auto",
@@ -173,6 +173,7 @@ const VolunteerNeedPostDetails = () => {
       transform: "translate(-50%, -50%)",
       padding: "0",
       border: "none",
+      marginTop:"50px",
       background: "transparent",
     },
     overlay: {

@@ -84,6 +84,8 @@ import AddVolunteer from "../../Pages/AddVolunteer/AddVolunteer";
 import NewsForm from "./NewsForm";
 import { useLocation } from "react-router-dom";
 import MyNews from "./MyNews";
+import AddDonation from "./AddDonation";
+import AllUsers from "./AllUsers";
 
 
 const GoDashboard = () => {
@@ -133,6 +135,8 @@ const GoDashboard = () => {
           {selectedContent === "Feedback" && <Feedback />}
           {selectedContent === "Make a News" && <MakeNews />}
           {selectedContent === "My News" && <MYnews />}
+          {selectedContent === "Add Donation" && <Adddonation />}
+          {selectedContent === "All Users" && <Allusers />}
         </div>
       </div>
 
@@ -175,5 +179,14 @@ const MYnews = () => (
     <MyNews />
   </div>
 );
-
+const Adddonation = () => (
+  <div className="h-full overflow-y-auto">
+    <AddDonation/>
+  </div>
+);
+const Allusers = () => (
+  <div className="h-full overflow-y-auto">
+    <AllUsers/>
+  </div>
+);
 export default GoDashboard;

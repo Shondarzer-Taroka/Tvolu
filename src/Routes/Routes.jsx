@@ -16,6 +16,7 @@ import GoDashboard from "../DashboardRelated/GoDashboard/GoDashboard";
 import SuccessPage from "../Pages/SuccessPage/SuccessPage";
 import ReadMore from "../Pages/ReadMore/ReadMore";
 import Blogs from "../Pages/Blogs/Blogs";
+import Donations from "../Pages/Donations/Donations";
 
 let router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ let router = createBrowserRouter([
             {
                 path: '/Blogs',
                 element: <Blogs />
+            },
+            {
+                path:'/Donations',
+                element:<Donations/>
             },
             {
                 path: '/readmore/:id',

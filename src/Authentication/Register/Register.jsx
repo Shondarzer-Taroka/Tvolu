@@ -11,71 +11,123 @@ const Register = () => {
     let navigate = useNavigate()
     let loc = useLocation()
     // console.log(loc);
-    function onsubmit(e) {
-        e.preventDefault()
-        let email = e.target.email.value
-        let password = e.target.password.value
-        let name = e.target.name.value
-        let photo = e.target.image.value
-        // console.log(email, password, name, photo);
+    // function onsubmit(e) {
+    //     e.preventDefault()
+    //     let email = e.target.email.value
+    //     let password = e.target.password.value
+    //     let name = e.target.name.value
+    //     let photo = e.target.image.value
+    //     // console.log(email, password, name, photo);
 
+
+    //     if (password.length < 6) {
+    //         // toast.error('You should take at least 6 characters')
+    //         toast.error('You should take at least 6 characters')
+    //         return;
+    //     }
+    //     else if (!/[A-Z]/.test(password)) {
+    //         toast.error('You should take an uppercase')
+
+    //         return;
+    //     }
+    //     else if (!/[a-z]/.test(password)) {
+    //         toast.error('You should take a lowercase')
+
+    //         return;
+    //     }
+
+
+    //     createUser(email, password)
+    //         .then((result => {
+    //             let logUser = result.user
+    //             let  user  = {email}
+    //             // console.log(user);
+    //             axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`, user, { withCredentials: true })
+    //                 .then(res => {
+    //                     // console.log(res.data);
+    //                 })
+    //                 .catch(err => {
+    //                     // console.log(err);
+    //                 })
+    //             // console.log(logUser);
+    //             updateUser(name, photo)
+    //                 .then(() => {
+
+    //                 })
+    //                 .catch(er => {
+    //                     // console.log(er);
+    //                 })
+    //             e.target.reset()
+    //             toast.success('Successfully registered')
+    //             // location.reload()
+    //             setTimeout(() => {
+    //                 navigate(loc?.state ? loc.state : '/')
+    //                 location.reload()
+    //             }, 1000)
+    //         }))
+    //         .catch(er => {
+    //             er.message == 'Firebase: Error (auth/email-already-in-use).' ? toast.error('Email already in used') : ''
+    //             // console.log(er.message);
+    //             // console.log(er);
+    //         })
+
+    // }
+
+    function onsubmit(e) {
+        e.preventDefault();
+        let email = e.target.email.value;
+        let password = e.target.password.value;
+        let name = e.target.name.value;
+        let photo = e.target.image.value;
 
         if (password.length < 6) {
-            // toast.error('You should take at least 6 characters')
-            toast.error('You should take at least 6 characters')
+            toast.error('Password must be at least 6 characters');
+            return;
+        } else if (!/[A-Z]/.test(password)) {
+            toast.error('Password must include an uppercase letter');
+            return;
+        } else if (!/[a-z]/.test(password)) {
+            toast.error('Password must include a lowercase letter');
             return;
         }
-        else if (!/[A-Z]/.test(password)) {
-            toast.error('You should take an uppercase')
-
-            return;
-        }
-        else if (!/[a-z]/.test(password)) {
-            toast.error('You should take a lowercase')
-
-            return;
-        }
-
-        // if (password.length<6) {
-        //     alert('jk')
-        //     toast.success('j')
-        // }
 
         createUser(email, password)
-            .then((result => {
-                let logUser = result.user
-                let  user  = {email}
-                // console.log(user);
-                axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`, user, { withCredentials: true })
-                    .then(res => {
-                        // console.log(res.data);
+            .then((result) => {
+                const logUser = result.user;
+
+                // Save user to database
+                axios
+                    .post(`${import.meta.env.VITE_BASE_URL}/api/users`, { name, email, photo })
+                    .then((res) => {
+                        toast.success('User saved to database');
+                        console.log(res.data);
                     })
-                    .catch(err => {
-                        // console.log(err);
-                    })
-                // console.log(logUser);
+                    .catch((err) => {
+                        toast.error('Error saving user to database');
+                        console.error(err);
+                    });
+
                 updateUser(name, photo)
-                    .then(() => {
+                    .then(() => { })
+                    .catch((er) => {
+                        console.error(er);
+                    });
 
-                    })
-                    .catch(er => {
-                        // console.log(er);
-                    })
-                e.target.reset()
-                toast.success('Successfully registered')
-                // location.reload()
+                e.target.reset();
+                toast.success('Successfully registered');
                 setTimeout(() => {
-                    navigate(loc?.state ? loc.state : '/')
-                    location.reload()
-                }, 1000)
-            }))
-            .catch(er => {
-                er.message == 'Firebase: Error (auth/email-already-in-use).' ? toast.error('Email already in used') : ''
-                // console.log(er.message);
-                // console.log(er);
+                    navigate(loc?.state ? loc.state : '/');
+                    location.reload();
+                }, 1000);
             })
-
+            .catch((er) => {
+                if (er.message === 'Firebase: Error (auth/email-already-in-use).') {
+                    toast.error('Email already in use');
+                }
+                console.error(er.message);
+            });
     }
+
     return (
         <div>
 

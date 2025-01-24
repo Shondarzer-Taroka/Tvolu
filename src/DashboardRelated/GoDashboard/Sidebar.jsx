@@ -103,20 +103,26 @@
 
 
 
-import React from "react";
-import { FaHome, FaPlusCircle, FaComments } from "react-icons/fa";
+import React, { useContext } from "react";
+import { FaHome, FaPlusCircle, FaComments, FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { IoNewspaperSharp } from "react-icons/io5";
+import { FaDonate } from "react-icons/fa";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
-const Sidebar = ({ isCollapsed, onSidebarItemClick,showMobileSidebar, }) => {
+
+const Sidebar = ({ isCollapsed, onSidebarItemClick, showMobileSidebar, }) => {
+  let { user } = useContext(AuthContext)
+  console.log(user);
+
   return (
     <div
-    //   className={`h-screen bg-gray-900 text-gray-200 ${isCollapsed ? "w-20" : "w-64"} transition-all duration-300 flex flex-col lg:relative`}
-   
-    className={`bg-gray-900 text-white h-screen  flex flex-col fixed md:relative z-50 transition-all duration-300 
+      //   className={`h-screen bg-gray-900 text-gray-200 ${isCollapsed ? "w-20" : "w-64"} transition-all duration-300 flex flex-col lg:relative`}
+
+      className={`bg-gray-900 text-white h-screen  flex flex-col fixed md:relative z-50 transition-all duration-300 
         ${isCollapsed ? 'w-16' : 'w-64'} 
         ${showMobileSidebar ? 'left-0' : '-left-64'} md:left-0`}
-   >
+    >
       {/* Header */}
       <div
         className={`flex items-center justify-center py-6 bg-gray-800 ${isCollapsed ? "hidden" : "block"}`}
@@ -147,16 +153,28 @@ const Sidebar = ({ isCollapsed, onSidebarItemClick,showMobileSidebar, }) => {
             onClick={() => onSidebarItemClick("Feedback")}
           />
           <SidebarItem
-            icon={<IoNewspaperSharp/>}
+            icon={<IoNewspaperSharp />}
             label="Make a News"
             isCollapsed={isCollapsed}
             onClick={() => onSidebarItemClick("Make a News")}
           />
           <SidebarItem
-            icon={<IoNewspaperSharp/>}
+            icon={<IoNewspaperSharp />}
             label="My News"
             isCollapsed={isCollapsed}
             onClick={() => onSidebarItemClick("My News")}
+          />
+          <SidebarItem
+            icon={<FaDonate />}
+            label="Add Donation"
+            isCollapsed={isCollapsed}
+            onClick={() => onSidebarItemClick("Add Donation")}
+          />
+          <SidebarItem
+            icon={<FaUser />}
+            label="All Users"
+            isCollapsed={isCollapsed}
+            onClick={() => onSidebarItemClick("All Users")}
           />
         </div>
 

@@ -40,21 +40,16 @@ export const NewsCard = ({ title, description, image, date, newsContent, categor
                 </div>
 
                 {/* Content Section */}
-                <div className="p-5">
+                <div className="p-5 h-[180px] overflow-hidden flex flex-col justify-end">
                     <h3 className="text-lg font-semibold text-gray-800">
                         {title}
                     </h3>
-                    {/* <p className="text-sm text-gray-600 mt-2 leading-relaxed">
-                        {description?.split('').length >100
-                            ? `${description.split('').slice(0, 100).join('')}...`
-                            : description}
-                    </p> */}
-
+                  
                     <p
                         className="text-sm text-gray-600 mt-2 leading-relaxed overflow-hidden text-ellipsis"
                         style={{
                             display: '-webkit-box',
-                            WebkitLineClamp: 3, // Adjust the number of lines
+                            WebkitLineClamp: 2, // Adjust the number of lines
                             WebkitBoxOrient: 'vertical',
                         }}
                     >
@@ -102,14 +97,8 @@ const NewsPage = () => {
         <section>
             <aside>
                 <div className='relative'>
-                    <div>
-                        <div className='relative'>
-                            <div className='w-[30px] h-[30px] border border-gray-300 rounded-full shadow-lg' ></div>
-                            <div className='w-[30px] h-[30px] bg-[#955e42] rounded-full absolute top-2 left-2 shadow-lg' ></div>
-                        </div>
-
-                    </div>
-                    <div className='flex justify-around'>
+                    
+                    <div className='flex justify-around mt-6'>
                         <IoClose className='text-[#748e54] font-bold' />
                         <div className="flex items-center mt-10 opacity-50">
                             <div className="w-[70px] h-[2px] bg-neutral-500"></div>
@@ -128,7 +117,7 @@ const NewsPage = () => {
                 <h5 className='text-5xl font-bold text-center'>Discover Our Updates & Charity <br /> News Content.</h5>
             </aside>
 
-            <aside className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 '>
+            <aside className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-14'>
                 {news.map(newsCard => <NewsCard key={newsCard._id}
                     title={newsCard.title}
                     description={newsCard.description}

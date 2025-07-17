@@ -182,7 +182,7 @@ const VolunteerNeedPostDetails = () => {
   };
 
   return (
-    <div  className="min-h-screen bg-gray-50">
+    <div  className="min-h-screen ">
       <Helmet>
         <title>Post Details</title>
       </Helmet>

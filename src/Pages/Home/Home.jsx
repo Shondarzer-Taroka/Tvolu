@@ -24,7 +24,7 @@ const Home = () => {
             {/* <Banner></Banner> */}
 
             <SecondBanner></SecondBanner>
-            <div className="px-4">
+            <div className="w-full">
                 <DonationPage />
                 <TestimonialPage />
                 <FAQ />

@@ -64,7 +64,7 @@
 
 //             <h1 className="font-bold text-center font-poppins text-4xl "> Need Volunteer   </h1>
 //             <div className="w-full h-[50px] bg-slate-400 rounded-xl flex items-center justify-end">
-            
+
 //                 <div className="flex gap-5 items-center justify-end">
 //                     <CiGrid41 className="text-[40px]" onClick={makeGrid} />
 //                     <MdTableRows onClick={makeTable} className="text-[40px]" />
@@ -345,7 +345,7 @@ const NeedVolunteer = () => {
     };
 
     return (
-        <div className="p-6 bg-gray-50 min-h-screen">
+        <div className="p-6 min-h-screen">
             <Helmet>
                 <title>Need Volunteer</title>
             </Helmet>
@@ -361,13 +361,14 @@ const NeedVolunteer = () => {
 
             <div className="flex justify-center mt-8">
                 <div className="w-full max-w-lg">
-                    <div className="flex items-center border border-gray-300 rounded-lg p-2 shadow-sm bg-white">
+                    <div className="flex items-center outline-none border border-gray-300 rounded-lg shadow-sm">
                         <input
                             type="text"
                             id="search"
-                            className="flex-grow outline-none text-gray-700 px-2"
-                            placeholder="Search by post title..."
+                            className="flex-grow bg-base-content data-theme:text-white outline-none text-gray-800 dark:text-white bg-transparent dark:bg-transparent placeholder:text-gray-400 dark:placeholder:text-gray-500 px-2 py-4"
                         />
+
+
                         <button
                             onClick={handleSearch}
                             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"

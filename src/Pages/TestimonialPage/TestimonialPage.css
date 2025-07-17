@@ -36,3 +36,12 @@
 .animate-spin-reverse {
     animation: spin-reverse 3s linear infinite;
 }
+
+
+
+
+
+
+[data-theme="night"] img {
+  filter: brightness(0.9);
+}

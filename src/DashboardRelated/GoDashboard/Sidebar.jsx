@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 
 
 
@@ -103,18 +105,42 @@
 
 
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaHome, FaPlusCircle, FaComments, FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { IoNewspaperSharp } from "react-icons/io5";
 import { FaDonate } from "react-icons/fa";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
 
 
 const Sidebar = ({ isCollapsed, onSidebarItemClick, showMobileSidebar, }) => {
-  let { user } = useContext(AuthContext)
-  console.log(user);
+  let { user, logout } = useContext(AuthContext)
+  const [darkMode, setDarkMode] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [status, setStatus] = useState(false)
+  useEffect(() => {
+    const checkAdminStatus = async (email) => {
+      try {
+        const response = await axios.post('http://localhost:5588/api/user-role-check', { email });
+        console.log('Admin status:', response.data.isAdmin);
+        setStatus(response.data.isAdmin)
+        return response.data.isAdmin;
+      } catch (error) {
+        console.error('Error checking admin status:', error.response?.data || error.message);
+      }
+    };
 
+    checkAdminStatus(user?.email)
+  }, [user?.email])
+
+  console.log(user);
+  const handleLogout = async () => {
+    await logout();
+    setDropdownOpen(false);
+    setMobileMenuOpen(false);
+  };
   return (
     <div
       //   className={`h-screen bg-gray-900 text-gray-200 ${isCollapsed ? "w-20" : "w-64"} transition-all duration-300 flex flex-col lg:relative`}
@@ -170,12 +196,12 @@ const Sidebar = ({ isCollapsed, onSidebarItemClick, showMobileSidebar, }) => {
             isCollapsed={isCollapsed}
             onClick={() => onSidebarItemClick("Add Donation")}
           />
-          <SidebarItem
+        {status &&  <SidebarItem
             icon={<FaUser />}
             label="All Users"
             isCollapsed={isCollapsed}
             onClick={() => onSidebarItemClick("All Users")}
-          />
+          />}
         </div>
 
         {/* Secondary Section */}
@@ -184,7 +210,7 @@ const Sidebar = ({ isCollapsed, onSidebarItemClick, showMobileSidebar, }) => {
             icon={<FiLogOut />}
             label="Logout"
             isCollapsed={isCollapsed}
-            onClick={() => alert("Logging out...")}
+            onClick={handleLogout}
           />
         </div>
       </nav>

@@ -233,7 +233,7 @@ const Donations = () => {
       {/* Header Section */}
       <div className="flex justify-between items-center mb-5">
         {/* Categories */}
-        <div className="space-x-2 space-y-2 md:space-y-0 flex flex-wrap items-center">
+        <div className="md:space-x-2  p-4 md:p-0 space-y-2 md:space-y-0 flex flex-wrap items-center">
           <button
             onClick={() => setActiveCategory('')} // Clear category filter
             className={`px-5 py-1 rounded-full border text-opacity-80 hover:bg-gray-100 transition ${!activeCategory ? 'bg-gray-200 font-bold' : ''
@@ -278,9 +278,9 @@ const Donations = () => {
       </div>
 
       {/* Donations List */}
-      {loading ? <h1 className='mt-7'>Loading...</h1> : <div>
+      {loading ? <h1 className='mt-7 p-4 md:p-0 '>Loading...</h1> : <div>
         {donations.length > 0 ? (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 p-4 md:p-0">
             {donations.map((donation) => (
               <Card
                 key={donation._id}

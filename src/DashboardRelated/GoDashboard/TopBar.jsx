@@ -2,13 +2,24 @@
 
 
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CgMenuLeft } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const TopBar = ({ onToggleSidebar, toggleMobileSidebar }) => {
   const [time, setTime] = useState("");
+  let { user ,logout} = useContext(AuthContext)
+    const [darkMode, setDarkMode] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+ 
 
+  const handleLogout = async () => {
+    await logout();
+    setDropdownOpen(false);
+    setMobileMenuOpen(false);
+  };
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -52,7 +63,7 @@ const TopBar = ({ onToggleSidebar, toggleMobileSidebar }) => {
         <span className="text-sm">{time}</span>
         <button
           className="px-3 py-1 bg-red-500 text-sm font-medium rounded hover:bg-red-600"
-          onClick={() => alert("Logging out...")}
+          onClick={() => handleLogout()}
         >
           Logout
         </button>

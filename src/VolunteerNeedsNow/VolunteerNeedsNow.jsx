@@ -125,7 +125,7 @@ const VolunteerNeedsNow = () => {
 
     return (
         loadingVolunteer ? (
-            <div className="flex items-center justify-center my-8">
+            <div className="flex items-center justify-center my-8 dark:bg-gray-800 text-gray-800 dark:text-white ">
                 <RotatingLines
                     visible={true}
                     height="96"

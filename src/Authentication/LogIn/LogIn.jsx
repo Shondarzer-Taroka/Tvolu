@@ -14,7 +14,7 @@ const LogIn = () => {
 
     let navigate= useNavigate()
     let loc=useLocation()
-    // console.log(loc);
+    console.log(loc);
     function onsubmit(e) {
     e.preventDefault()
     let email=e.target.email.value

@@ -308,7 +308,7 @@ import './TestimonialPage.css';
 // Testimonial Card Component
 const TestimonialCard = ({ text, name, role, image }) => {
     return (
-        <aside className="bg-base-100 p-9 rounded-3xl shadow-md mt-7 border border-base-300">
+        <aside className="bg-base-100 p-9 rounded-3xl shadow-md mt-7 border border-base-300 dark:text-white">
             {/* Quotation */}
             <blockquote className="text-sm text-base-content italic mb-6">
                 &quot;{text}&quot;
@@ -372,7 +372,7 @@ const TestimonialPage = () => {
     };
 
     return (
-        <div className="bg-base-100 min-h-screen md:px-6 relative">
+        <div className="bg-base-100 min-h-screen md:px-6 relative dark:text-white">
             <div id="parent" className="grid grid-cols-2 md:flex gap-6 justify-center py-12">
                 {/* Left Section */}
                 <div className="md:w-[45%] col-span-2 md:col-span-1">

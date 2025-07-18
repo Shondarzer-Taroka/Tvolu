@@ -11,7 +11,7 @@ export const NewsCard = ({ title, description, image, date, newsContent, categor
     const month = mydate.toLocaleDateString('en-GB', { month: 'short' });
     return (
         <div>
-            <div className="md:max-w-sm rounded-lg shadow-lg bg-white">
+            <div className="md:max-w-sm rounded-lg shadow-lg  bg-white dark:bg-gray-800 dark:text-white">
                 {/* Image Section */}
                 <div className="relative">
                     <img
@@ -40,13 +40,13 @@ export const NewsCard = ({ title, description, image, date, newsContent, categor
                 </div>
 
                 {/* Content Section */}
-                <div className="p-5 h-[180px] overflow-hidden flex flex-col justify-end">
-                    <h3 className="text-lg font-semibold text-gray-800">
+                <div className="p-5 h-[180px] overflow-hidden flex flex-col justify-end ">
+                    <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
                         {title}
                     </h3>
                   
                     <p
-                        className="text-sm text-gray-600 mt-2 leading-relaxed overflow-hidden text-ellipsis"
+                        className="text-sm dark:text-white text-gray-600 mt-2 leading-relaxed overflow-hidden text-ellipsis"
                         style={{
                             display: '-webkit-box',
                             WebkitLineClamp: 2, // Adjust the number of lines
@@ -59,7 +59,7 @@ export const NewsCard = ({ title, description, image, date, newsContent, categor
                     {/* Read More */}
                     <Link
                         to={`/readmore/${_id}`}
-                        className="flex items-center text-sm font-medium text-brown-700 mt-4 hover:underline"
+                        className="flex items-center text-sm font-medium dark:text-white  text-brown-700 mt-4 hover:underline"
                     >
                         Read More <span className="ml-1">&rarr;</span>
                     </Link>
@@ -95,7 +95,7 @@ const NewsPage = () => {
 
     return (
         <section>
-            <aside>
+            <aside className='dark:text-white'>
                 <div className='relative'>
                     
                     <div className='flex justify-around mt-6'>

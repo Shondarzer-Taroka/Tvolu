@@ -236,7 +236,7 @@ const Donations = () => {
         <div className="md:space-x-2  p-4 md:p-0 space-y-2 md:space-y-0 flex flex-wrap items-center">
           <button
             onClick={() => setActiveCategory('')} // Clear category filter
-            className={`px-5 py-1 rounded-full border text-opacity-80 hover:bg-gray-100 transition ${!activeCategory ? 'bg-gray-200 font-bold' : ''
+            className={`px-5 py-1 rounded-full border dark:text-white text-opacity-80 hover:bg-gray-100 transition ${!activeCategory ? 'bg-gray-200 font-bold dark:bg-transparent' : ''
               }`}
           >
             All
@@ -245,7 +245,7 @@ const Donations = () => {
             <button
               key={index}
               onClick={() => setActiveCategory(category)}
-              className={`px-5 py-1 rounded-full border text-opacity-80 hover:bg-gray-100 transition ${activeCategory === category ? 'bg-gray-200 font-bold' : ''
+              className={`px-5 py-1 rounded-full border text-opacity-80 dark:hover:bg-gray-800 hover:bg-gray-100 transition ${activeCategory === category ? 'bg-gray-200 font-bold dark:bg-transparent dark:text-white' : ''
                 }`}
             >
               {category}

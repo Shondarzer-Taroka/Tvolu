@@ -39,17 +39,17 @@ const ImpactStories = () => {
                             className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-40 hover:bg-opacity-50 transition-all cursor-pointer"
                         >
                             <div
-                                className="bg-white rounded-full p-5 shadow-lg hover:scale-110 transition-transform"
+                                className="bg-white dark:bg-gray-800 dark:text-white rounded-full p-5 shadow-lg hover:scale-110 transition-transform"
                                 onClick={handlePlayClick}
                             >
-                                <FaPlay className="text-black text-3xl" />
+                                <FaPlay className="text-black text-3xl dark:text-white" />
                             </div>
                         </div>
                     </div>
                 </aside>
 
                 {/* Right Section: Content */}
-                <aside className="w-full md:w-1/2 flex flex-col justify-center space-y-6 bg-white rounded-3xl shadow-lg p-8">
+                <aside className="w-full md:w-1/2 flex flex-col justify-center space-y-6  dark:bg-gray-800 dark:text-white bg-white rounded-3xl shadow-lg p-8">
                     <div className="flex items-center opacity-70">
                         <div className="w-16 h-[2px] bg-neutral-500"></div>
                         <h2 className="uppercase font-semibold text-sm ml-3 tracking-wider">

@@ -20,6 +20,7 @@ import Donations from "../Pages/Donations/Donations";
 import OpportunitiesPage from "../Components/OpportunitiesPage/OpportunitiesPage";
 import SuccessStoriesPage from "../Components/SuccessStoriesPage/SuccessStoriesPage";
 import SkillVolunteeringPage from "../Components/skill-volunteering/SkillVolunteeringPage";
+import PartnersPage from "../Components/PartnersPage/PartnersPage";
 
 let router = createBrowserRouter([
     {
@@ -76,6 +77,10 @@ let router = createBrowserRouter([
             {
                 path: '/skill-volunteering',
                 element: <SkillVolunteeringPage />
+            },
+            {
+                path: '/partners',
+                element: <PartnersPage />
             },
             {
                 path: '/success-stories',

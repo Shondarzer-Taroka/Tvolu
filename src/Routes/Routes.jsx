@@ -22,6 +22,7 @@ import SuccessStoriesPage from "../Components/SuccessStoriesPage/SuccessStoriesP
 import SkillVolunteeringPage from "../Components/skill-volunteering/SkillVolunteeringPage";
 import PartnersPage from "../Components/PartnersPage/PartnersPage";
 import LocalCausesPage from "../Components/LocalCausesPage/LocalCausesPage";
+import About from "../Components/about/About";
 
 let router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ let router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path:'/about',
+                element:<About/>
             },
             {
                 path: '/login',

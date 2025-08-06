@@ -17,6 +17,7 @@ import SuccessPage from "../Pages/SuccessPage/SuccessPage";
 import ReadMore from "../Pages/ReadMore/ReadMore";
 import Blogs from "../Pages/Blogs/Blogs";
 import Donations from "../Pages/Donations/Donations";
+import OpportunitiesPage from "../Components/OpportunitiesPage/OpportunitiesPage";
 
 let router = createBrowserRouter([
     {
@@ -65,6 +66,12 @@ let router = createBrowserRouter([
                 path: '/update/:id',
                 element: <PrivateRoute><Update></Update></PrivateRoute>,
                 // loader:({params})=> fetch(`${import.meta.env.VITE_BASE_URL}/updateitem/${params.id}`)
+            },
+            {
+                path:'/opportunities',
+                element:<OpportunitiesPage/> 
+            },{
+                
             },
             {
                 path: '/myprofile',

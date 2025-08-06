@@ -19,6 +19,7 @@ import Blogs from "../Pages/Blogs/Blogs";
 import Donations from "../Pages/Donations/Donations";
 import OpportunitiesPage from "../Components/OpportunitiesPage/OpportunitiesPage";
 import SuccessStoriesPage from "../Components/SuccessStoriesPage/SuccessStoriesPage";
+import SkillVolunteeringPage from "../Components/skill-volunteering/SkillVolunteeringPage";
 
 let router = createBrowserRouter([
     {
@@ -43,8 +44,8 @@ let router = createBrowserRouter([
                 element: <Blogs />
             },
             {
-                path:'/Donations',
-                element:<Donations/>
+                path: '/Donations',
+                element: <Donations />
             },
             {
                 path: '/readmore/:id',
@@ -69,12 +70,16 @@ let router = createBrowserRouter([
                 // loader:({params})=> fetch(`${import.meta.env.VITE_BASE_URL}/updateitem/${params.id}`)
             },
             {
-                path:'/opportunities',
-                element:<OpportunitiesPage/> 
+                path: '/opportunities',
+                element: <OpportunitiesPage />
             },
             {
-                path:'/success-stories',
-                element:<SuccessStoriesPage/>
+                path: '/skill-volunteering',
+                element: <SkillVolunteeringPage />
+            },
+            {
+                path: '/success-stories',
+                element: <SuccessStoriesPage />
             },
             {
                 path: '/myprofile',

@@ -158,7 +158,7 @@
 
 
 
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { FaUser, FaMoon, FaSun, FaSpinner, FaBars, FaTimes } from 'react-icons/fa';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';

@@ -18,6 +18,7 @@ import ReadMore from "../Pages/ReadMore/ReadMore";
 import Blogs from "../Pages/Blogs/Blogs";
 import Donations from "../Pages/Donations/Donations";
 import OpportunitiesPage from "../Components/OpportunitiesPage/OpportunitiesPage";
+import SuccessStoriesPage from "../Components/SuccessStoriesPage/SuccessStoriesPage";
 
 let router = createBrowserRouter([
     {
@@ -70,8 +71,10 @@ let router = createBrowserRouter([
             {
                 path:'/opportunities',
                 element:<OpportunitiesPage/> 
-            },{
-                
+            },
+            {
+                path:'/success-stories',
+                element:<SuccessStoriesPage/>
             },
             {
                 path: '/myprofile',

@@ -1,7 +1,8 @@
 // src/pages/OpportunitiesPage.jsx
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import VolunteerCard from '../components/VolunteerCard';
+import VolunteerCard from '../VolunteerCard/VolunteerCard';
+
 
 const OpportunitiesPage = () => {
   useEffect(() => {

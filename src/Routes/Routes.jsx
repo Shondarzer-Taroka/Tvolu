@@ -21,6 +21,7 @@ import OpportunitiesPage from "../Components/OpportunitiesPage/OpportunitiesPage
 import SuccessStoriesPage from "../Components/SuccessStoriesPage/SuccessStoriesPage";
 import SkillVolunteeringPage from "../Components/skill-volunteering/SkillVolunteeringPage";
 import PartnersPage from "../Components/PartnersPage/PartnersPage";
+import LocalCausesPage from "../Components/LocalCausesPage/LocalCausesPage";
 
 let router = createBrowserRouter([
     {
@@ -81,6 +82,10 @@ let router = createBrowserRouter([
             {
                 path: '/partners',
                 element: <PartnersPage />
+            },
+            {
+                path:'/local-causes',
+                element:<LocalCausesPage/>
             },
             {
                 path: '/success-stories',

@@ -1,10 +1,16 @@
 
 import {  FaClock, FaFire, FaRocket, FaMousePointer } from 'react-icons/fa';
+import SpeechBanner from './SpeechBanner';
 
 export default function About() {
   return (
-    <section className="bg-[#0a0a0f] text-white px-6 py-16">
-      <div className="max-w-7xl mx-auto">
+    <section >
+
+        <div>
+            <SpeechBanner/>
+        </div>
+        <div className="bg-[#0a0a0f] text-white px-6 py-16">
+           <div className="max-w-7xl mx-auto">
         {/* Top Section */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-8">
           {/* Left Content */}
@@ -50,7 +56,11 @@ export default function About() {
             </div>
           ))}
         </div>
-      </div>
+      </div> 
+        </div>
+
+
+      
     </section>
   );
 }

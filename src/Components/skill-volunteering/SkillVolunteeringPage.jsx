@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 // src/pages/SkillVolunteeringPage.jsx
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';

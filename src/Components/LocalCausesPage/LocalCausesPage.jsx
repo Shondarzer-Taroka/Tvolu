@@ -1,7 +1,8 @@
 // src/Components/LocalCausesPage.jsx
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
-import CauseCard from '../components/CauseCard';
+import CauseCard from '../CauseCard/CauseCard';
+
 
 const LocalCausesPage = () => {
   useEffect(() => {

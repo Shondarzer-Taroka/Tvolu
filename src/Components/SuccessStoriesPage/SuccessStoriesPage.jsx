@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 // src/pages/SuccessStoriesPage.jsx
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';

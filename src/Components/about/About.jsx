@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { FaClock, FaFire, FaRocket, FaMousePointer } from 'react-icons/fa';
 import SpeechBanner from './SpeechBanner';

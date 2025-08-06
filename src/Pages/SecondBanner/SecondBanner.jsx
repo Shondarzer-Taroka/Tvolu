@@ -325,7 +325,7 @@ const SecondBanner = () => {
                       </button>
                       <button 
                         onClick={() => handleButtonClick(slide.secondaryButton.path)}
-                        className="px-8 py-3 bg-transparent border-2 border-white hover:bg-white/20 rounded-lg font-semibold transition-all duration-300"
+                        className="more-read-btn px-8 py-3 bg-transparent  font-semibold transition-all duration-300"
                       >
                         {slide.secondaryButton.text}
                       </button>

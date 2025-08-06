@@ -36,8 +36,8 @@ const Root = () => {
         <Outlet />
 
         {/* Conditionally render Footer */}
-        {!shouldExclude && <Footer />}
       </div>
+        {!shouldExclude && <Footer />}
     </section>
   );
 };

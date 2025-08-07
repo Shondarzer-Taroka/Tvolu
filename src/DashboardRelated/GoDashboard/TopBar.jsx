@@ -1,7 +1,3 @@
-
-
-
-
 import React, { useState, useEffect, useContext } from "react";
 import { CgMenuLeft } from "react-icons/cg";
 import { Link } from "react-router-dom";
@@ -29,10 +25,10 @@ const TopBar = ({ onToggleSidebar, toggleMobileSidebar }) => {
       setTime(`${hours}:${minutes}:${seconds}`);
     };
 
-    updateTime(); // Initial time update
-    const timer = setInterval(updateTime, 1000); // Update every second
+    updateTime(); 
+    const timer = setInterval(updateTime, 1000); 
 
-    return () => clearInterval(timer); // Cleanup on component unmount
+    return () => clearInterval(timer); 
   }, []);
 
   return (

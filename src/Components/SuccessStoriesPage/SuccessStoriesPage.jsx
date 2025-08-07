@@ -58,7 +58,43 @@ const SuccessStoriesPage = () => {
   };
 
   
-  
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+
+  try {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/success-stories/add`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      toast.success('Your story has been submitted for review!', { /* options */ });
+      setIsModalOpen(false);
+      setFormData({
+        name: '',
+        email: '',
+        storyTitle: '',
+        storyContent: '',
+        imageUrl: ''
+      });
+    } else {
+      toast.error(result.error || 'Failed to submit story.');
+    }
+
+  } catch (error) {
+    console.error('Submission error:', error);
+    toast.error('Something went wrong!');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const modalStyles = {
     content: {

@@ -5,61 +5,46 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Authentication/useAxiosSecure/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 
 const ManageMyPost = () => {
-    let { user } = useContext(AuthContext)
-    let [manageData, setManageData] = useState([])
-    let [toggle, setToggle] = useState(false)
-    let [myRequested, setmyRequested] = useState([])
-    let [loadPost,setLoadPost]=useState(true)
-    let [loadPostrequest,setloadPostrequest]=useState(true)
-    let [postLoadToggle,setPostLoadToggle]=useState(false)
-    let axiosSecure=useAxiosSecure()
-    // console.log(user.email);
+    const { user } = useContext(AuthContext);
+    const [manageData, setManageData] = useState([]);
+    const [myRequested, setMyRequested] = useState([]);
+    const [loadingPosts, setLoadingPosts] = useState(true);
+    const [loadingRequests, setLoadingRequests] = useState(true);
+    const [refreshToggle, setRefreshToggle] = useState(false);
+    const axiosSecure = useAxiosSecure();
 
-    let url=`/myneedvolunteer/${user?.email}`
+    // Fetch my volunteer posts
     useEffect(() => {
-        setLoadPost(true)
-        
-        // axios.get(`${import.meta.env.VITE_BASE_URL}/myneedvolunteer/${user?.email}`,{withCredentials:true})
-        //     .then(res => {
-        //         setManageData(res.data)
-        //         setLoadPost(false)
-        //         console.log(res.data);
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     })
-        axiosSecure.get(url)
-        .then(res=>{
-            setManageData(res.data)
-            setLoadPost(false)
-            // console.log(res.data);
-        })
-
-
-    }, [user, toggle,url,axiosSecure])
-
-    useEffect(() => {
-        setloadPostrequest(true)
-        axios.get(`${import.meta.env.VITE_BASE_URL}/myrequestedvolunteer/${user?.email}`,{withCredentials:true})
+        setLoadingPosts(true);
+        axiosSecure.get(`/myneedvolunteer/${user?.email}`)
             .then(res => {
-                setmyRequested(res.data)
-                setloadPostrequest(false)
-                console.log('lll', res.data);
+                setManageData(res.data);
+                setLoadingPosts(false);
             })
             .catch(err => {
                 console.log(err);
+                setLoadingPosts(false);
+            });
+    }, [user, refreshToggle, axiosSecure]);
+
+    // Fetch my volunteer requests
+    useEffect(() => {
+        setLoadingRequests(true);
+        axios.get(`${import.meta.env.VITE_BASE_URL}/myrequestedvolunteer/${user?.email}`, { withCredentials: true })
+            .then(res => {
+                setMyRequested(res.data);
+                setLoadingRequests(false);
             })
-    }, [user, postLoadToggle])
+            .catch(err => {
+                console.log(err);
+                setLoadingRequests(false);
+            });
+    }, [user, refreshToggle]);
 
-    // function handleUpdate(id) {
-    //     axios.put(`${import.meta.env.VITE_BASE_URL}/updatevolunteer/${id}`)
-    //     // console.log('kkk',id);
-    //     // console.log('dfgfgd');
-    // }
-    function handleDelete(id) {
-
+    const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -68,379 +53,220 @@ const ManageMyPost = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-        })
+        }).then(result => {
+            if (result.isConfirmed) {
+                axios.delete(`${import.meta.env.VITE_BASE_URL}/deletevolunteer/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            setRefreshToggle(!refreshToggle);
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your post has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Failed to delete post.",
+                            icon: "error"
+                        });
+                    });
+            }
+        });
+    };
 
-            .then(result => {
-                if (result.isConfirmed) {
-                    axios.delete(`${import.meta.env.VITE_BASE_URL}/deletevolunteer/${id}`)
-                        .then(res => {
-                            // console.log(res.data);
-                            if (res.data.deletedCount > 0) {
-                                setToggle(!toggle)
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success"
-                                });
-                            }
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        })
-                }
-            })
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-    function handleCancel(id) {
+    const handleCancel = (id) => {
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "You want to cancel this volunteer request?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        })
+            confirmButtonText: "Yes, cancel it!"
+        }).then(result => {
+            if (result.isConfirmed) {
+                axios.delete(`${import.meta.env.VITE_BASE_URL}/cancelrequested/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            setRefreshToggle(!refreshToggle);
+                            Swal.fire({
+                                title: "Cancelled!",
+                                text: "Your request has been cancelled.",
+                                icon: "success"
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Failed to cancel request.",
+                            icon: "error"
+                        });
+                    });
+            }
+        });
+    };
 
-            .then(result => {
-                if (result.isConfirmed) {
-                    axios.delete(`${import.meta.env.VITE_BASE_URL}/cancelrequested/${id}`)
-                        .then(res => {
-                            // console.log(res.data);
-                            if (res.data.deletedCount > 0) {
-                                // setTogglemyRequested(!toggle)
-                                setPostLoadToggle(!postLoadToggle)
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success"
-                                });
-                            }
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        })
-                }
-            })
-
-    }
-
+    const formatDate = (dateString) => {
+        return new Date(dateString).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    };
 
     return (
-      <div>
-        <Helmet>
-            <title>Manage post</title>
-        </Helmet>
-            {    loadPost ?  <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1> :   
-            <section >
-                <h1 className="text-4xl font-poppins font-bold text-center my-6 uppercase"> My Need Volunteer Post</h1>
-               {         manageData.length === 0 ? <h2 className="text-[55px] font-bold font-poppins text-[#8885856d] text-center my-7">You Have No Post</h2> :
-                <aside>
-                    <div className="overflow-x-auto">
-                        <table className="table table-xs sm:table-sm md:table-md lg:table-lg table-zebra">
-                            {/* head */}
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Category</th>
-                                    <th>Deadline</th>
-                                    <th>Update And Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {/* row 1 */}
-                                {
-                                    manageData.map((value, index) => {
-                                        return <>
-                                            <tr>
-                                                <th>{index + 1}</th>
-                                                <td>{value.organizer_name}</td>
-                                                <td>{value.category}</td>
-                                                <td>{new Date(value.deadline).toISOString().split('T')[0].split('-').reverse().join('/')} </td>
-                                                <td className="text-white">  <Link to={`/update/${value._id}`}> <button className="btn btn-info text-white">Update</button></Link>   <button onClick={() => handleDelete(value._id)} className="text-white btn btn-success">Delete</button></td>
+        <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+            <Helmet>
+                <title>Manage Posts | VolunteerHub</title>
+            </Helmet>
 
-
-                                            </tr>
-                                        </>
-                                    })
-                                }
-                            </tbody>
-                        </table>
+            <div className="max-w-7xl mx-auto">
+                {/* My Volunteer Posts Section */}
+                <motion.section 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="mb-12"
+                >
+                    <div className="flex justify-between items-center mb-6">
+                        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+                            My Volunteer Posts
+                        </h1>
                     </div>
-                </aside>
-}
-            </section>
 
-}
-
-      { loadPostrequest ?   <h1 className="text-center"><span className="loading loading-dots loading-lg"></span></h1>:
-            <section>
-                <h1 className="text-center font-poppins font-bold text-4xl my-6 uppercase"> My Volunteer Request Post</h1>
-               {
-                myRequested.length==0 ? <h1 className="text-[55px] font-bold font-poppins text-[#8885856d] text-center my-7"> You Have No Requested Data </h1>:
-            
-                <aside>
-                <div className="overflow-x-auto">
-                        <table className="table table-xs sm:table-sm md:table-md lg:table-lg table-zebra">
-                            {/* head */}
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Category</th>
-                                    <th>Deadline</th>
-                                    <th>Location</th>
-                                    <th>Cancel</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {/* row 1 */}
-                                {
-                                    myRequested.map((value, index) => {
-                                        return <>
-                                            <tr>
-                                                <th>{index + 1}</th>
-                                                <td>{value.organizer_name}</td>
-                                                <td>{value.category}</td>
-                                                <td>{new Date(value.deadline).toISOString().split('T')[0].split('-').reverse().join('/')} </td>
-                                                <td>{value.location} </td>
-                                                <td className="text-white"><button onClick={() => handleCancel(value._id)} className="text-white btn btn-success">Cancel</button></td>
+                    {loadingPosts ? (
+                        <div className="flex justify-center items-center h-64">
+                            <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                    ) : manageData.length === 0 ? (
+                        <div className="bg-white rounded-xl shadow-sm p-8 text-center">
+                            <h2 className="text-2xl font-medium text-gray-500 mb-4">
+                                You haven&lsquo;t created any volunteer posts yet
+                            </h2>
+                            
+                        </div>
+                    ) : (
+                        <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="min-w-full divide-y divide-gray-200">
+                                    <thead className="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deadline</th>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white divide-y divide-gray-200">
+                                        {manageData.map((post, index) => (
+                                            <tr key={post._id} className="hover:bg-gray-50">
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{post.organizer_name}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize">{post.category}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formatDate(post.deadline)}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 space-x-2">
+                                                    <Link to={`/update/${post._id}`}>
+                                                        <motion.button 
+                                                            whileHover={{ scale: 1.05 }}
+                                                            whileTap={{ scale: 0.95 }}
+                                                            className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700 transition-colors"
+                                                        >
+                                                            Update
+                                                        </motion.button>
+                                                    </Link>
+                                                    <motion.button
+                                                        whileHover={{ scale: 1.05 }}
+                                                        whileTap={{ scale: 0.95 }}
+                                                        onClick={() => handleDelete(post._id)}
+                                                        className="px-4 py-2 bg-red-600 text-white rounded-md text-sm font-medium hover:bg-red-700 transition-colors"
+                                                    >
+                                                        Delete
+                                                    </motion.button>
+                                                </td>
                                             </tr>
-                                        </>
-                                    })
-                                }
-                            </tbody>
-                        </table>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    )}
+                </motion.section>
+
+                {/* My Volunteer Requests Section */}
+                <motion.section 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                >
+                    <div className="flex justify-between items-center mb-6">
+                        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+                            My Volunteer Requests
+                        </h1>
                     </div>
-                </aside>
-                   }
-            </section>
-}
+
+                    {loadingRequests ? (
+                        <div className="flex justify-center items-center h-64">
+                            <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                    ) : myRequested.length === 0 ? (
+                        <div className="bg-white rounded-xl shadow-sm p-8 text-center">
+                            <h2 className="text-2xl font-medium text-gray-500 mb-4">
+                                You haven&lsquo;t made any volunteer requests yet
+                            </h2>
+                            <Link to="/" className="btn btn-primary">
+                                Browse Volunteer Opportunities
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="min-w-full divide-y divide-gray-200">
+                                    <thead className="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deadline</th>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white divide-y divide-gray-200">
+                                        {myRequested.map((request, index) => (
+                                            <tr key={request._id} className="hover:bg-gray-50">
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{request.organizer_name}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize">{request.category}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formatDate(request.deadline)}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{request.location}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    <motion.button
+                                                        whileHover={{ scale: 1.05 }}
+                                                        whileTap={{ scale: 0.95 }}
+                                                        onClick={() => handleCancel(request._id)}
+                                                        className="px-4 py-2 bg-red-600 text-white rounded-md text-sm font-medium hover:bg-red-700 transition-colors"
+                                                    >
+                                                        Cancel
+                                                    </motion.button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    )}
+                </motion.section>
+            </div>
         </div>
     );
 };
 
 export default ManageMyPost;
-
-
-
-
-
-
-
-
-
-
-// import axios from "axios";
-// import { useContext, useEffect, useState } from "react";
-// import { AuthContext } from "../../AuthProvider/AuthProvider";
-// import { Link } from "react-router-dom";
-// import Swal from "sweetalert2";
-// import useAxiosSecure from "../../Authentication/useAxiosSecure/useAxiosSecure";
-// import { Helmet } from "react-helmet-async";
-
-// const ManageMyPost = () => {
-//   let { user } = useContext(AuthContext);
-//   let [manageData, setManageData] = useState([]);
-//   let [toggle, setToggle] = useState(false);
-//   let [myRequested, setMyRequested] = useState([]);
-//   let [loadPost, setLoadPost] = useState(true);
-//   let [loadPostRequest, setLoadPostRequest] = useState(true);
-//   let [postLoadToggle, setPostLoadToggle] = useState(false);
-//   let axiosSecure = useAxiosSecure();
-
-//   let url = `/myneedvolunteer/${user?.email}`;
-
-//   useEffect(() => {
-//     setLoadPost(true);
-
-//     axiosSecure.get(url)
-//       .then((res) => {
-//         setManageData(res.data);
-//         setLoadPost(false);
-//       })
-//       .catch((err) => console.log(err));
-//   }, [user, toggle, url, axiosSecure]);
-
-//   useEffect(() => {
-//     setLoadPostRequest(true);
-
-//     axios.get(`${import.meta.env.VITE_BASE_URL}/myrequestedvolunteer/${user?.email}`, { withCredentials: true })
-//       .then((res) => {
-//         setMyRequested(res.data);
-//         setLoadPostRequest(false);
-//       })
-//       .catch((err) => console.log(err));
-//   }, [user, postLoadToggle]);
-
-//   function handleDelete(id) {
-//     Swal.fire({
-//       title: "Are you sure?",
-//       text: "You won't be able to revert this!",
-//       icon: "warning",
-//       showCancelButton: true,
-//       confirmButtonColor: "#3085d6",
-//       cancelButtonColor: "#d33",
-//       confirmButtonText: "Yes, delete it!",
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         axios.delete(`${import.meta.env.VITE_BASE_URL}/deletevolunteer/${id}`)
-//           .then((res) => {
-//             if (res.data.deletedCount > 0) {
-//               setToggle(!toggle);
-//               Swal.fire({
-//                 title: "Deleted!",
-//                 text: "Your file has been deleted.",
-//                 icon: "success",
-//               });
-//             }
-//           })
-//           .catch((err) => console.log(err));
-//       }
-//     });
-//   }
-
-//   function handleCancel(id) {
-//     Swal.fire({
-//       title: "Are you sure?",
-//       text: "You won't be able to revert this!",
-//       icon: "warning",
-//       showCancelButton: true,
-//       confirmButtonColor: "#3085d6",
-//       cancelButtonColor: "#d33",
-//       confirmButtonText: "Yes, delete it!",
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         axios.delete(`${import.meta.env.VITE_BASE_URL}/cancelrequested/${id}`)
-//           .then((res) => {
-//             if (res.data.deletedCount > 0) {
-//               setPostLoadToggle(!postLoadToggle);
-//               Swal.fire({
-//                 title: "Deleted!",
-//                 text: "Your file has been deleted.",
-//                 icon: "success",
-//               });
-//             }
-//           })
-//           .catch((err) => console.log(err));
-//       }
-//     });
-//   }
-
-//   return (
-//     <div>
-//       <Helmet>
-//         <title>Manage Post</title>
-//       </Helmet>
-
-//       {loadPost ? (
-//         <h1 className="text-center">
-//           <span className="loading loading-dots loading-lg"></span>
-//         </h1>
-//       ) : (
-//         <section>
-//           <h1 className="text-4xl font-bold text-center my-6 uppercase">My Need Volunteer Post</h1>
-//           {manageData.length === 0 ? (
-//             <h2 className="text-5xl font-bold text-gray-400 text-center my-7">You Have No Post</h2>
-//           ) : (
-//             <div className="overflow-x-auto">
-//               <table className="w-full border-collapse border border-gray-300">
-//                 <thead>
-//                   <tr className="bg-gray-200">
-//                     <th className="border border-gray-300 px-4 py-2">#</th>
-//                     <th className="border border-gray-300 px-4 py-2">Name</th>
-//                     <th className="border border-gray-300 px-4 py-2">Category</th>
-//                     <th className="border border-gray-300 px-4 py-2">Deadline</th>
-//                     <th className="border border-gray-300 px-4 py-2">Actions</th>
-//                   </tr>
-//                 </thead>
-//                 <tbody>
-//                   {manageData.map((value, index) => (
-//                     <tr key={value._id} className="hover:bg-gray-100">
-//                       <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-//                       <td className="border border-gray-300 px-4 py-2">{value.organizer_name}</td>
-//                       <td className="border border-gray-300 px-4 py-2">{value.category}</td>
-//                       <td className="border border-gray-300 px-4 py-2">{new Date(value.deadline).toISOString().split("T")[0].split("-").reverse().join("/")}</td>
-//                       <td className="border border-gray-300 px-4 py-2">
-//                         <Link to={`/update/${value._id}`}>
-//                           <button className="bg-blue-500 text-white px-3 py-1 rounded mr-2">Update</button>
-//                         </Link>
-//                         <button
-//                           onClick={() => handleDelete(value._id)}
-//                           className="bg-red-500 text-white px-3 py-1 rounded"
-//                         >
-//                           Delete
-//                         </button>
-//                       </td>
-//                     </tr>
-//                   ))}
-//                 </tbody>
-//               </table>
-//             </div>
-//           )}
-//         </section>
-//       )}
-
-//       {loadPostRequest ? (
-//         <h1 className="text-center">
-//           <span className="loading loading-dots loading-lg"></span>
-//         </h1>
-//       ) : (
-//         <section>
-//           <h1 className="text-4xl font-bold text-center my-6 uppercase">My Volunteer Request Post</h1>
-//           {myRequested.length === 0 ? (
-//             <h2 className="text-5xl font-bold text-gray-400 text-center my-7">You Have No Requested Data</h2>
-//           ) : (
-//             <div className="overflow-x-auto">
-//               <table className="w-full border-collapse border border-gray-300">
-//                 <thead>
-//                   <tr className="bg-gray-200">
-//                     <th className="border border-gray-300 px-4 py-2">#</th>
-//                     <th className="border border-gray-300 px-4 py-2">Name</th>
-//                     <th className="border border-gray-300 px-4 py-2">Category</th>
-//                     <th className="border border-gray-300 px-4 py-2">Deadline</th>
-//                     <th className="border border-gray-300 px-4 py-2">Location</th>
-//                     <th className="border border-gray-300 px-4 py-2">Cancel</th>
-//                   </tr>
-//                 </thead>
-//                 <tbody>
-//                   {myRequested.map((value, index) => (
-//                     <tr key={value._id} className="hover:bg-gray-100">
-//                       <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-//                       <td className="border border-gray-300 px-4 py-2">{value.organizer_name}</td>
-//                       <td className="border border-gray-300 px-4 py-2">{value.category}</td>
-//                       <td className="border border-gray-300 px-4 py-2">{new Date(value.deadline).toISOString().split("T")[0].split("-").reverse().join("/")}</td>
-//                       <td className="border border-gray-300 px-4 py-2">{value.location}</td>
-//                       <td className="border border-gray-300 px-4 py-2">
-//                         <button
-//                           onClick={() => handleCancel(value._id)}
-//                           className="bg-red-500 text-white px-3 py-1 rounded"
-//                         >
-//                           Cancel
-//                         </button>
-//                       </td>
-//                     </tr>
-//                   ))}
-//                 </tbody>
-//               </table>
-//             </div>
-//           )}
-//         </section>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ManageMyPost;

@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
@@ -26,8 +19,10 @@ const GoDashboard = () => {
   useEffect(() => {
     if (location.pathname === "/go-dashboard") {
       const rootElement = document.getElementById("rootelement");
-      if (rootElement) {
+      const outletElement = document.getElementById("main-content-outlet");
+      if (rootElement||outletElement) {
         rootElement.classList.remove("max-w-6xl");
+        outletElement.classList.remove("mt-[70px]");
       }
     }
   }, [location.pathname]);

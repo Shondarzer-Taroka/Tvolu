@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -153,7 +154,7 @@ const SuccessStoriesPage = () => {
 
   if (loading && pagination.page === 1) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="md:h-[700px]flex items-center justify-center">
         <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -164,7 +165,7 @@ const SuccessStoriesPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-gradient-to-b from-orange-50 to-white py-12 px-4 sm:px-6 lg:px-8"
+      className="md:h-[700px]bg-gradient-to-b from-orange-50 to-white py-12 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">

@@ -54,7 +54,7 @@
 //       {/* Render the Navbar if not on the dashboard page */}
 //       {!isDashboardPage && <TanaNavBar />}
 
-//       <div className="min-h-screen flex justify-center">
+//       <div className="md:h-[700px]flex justify-center">
 //         {/* Show Sidebar only on the dashboard page */}
 //         {/* {isDashboardPage && <Sidebar />} */}
 

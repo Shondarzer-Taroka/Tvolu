@@ -42,7 +42,7 @@ const SuccessPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-5">
+    <div className="md:h-[700px]flex flex-col items-center justify-center bg-gray-50 p-5">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full text-center">
         <h2 className="text-2xl font-bold text-green-600">Thank You for Your Donation!</h2>
         <p className="text-gray-700 mt-4">Your contribution makes a difference!</p>

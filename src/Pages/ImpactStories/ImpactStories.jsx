@@ -136,7 +136,7 @@ const ImpactStories = () => {
                         backgroundRepeat: "no-repeat",
                         backgroundSize: "cover",
                     }}
-                    className="relative min-h-screen flex flex-col justify-center items-start px-6 text-white"
+                    className="relative md:h-[700px]flex flex-col justify-center items-start px-6 text-white"
                 >
                     {/* Section Header */}
                     <div className="flex items-center mb-6">

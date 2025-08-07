@@ -2,12 +2,13 @@
 // src/components/CauseCard.jsx
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { stripHtmlAndLimit } from '../../utils/stripHtmlAndLimit';
 
 const CauseCard = ({ cause }) => {
   return (
     <motion.div
       whileHover={{ y: -5 }}
-      className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300"
+      className=" rounded-xl shadow-lg overflow-hidden transition-all duration-300"
     >
       <div className="relative h-48 overflow-hidden">
         <img
@@ -22,7 +23,7 @@ const CauseCard = ({ cause }) => {
       </div>
 
       <div className="p-6">
-        <p className="text-gray-600 mb-4">{cause.description}</p>
+        <p className="text-gray-600 mb-4">{stripHtmlAndLimit(cause.description,34).short}</p>
 
         <div className="flex justify-between items-center">
           <div className="flex items-center text-sm text-gray-500">

@@ -18,7 +18,7 @@ const FAQSection = forwardRef((props, ref) => {
   };
 
   return (
-    <div ref={ref} className="bg-[#f7f7ff] min-h-screen py-20 px-4">
+    <div ref={ref} className="bg-[#f7f7ff] md:h-[700px]py-20 px-4">
       <div className="max-w-3xl mx-auto text-center">
         <span className="text-sm font-semibold bg-white text-[#0f172a] px-4 py-1 rounded-full inline-block mb-4">
           COMMON QUESTIONS

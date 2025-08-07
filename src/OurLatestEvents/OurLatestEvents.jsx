@@ -13,7 +13,7 @@ const OurLatestEvents = () => {
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
             }}
-            className="relative min-h-screen"
+            className="relative md:h-[700px]"
         >
             <aside className='text-white p-4'>
                 <h1 className='text-4xl font-bold uppercase'>

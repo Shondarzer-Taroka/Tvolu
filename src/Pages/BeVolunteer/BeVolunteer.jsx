@@ -303,7 +303,7 @@ const BeVolunteer = () => {
 
   if (beVolunteerLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="md:h-[700px]flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
           <p className="mt-4 text-lg text-indigo-600 font-medium">Loading volunteer details...</p>
@@ -313,7 +313,7 @@ const BeVolunteer = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className="md:h-[700px]bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8">
       <Helmet>
         <title>Volunteer Request | VolunteerHub</title>
       </Helmet>

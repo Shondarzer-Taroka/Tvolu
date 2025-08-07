@@ -15,7 +15,7 @@ import FAQ from '../../../src/Pages/FAQ/FAQ'
 
 const Home = () => {
     return (
-        <div className="text-4xl">
+        <div className="">
 
             <Helmet>
                 <title> Home</title>

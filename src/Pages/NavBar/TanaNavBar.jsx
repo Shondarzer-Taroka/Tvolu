@@ -203,7 +203,7 @@ const TanaNavBar = () => {
   return (
     <>
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full bg-white text-gray-900 dark:bg-gray-900 dark:text-white py-4 px-6 shadow-md z-50 transition-colors duration-300">
+      <nav className="fixed font-poppins top-0 left-0 w-full bg-white text-gray-900 dark:bg-gray-900 dark:text-white py-4 px-6 shadow-md z-50 transition-colors duration-300">
         <div className="max-w-screen-xl mx-auto flex justify-between items-center">
           {/* Mobile menu button */}
           <div className="lg:hidden">

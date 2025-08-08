@@ -102,7 +102,7 @@ const Donations = () => {
           {/* Sort by Date */}
           <button
             onClick={handleSortByDate}
-            className="flex items-center px-5 py-1 rounded-full border text-opacity-80 hover:bg-gray-100 transition"
+            className="flex dark:text-white dark:hover:text-black items-center px-5 py-1 rounded-full border text-opacity-80 hover:bg-gray-100 transition"
           >
             Sort by Date
             <FaSort
@@ -114,7 +114,7 @@ const Donations = () => {
       </div>
 
       {/* Donations List */}
-      {loading ? <h1 className='mt-7 p-4 md:p-0 '>Loading...</h1> : <div>
+      {loading ? <h1 className='mt-7 p-4 md:p-0 dark:text-white'>Loading...</h1> : <div>
         {donations.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 p-4 md:p-0">
             {donations.map((donation) => (

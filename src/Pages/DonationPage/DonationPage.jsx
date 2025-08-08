@@ -64,7 +64,7 @@ export const Card = ({ title, description, collected, target, image, cardId }) =
         </div>
 
         <div className="p-6 flex-grow flex flex-col">
-          <span className="self-start px-3 py-1 rounded-full text-xs uppercase font-semibold bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light mb-3">
+          <span className="self-start px-3 py-1 rounded-full text-xs uppercase font-semibold bg-primary/10 text-primary dark:bg-primary/20 dark:text-white mb-3">
             Social Cause
           </span>
 
@@ -80,7 +80,7 @@ export const Card = ({ title, description, collected, target, image, cardId }) =
           <div className="mb-3">
             <div className="flex justify-between text-sm mb-1">
               <span className="text-gray-600 dark:text-gray-300">Progress</span>
-              <span className="font-semibold text-primary dark:text-primary-light">
+              <span className="font-semibold text-primary dark:text-white">
                 {Math.floor(progress)}%
               </span>
             </div>

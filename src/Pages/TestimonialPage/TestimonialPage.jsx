@@ -372,7 +372,7 @@ const TestimonialPage = () => {
     };
 
     return (
-        <div className="bg-base-100 md:h-[700px]md:px-6 relative dark:text-white">
+        <div className="bg-base-100 md:h-[700px]  relative dark:text-white">
             <div id="parent" className="grid grid-cols-2 md:flex gap-6 justify-center py-12">
                 {/* Left Section */}
                 <div className="md:w-[45%] col-span-2 md:col-span-1">
@@ -404,14 +404,14 @@ const TestimonialPage = () => {
                     {/* Section Title */}
                     <div className="flex items-center mt-10">
                         <div className="w-[70px] h-[2px] bg-base-content opacity-20"></div>
-                        <h1 className="uppercase font-semibold text-[14px] ml-3 opacity-70">
+                        <h1 className="uppercase  font-semibold text-xl md:text-[14px] ml-3 opacity-70">
                             Stories of Change
                         </h1>
                     </div>
 
                     {/* Content Section */}
                     <div className="mt-2">
-                        <h1 className="text-3xl font-bold text-base-content">
+                        <h1 className="md:text-3xl font-bold text-base-content">
                             Read inspiring stories of individuals and communities.
                         </h1>
                         <p className="opacity-75 mt-3 text-[16px] leading-[1.3] text-base-content">

@@ -16,7 +16,7 @@ const OurLatestEvents = () => {
             className="relative md:h-[700px]"
         >
             <aside className='text-white p-4'>
-                <h1 className='text-4xl font-bold uppercase'>
+                <h1 className='text-3xl text-center md:text-left md:text-4xl font-bold uppercase'>
                     Stay up-to-date with our latest <br /> events and community initiatives.
                 </h1>
                 <div className="flex items-center mt-10 opacity-70">

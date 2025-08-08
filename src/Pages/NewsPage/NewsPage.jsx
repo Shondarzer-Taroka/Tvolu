@@ -114,7 +114,7 @@ const NewsPage = () => {
                     </div>
                 </div>
 
-                <h5 className='text-5xl font-bold text-center'>Discover Our Updates & Charity <br /> News Content.</h5>
+                <h5 className='text-3xl uppercase md:text-5xl font-bold text-center'>Discover Our Updates & Charity <br /> News Content.</h5>
             </aside>
 
             <aside className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-14'>

@@ -56,7 +56,7 @@ const ImpactStories = () => {
                             Impact Stories
                         </h2>
                     </div>
-                    <h1 className="text-4xl font-bold leading-tight">
+                    <h1 className="text-3xl uppercase text-center md:text-left md:text-4xl font-bold leading-tight">
                         Discover how we&apos;re making a difference and how you can get involved.
                     </h1>
                     <p className="opacity-70 text-lg">
@@ -147,7 +147,7 @@ const ImpactStories = () => {
                     </div>
 
                     {/* Section Content */}
-                    <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
+                    <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold leading-tight mb-6">
                         Get to know the <br /> passionate individuals <br /> behind Organization.
                     </h1>
                     <p className="text-lg lg:text-xl opacity-80 mb-6">

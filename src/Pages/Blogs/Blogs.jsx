@@ -1,8 +1,3 @@
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { FaSort } from 'react-icons/fa';
 import axios from 'axios';
@@ -10,16 +5,16 @@ import { NewsCard } from '../NewsPage/NewsPage';
 
 const Blogs = () => {
     const [categories] = useState(["Events", "Charity", "Updates"]);
-    const [activeCategory, setActiveCategory] = useState(''); // No default category
-    const [sortByDate, setSortByDate] = useState(false); // Default sort order
-    const [search, setSearch] = useState(''); // Empty search by default
-    const [news, setNews] = useState([]); // News data
-    const [isAscending, setIsAscending] = useState(false); // State to track icon direction
-    const [currentPage, setCurrentPage] = useState(1); // Current page
-    const [totalPages, setTotalPages] = useState(1); // Total number of pages
+    const [activeCategory, setActiveCategory] = useState(''); 
+    const [sortByDate, setSortByDate] = useState(false);
+    const [search, setSearch] = useState('');
+    const [news, setNews] = useState([]); 
+    const [isAscending, setIsAscending] = useState(false); 
+    const [currentPage, setCurrentPage] = useState(1); 
+    const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(true)
 
-    const ITEMS_PER_PAGE = 10; // Items per page
+    const ITEMS_PER_PAGE = 10;
 
     // Fetch data from API
     const fetchData = async () => {
@@ -51,7 +46,7 @@ const Blogs = () => {
 
     const handleSortClick = () => {
         setSortByDate(!sortByDate);
-        setIsAscending(!isAscending); // Toggle the rotation direction
+        setIsAscending(!isAscending);
     };
 
     const handlePageClick = (page) => {
@@ -77,10 +72,10 @@ const Blogs = () => {
             {/* Header Section */}
             <div className="flex justify-between items-center  p-4 md:p-0 mb-5">
                 {/* Categories */}
-                <div className="md:space-x-2 flex space-y-2 md:space-y-0 flex-wrap items-center">
+                <div className="md:space-x-2 flex dark:text-white space-y-2 md:space-y-0 flex-wrap items-center">
                     <button
-                        onClick={() => setActiveCategory('')} // Clear category filter
-                        className={`px-5 py-1 rounded-full border text-opacity-80 hover:bg-gray-100 transition ${!activeCategory ? 'bg-gray-200 font-bold' : ''
+                        onClick={() => setActiveCategory('')}
+                        className={`px-5 py-1 rounded-full border  text-opacity-80 hover:bg-gray-100 transition ${!activeCategory ? 'bg-gray-200 font-bold dark:text-black' : ''
                             }`}
                     >
                         All
@@ -89,7 +84,7 @@ const Blogs = () => {
                         <button
                             key={index}
                             onClick={() => setActiveCategory(category)}
-                            className={`px-5 py-1 rounded-full border text-opacity-80 hover:bg-gray-100 transition ${activeCategory === category ? 'bg-gray-200 font-bold' : ''
+                            className={`px-5 py-1 dark:hover:text-black dark:hover:bg-white rounded-full border text-opacity-80 hover:bg-gray-100 transition  ${activeCategory === category ? 'bg-gray-200 font-bold  dark:text-black' : ''
                                 }`}
                         >
                             {category}
@@ -110,7 +105,7 @@ const Blogs = () => {
                     {/* Sort by Date */}
                     <button
                         onClick={handleSortClick}
-                        className="flex items-center px-5 py-1 rounded-full border text-opacity-80 hover:bg-gray-100 transition"
+                        className="flex dark:text-white dark:hover:text-black items-center px-5 py-1 rounded-full border text-opacity-80 hover:bg-gray-100 transition"
                     >
                         Sort by Date
                         <FaSort
@@ -124,7 +119,7 @@ const Blogs = () => {
             {/* News List */}
             <div>
               
-                { loading ? <h1 className='mt-7 p-4 md:p-0'>Loading....</h1> : news.length > 0 ? (
+                { loading ? <h1 className='mt-7 p-4 md:p-0 h-screen flex justify-center items-center dark:text-white'>Loading....</h1> : news.length > 0 ? (
                     <aside className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 md:p-0">
                         {news.map((newsCard) => (
                             <NewsCard

@@ -7,9 +7,9 @@ const OurVolunteerCamp = () => {
     return (
         <div>
 
-            <h2 className="font-bold font-poppins text-center my-4"> Our Upcoming Volunteer Campaign </h2>
+            <h2 className="font-bold text-3xl uppercase dark:text-white md:text-4xl font-poppins text-center my-4"> Our Upcoming Volunteer Campaign </h2>
 
-            <section id="volunteerCont" className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
+            <section id="volunteerCont" className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 dark:text-white'>
                 <div id='card' className='border'>
                     <div className='p-4'>
                         <img className='w-full' src={vl1} alt="" />

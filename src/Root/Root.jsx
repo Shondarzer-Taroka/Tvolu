@@ -15,8 +15,7 @@ const Root = () => {
         {!shouldExclude && (
           <>
             <TanaNavBar />
-            <br />
-            <br />
+            
           </>
         )}
 

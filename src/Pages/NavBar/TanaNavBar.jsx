@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from 'react';
 import { FaUser, FaMoon, FaSun, FaSpinner, FaBars, FaTimes } from 'react-icons/fa';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const TanaNavBar = () => {
-  // Initialize darkMode state with localStorage value or false
+  // Dark mode state
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedMode = localStorage.getItem('darkMode');
@@ -17,8 +17,21 @@ const TanaNavBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, logout, spinner } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // Apply or remove 'dark' class on html element
+  // Scroll state for navbar background
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Detect scroll for background change
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Apply or remove 'dark' mode class on html element
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
@@ -40,15 +53,24 @@ const TanaNavBar = () => {
     setMobileMenuOpen(false);
   };
 
+  // Determine navbar background class
+  const isHomePage = location.pathname === '/';
+  const navbarBgClass =
+    isHomePage && !isScrolled
+      ? 'bg-transparent text-white'
+      : 'bg-white text-gray-900 dark:bg-gray-900 dark:text-white shadow-md';
+
   return (
     <>
       {/* Navbar */}
-      <nav className="fixed font-poppins top-0 left-0 w-full bg-white text-gray-900 dark:bg-gray-900 dark:text-white py-4 px-6 shadow-md z-50 transition-colors duration-300">
+      <nav
+        className={`fixed font-poppins top-0 left-0 w-full py-4 px-6 z-50 transition-all duration-300 ${navbarBgClass}`}
+      >
         <div className="max-w-screen-xl mx-auto flex justify-between items-center">
           {/* Mobile menu button */}
           <div className="lg:hidden">
-            <button 
-              onClick={toggleMobileMenu} 
+            <button
+              onClick={toggleMobileMenu}
               className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-accent"
               aria-label="Toggle menu"
             >
@@ -58,7 +80,10 @@ const TanaNavBar = () => {
 
           {/* Logo */}
           <div className="text-2xl font-bold font-poppins">
-            <NavLink to="/" className="hover:text-accent transition-colors duration-200">
+            <NavLink
+              to="/"
+              className="hover:text-accent transition-colors duration-200"
+            >
               Tvolu
             </NavLink>
           </div>
@@ -78,7 +103,7 @@ const TanaNavBar = () => {
                 to={to}
                 className={({ isActive }) =>
                   `hover:text-accent transition-colors duration-200 ${
-                    isActive ? 'text-primary font-semibold' : ''
+                    isActive ? 'text-[#fc8d31] font-semibold' : ''
                   }`
                 }
               >
@@ -123,13 +148,17 @@ const TanaNavBar = () => {
                   <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg rounded-md py-2 z-10 border border-gray-200 dark:border-gray-700">
                     <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
                       <strong className="block truncate">{user.displayName}</strong>
-                      <p className="text-sm opacity-75 truncate">Email: {user.email}</p>
+                      <p className="text-sm opacity-75 truncate">
+                        Email: {user.email}
+                      </p>
                     </div>
                     <NavLink
                       to="/go-dashboard"
                       className={({ isActive }) =>
                         `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
-                          isActive ? 'bg-gray-100 dark:bg-gray-700 font-semibold' : ''
+                          isActive
+                            ? 'bg-gray-100 dark:bg-gray-700 font-semibold'
+                            : ''
                         }`
                       }
                       onClick={() => setDropdownOpen(false)}
@@ -196,7 +225,9 @@ const TanaNavBar = () => {
                 to={to}
                 className={({ isActive }) =>
                   `block py-2 px-4 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 ${
-                    isActive ? 'bg-gray-200 dark:bg-gray-700 text-primary font-semibold' : ''
+                    isActive
+                      ? 'bg-gray-200 dark:bg-gray-700 text-primary font-semibold'
+                      : ''
                   }`
                 }
                 onClick={() => setMobileMenuOpen(false)}

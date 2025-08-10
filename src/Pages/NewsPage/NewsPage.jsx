@@ -1,10 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react/prop-types */
+import  { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
-export const NewsCard = ({ title, description, image, date, newsContent, category, _id }) => {
-    console.log(description.split(''));
+export const NewsCard = ({ title, description, image, date, category, _id }) => {
+    // console.log(description.split(''));
 
     const mydate = new Date(date);
     const day = mydate.toLocaleDateString('en-GB', { day: '2-digit' });

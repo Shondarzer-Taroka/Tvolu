@@ -29,22 +29,35 @@ export const Card = ({ title, description, collected, target, image, cardId }) =
     setFormData({ name: '', email: '', amount: '' });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/create-checkout-session`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-      if (!response.ok) throw new Error('Failed to create checkout session');
-      const { url } = await response.json();
-      window.location.href = url;
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Something went wrong. Please try again.');
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  // console.log('fo', formData);
+  
+  try {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/create-checkout-session`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        amount: formData.amount,
+        cardId: cardId, // make sure it's passed
+      }),
+    });
+
+    if (!response.ok) {
+      const errData = await response.json();
+      throw new Error(errData.error || 'Failed to create checkout session');
     }
-  };
+
+    const { url } = await response.json();
+    window.location.href = url;
+  } catch (error) {
+    console.error('Error:', error);
+    alert(error.message);
+  }
+};
+
 
   return (
     <div className="relative group overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 h-full">

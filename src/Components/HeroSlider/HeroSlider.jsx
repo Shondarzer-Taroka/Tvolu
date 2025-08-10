@@ -163,7 +163,7 @@ export default function HeroSlider() {
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={currentIndex}
-          className="absolute inset-0 flex items-center justify-start px-6 md:px-12 z-10 max-w-md"
+          className="absolute inset-0 flex items-center justify-start px-6 md:px-12 z-10 "
           custom={direction}
           initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
           animate={{ opacity: 1, x: 0 }}

@@ -21,7 +21,7 @@ const Root = () => {
         )}
 
         {/* Main Content */}
-        <div className="mt-[70px]" id="main-content-outlet">
+        <div className="mt-[70px] max-w-7xl mx-auto" id="main-content-outlet">
 
         <Outlet />
         </div>

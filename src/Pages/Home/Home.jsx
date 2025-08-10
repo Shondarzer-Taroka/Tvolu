@@ -11,20 +11,21 @@ import NewsPage from "../NewsPage/NewsPage";
 import OurLatestEvents from "../../OurLatestEvents/OurLatestEvents";
 import ImpactStories from "../ImpactStories/ImpactStories";
 import FAQ from '../../../src/Pages/FAQ/FAQ'
+import HeroSlider from "../../Components/HeroSlider/HeroSlider";
 
 
 const Home = () => {
     return (
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="">
 
             <Helmet>
                 <title> Home</title>
             </Helmet>
 
             {/* <Banner></Banner> */}
-
-            <SecondBanner></SecondBanner>
-            <div className="w-full">
+            <HeroSlider />
+            {/* <SecondBanner></SecondBanner> */}
+            <div className="max-w-7xl mx-auto px-4 md:px-6">
                 <DonationPage />
                 <TestimonialPage />
                 <FAQ />

@@ -55,7 +55,7 @@ function FAQ() {
         {/* Right Section */}
         <div className="relative">
           {/* FAQ Panel */}
-          <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/30 dark:border-gray-700/30 lg:absolute lg:-left-20 lg:right-0 lg:top-1/2 lg:-translate-y-1/2 z-20">
+          <div className="bg-white/70 mb-0 dark:bg-gray-800/70 mt-0 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/30 dark:border-gray-700/30 lg:absolute lg:-left-20 lg:right-0 lg:top-16 lg:-translate-y-1/2 z-20">
             {faqs.map((faq, index) => (
               <Disclosure key={index} as="div" defaultOpen={openIndex === index}>
                 {() => (

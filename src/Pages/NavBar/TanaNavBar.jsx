@@ -70,6 +70,8 @@ const TanaNavBar = () => {
               { to: '/need', label: 'Need volunteer' },
               { to: '/Blogs', label: 'News' },
               { to: '/Donations', label: 'Donations' },
+              { to: '/about', label: 'About' },
+              { to: '/success-stories', label: 'Success Stories' },
             ].map(({ to, label }) => (
               <NavLink
                 key={to}

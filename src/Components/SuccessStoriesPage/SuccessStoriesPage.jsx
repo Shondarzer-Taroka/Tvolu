@@ -154,7 +154,7 @@ const SuccessStoriesPage = () => {
 
   if (loading && pagination.page === 1) {
     return (
-      <div className="md:h-[700px]flex items-center justify-center">
+      <div className="md:h-[700px] w-full flex items-center justify-center">
         <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );

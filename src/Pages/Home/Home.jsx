@@ -16,7 +16,7 @@ import HeroSlider from "../../Components/HeroSlider/HeroSlider";
 
 const Home = () => {
     return (
-        <div className="">
+        <div className="" id="home-max-7xl">
 
             <Helmet>
                 <title> Home</title>

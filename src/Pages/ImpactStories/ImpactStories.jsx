@@ -11,10 +11,11 @@ import { useInView } from "react-intersection-observer";
 
 const ImpactStories = () => {
     const [ref, inView] = useInView({
-        threshold: 0.5, // Trigger when 50% of the component is visible
-        triggerOnce: true, // Only trigger once
+        threshold: 0.5, 
+        triggerOnce: true, 
     });
     const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     const handlePlayClick = () => {
         setIsModalOpen(true);
@@ -103,7 +104,7 @@ const ImpactStories = () => {
                 </div>
             )}
 
-            <article >
+            <article className=''>
 
                 <div className="bg-[#232020] rounded-t-3xl grid grid-cols-2 md:flex gap-5" ref={ref}>
                     {[1, 2, 3].map((item, idx) => (
@@ -154,7 +155,7 @@ const ImpactStories = () => {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit <br />
                         tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
                     </p>
-                    <button className="px-6 uppercase py-3 rounded-full bg-[#955e42] text-white font-semibold text-lg shadow-lg hover:bg-[#7a4b36] transition-all">
+                    <button className="px-6 my-5 uppercase py-3 rounded-full bg-[#955e42] text-white font-semibold text-lg shadow-lg hover:bg-[#7a4b36] transition-all">
                         Our Volunteer
                     </button>
                 </div>

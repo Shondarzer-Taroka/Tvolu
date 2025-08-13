@@ -11,16 +11,16 @@ const Root = () => {
 
   return (
     <section className="dark:bg-gray-800">
-      <div className="max-w-6xl mx-auto " id="rootelement">
+      <div className="" id="rootelement">
         {!shouldExclude && (
           <>
             <TanaNavBar />
-            
+            {location.pathname ==='/' || <> <br /> <br /> </>}
           </>
         )}
 
         {/* Main Content */}
-        <div className="mt-[70px] max-w-7xl mx-auto" id="main-content-outlet">
+        <div className={` ${location.pathname==='/' ? '':'max-w-7xl mx-auto mt-[70px]'} `} id="main-content-outlet" >
 
         <Outlet />
         </div>

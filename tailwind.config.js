@@ -37,6 +37,9 @@ export default {
         sans: ['Arial', 'sans-serif'],
         poppins: ["'Poppins', sans-serif"],
       },
+       screens: {
+        'max-xs': {'max': '392px'},
+      }
     },
   },
   plugins: [
